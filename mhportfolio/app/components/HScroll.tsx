@@ -13,7 +13,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function HScroll() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const driverRef = useRef<HTMLDivElement>(null)
+  const pinRef   = useRef<HTMLDivElement>(null)
   const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
@@ -26,23 +26,24 @@ export default function HScroll() {
   useEffect(() => {
     if (isMobile) return
     const track = trackRef.current
-    const driver = driverRef.current
-    if (!track || !driver) return
+    const pin   = pinRef.current
+    if (!track || !pin) return
 
     const ctx = gsap.context(() => {
       const totalScroll = track.scrollWidth - window.innerWidth
-      driver.style.height = (window.innerHeight + totalScroll) + 'px'
-
+      // GSAP pins the 100vh wrapper and auto-creates a spacer of the right height.
+      // This eliminates blank space after the last panel.
       gsap.to(track, {
         x: () => -totalScroll,
         ease: 'none',
         scrollTrigger: {
-          trigger: driver,
-          pin: driver,
+          trigger: pin,
+          pin: true,
           scrub: 1.2,
           start: 'top top',
           end: () => `+=${totalScroll}`,
           invalidateOnRefresh: true,
+          anticipatePin: 1,
         }
       })
     })
@@ -102,24 +103,20 @@ export default function HScroll() {
   /* ── Desktop: GSAP horizontal scroll ───────────────── */
   return (
     <>
-      <div id="scroll-driver" ref={driverRef} style={{ position: 'relative', zIndex: 1 }}>
-        <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
-          <div ref={trackRef} style={{
-            display: 'flex', height: '100vh',
-            width: '600vw',
-            willChange: 'transform'
-          }}>
-            <Hero />
-            <Work />
-            <About />
-            <Skills />
-            <Research />
-            <Contact />
-          </div>
+      <div ref={pinRef} style={{ height: '100vh', overflow: 'hidden' }}>
+        <div ref={trackRef} style={{
+          display: 'flex', height: '100vh',
+          width: '600vw', willChange: 'transform',
+        }}>
+          <Hero />
+          <Work />
+          <About />
+          <Skills />
+          <Research />
+          <Contact />
         </div>
       </div>
       {footer}
     </>
   )
 }
-

@@ -1,22 +1,31 @@
 'use client'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 export default function Hero() {
-  const scrollToWork = () => {
-    const d = document.getElementById('scroll-driver')
-    if (d) window.scrollTo({ top: d.offsetTop + document.documentElement.clientWidth, behavior: 'smooth' })
-  }
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   return (
     <section style={{
-      width: '100vw', height: '100vh', flexShrink: 0,
-      display: 'flex', alignItems: 'center',
-      padding: '5rem 7vw 2rem', justifyContent: 'space-between',
-      position: 'relative', overflowY: 'auto', gap: '3vw',
-      flexWrap: 'wrap',
+      width: isMobile ? '100%' : '100vw',
+      height: isMobile ? 'auto' : '100vh',
+      flexShrink: 0,
+      display: 'flex',
+      alignItems: isMobile ? 'flex-start' : 'center',
+      flexDirection: isMobile ? 'column' : 'row',
+      padding: isMobile ? '5rem 6vw 3rem' : '5rem 7vw 2rem',
+      justifyContent: 'space-between',
+      position: 'relative',
+      overflowY: 'auto',
+      gap: isMobile ? '2rem' : '3vw',
     }}>
-      {/* Subtle BG number — moved right and toned down so it doesn't overlap */}
       <div style={{
         position: 'absolute', right: '-2vw', bottom: '5%',
         fontFamily: 'Inter,sans-serif', fontWeight: 800,
@@ -30,7 +39,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        style={{ flex: 1, minWidth: 0, position: 'relative', zIndex: 1 }}
+        style={{ flex: 1, minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
@@ -44,7 +53,7 @@ export default function Hero() {
 
         <h1 style={{
           fontFamily: 'Inter,sans-serif', fontWeight: 800,
-          fontSize: 'clamp(2.4rem,5.5vw,5.5rem)',
+          fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2.4rem,5.5vw,5.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
           marginBottom: '1.5rem',
         }}>
@@ -64,34 +73,34 @@ export default function Hero() {
         </p>
 
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-          <button
-            onClick={scrollToWork}
+          <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
             style={{
               background: 'var(--blue)', color: '#000',
               fontFamily: 'JetBrains Mono,monospace', fontWeight: 700,
               fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase',
-              padding: '0.85rem 2rem', cursor: 'none',
-              border: 'none', transition: 'box-shadow 0.3s',
+              padding: '0.85rem 2rem', cursor: 'pointer',
+              border: 'none', transition: 'box-shadow 0.3s', display: 'inline-block',
+              textDecoration: 'none',
             }}
-            onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 30px rgba(75,191,255,0.5)')}
-            onMouseLeave={e => (e.currentTarget.style.boxShadow = 'none')}
-          >View Work ↗</button>
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 30px rgba(75,191,255,0.5)'}
+            onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
+          >Download CV ↓</a>
 
-          <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
+          <a href="mailto:meherajhossainmahir@gmail.com"
             style={{
               background: 'transparent', color: 'var(--muted)',
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
               letterSpacing: '0.18em', textTransform: 'uppercase',
-              padding: '0.85rem 2rem', cursor: 'none',
+              padding: '0.85rem 2rem', cursor: 'pointer',
               border: '1px solid rgba(75,191,255,0.2)',
               transition: 'color 0.3s,border-color 0.3s', display: 'inline-block',
+              textDecoration: 'none',
             }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--blue)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.5)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.2)' }}
-          >Download CV</a>
+          >Contact Me →</a>
         </div>
 
-        {/* Meta rows */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
           {[
             { k: 'Role',     v: 'Engineer + Researcher' },
@@ -112,81 +121,82 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Photo */}
-      <div style={{ flexShrink: 0, position: 'relative', width: 'clamp(220px,24vw,360px)', height: 'clamp(300px,50vh,500px)', zIndex: 1 }}>
-        {/* Corner accents */}
-        {(['tl','tr','bl','br'] as const).map(c => (
-          <div key={c} style={{
-            position: 'absolute', width: 20, height: 20, zIndex: 3,
-            top:    c.startsWith('t') ? 0 : 'auto', bottom: c.startsWith('b') ? 0 : 'auto',
-            left:   c.endsWith('l')   ? 0 : 'auto', right:  c.endsWith('r')   ? 0 : 'auto',
-            borderTop:    c.startsWith('t') ? '2px solid var(--blue)' : 'none',
-            borderBottom: c.startsWith('b') ? '2px solid var(--blue)' : 'none',
-            borderLeft:   c.endsWith('l')   ? '2px solid var(--blue)' : 'none',
-            borderRight:  c.endsWith('r')   ? '2px solid var(--blue)' : 'none',
-            boxShadow: '0 0 10px rgba(75,191,255,0.4)',
-          }} />
-        ))}
+      {/* Photo — hidden on very small phones, shown on larger mobile/desktop */}
+      {!isMobile && (
+        <div style={{ flexShrink: 0, position: 'relative', width: 'clamp(220px,24vw,360px)', height: 'clamp(300px,50vh,500px)', zIndex: 1 }}>
+          {(['tl','tr','bl','br'] as const).map(c => (
+            <div key={c} style={{
+              position: 'absolute', width: 20, height: 20, zIndex: 3,
+              top:    c.startsWith('t') ? 0 : 'auto', bottom: c.startsWith('b') ? 0 : 'auto',
+              left:   c.endsWith('l')   ? 0 : 'auto', right:  c.endsWith('r')   ? 0 : 'auto',
+              borderTop:    c.startsWith('t') ? '2px solid var(--blue)' : 'none',
+              borderBottom: c.startsWith('b') ? '2px solid var(--blue)' : 'none',
+              borderLeft:   c.endsWith('l')   ? '2px solid var(--blue)' : 'none',
+              borderRight:  c.endsWith('r')   ? '2px solid var(--blue)' : 'none',
+              boxShadow: '0 0 10px rgba(75,191,255,0.4)',
+            }} />
+          ))}
 
-        <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
-          <Image
-            src="/photo.jpg"
-            alt="Md. Meheraj Hossain"
-            fill
-            style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'contrast(1.08) brightness(0.92)' }}
-            priority
-          />
-          <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-            background: 'linear-gradient(to bottom,transparent,rgba(5,5,7,0.7))', zIndex: 2,
-          }} />
-        </div>
-
-        {/* Availability badge — pulsing dot */}
-        <div style={{
-          position: 'absolute', bottom: -16, right: -18, zIndex: 4,
-          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
-          backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          display: 'flex', alignItems: 'center', gap: '0.6rem',
-        }}>
-          <span style={{
-            width: 7, height: 7, borderRadius: '50%', background: '#6FEA6F', flexShrink: 0,
-            boxShadow: '0 0 8px #6FEA6F',
-            animation: 'pulseGreen 2s ease-in-out infinite',
-          }} />
-          <div>
-            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
-            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
+          <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
+            <Image
+              src="/photo.jpg"
+              alt="Md. Meheraj Hossain"
+              fill
+              style={{ objectFit: 'cover', objectPosition: 'center top', filter: 'contrast(1.08) brightness(0.92)' }}
+              priority
+            />
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
+              background: 'linear-gradient(to bottom,transparent,rgba(5,5,7,0.7))', zIndex: 2,
+            }} />
           </div>
-        </div>
 
-        {/* University badge */}
+          <div style={{
+            position: 'absolute', bottom: -16, right: -18, zIndex: 4,
+            background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
+            backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
+            display: 'flex', alignItems: 'center', gap: '0.6rem',
+          }}>
+            <span style={{
+              width: 7, height: 7, borderRadius: '50%', background: '#6FEA6F', flexShrink: 0,
+              boxShadow: '0 0 8px #6FEA6F',
+              animation: 'pulseGreen 2s ease-in-out infinite',
+            }} />
+            <div>
+              <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
+              <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
+            </div>
+          </div>
+
+          <div style={{
+            position: 'absolute', top: -16, left: -18, zIndex: 4,
+            background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
+            backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
+            animation: 'float 4s ease-in-out infinite 2s',
+          }}>
+            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
+            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
+          </div>
+
+          <style>{`
+            @keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+            @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+          `}</style>
+        </div>
+      )}
+
+      {/* Scroll hint — desktop only */}
+      {!isMobile && (
         <div style={{
-          position: 'absolute', top: -16, left: -18, zIndex: 4,
-          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
-          backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          animation: 'float 4s ease-in-out infinite 2s',
+          position: 'absolute', bottom: '2rem', right: '5vw',
+          display: 'flex', alignItems: 'center', gap: '0.8rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem',
+          letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)',
         }}>
-          <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
-          <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
+          SCROLL <span style={{ animation: 'bounceX 0.9s ease-in-out infinite' }}>→</span>
+          <style>{`@keyframes bounceX{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}`}</style>
         </div>
-
-        <style>{`
-          @keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
-          @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-        `}</style>
-      </div>
-
-      {/* Scroll hint */}
-      <div style={{
-        position: 'absolute', bottom: '2rem', right: '5vw',
-        display: 'flex', alignItems: 'center', gap: '0.8rem',
-        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem',
-        letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)',
-      }}>
-        SCROLL <span style={{ animation: 'bounceX 0.9s ease-in-out infinite' }}>→</span>
-        <style>{`@keyframes bounceX{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}`}</style>
-      </div>
+      )}
     </section>
   )
 }

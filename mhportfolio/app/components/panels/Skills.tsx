@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 type SkillLevel = 'Production' | 'Research Grade' | 'Research' | 'Shipped' | 'Daily Use' | 'Published'
 
@@ -24,13 +25,24 @@ const levelColors: Record<SkillLevel, string> = {
 }
 
 export default function Skills() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   return (
     <section style={{
-      width: '100vw', height: '100vh', flexShrink: 0,
+      width: isMobile ? '100%' : '100vw',
+      height: isMobile ? 'auto' : '100vh',
+      flexShrink: 0,
       display: 'flex', flexDirection: 'column', justifyContent: 'center',
-      padding: '5rem 6vw 2rem', overflowY: 'auto',
+      padding: isMobile ? '4rem 6vw 3rem' : '5rem 6vw 2rem',
+      overflowY: 'auto',
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.6rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.6rem', flexWrap: 'wrap', gap: '0.5rem' }}>
         <div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +63,8 @@ export default function Skills() {
       </div>
 
       <div style={{
-        display: 'grid', gridTemplateColumns: 'repeat(4,1fr)',
+        display: 'grid',
+        gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)',
         gap: 1, background: 'rgba(75,191,255,0.06)',
         border: '1px solid rgba(75,191,255,0.08)',
       }}>
@@ -62,19 +75,18 @@ export default function Skills() {
             viewport={{ once: true }}
             transition={{ delay: i * 0.05, duration: 0.4 }}
             style={{
-              background: 'var(--bg)', padding: '1.2rem',
+              background: 'var(--bg)', padding: isMobile ? '1rem' : '1.2rem',
               display: 'flex', flexDirection: 'column', gap: '0.5rem',
-              minHeight: 130, position: 'relative',
+              minHeight: isMobile ? 110 : 130, position: 'relative',
               transition: 'background 0.35s', overflow: 'hidden',
             }}
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--surface2)'}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'var(--bg)'}
           >
             <div style={{ fontSize: '1rem', opacity: 0.5 }}>{s.icon}</div>
-            <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.85rem', color: 'var(--cream)' }}>{s.name}</div>
-            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.57rem', color: 'var(--muted)', lineHeight: 1.8, whiteSpace: 'pre-line', flex: 1 }}>{s.items}</div>
+            <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: isMobile ? '0.78rem' : '0.85rem', color: 'var(--cream)' }}>{s.name}</div>
+            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem', color: 'var(--muted)', lineHeight: 1.8, whiteSpace: 'pre-line', flex: 1 }}>{s.items}</div>
 
-            {/* Proficiency bar */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', marginTop: 'auto' }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.44rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: levelColors[s.level] }}>{s.level}</span>

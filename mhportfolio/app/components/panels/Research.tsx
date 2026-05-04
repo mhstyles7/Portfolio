@@ -1,26 +1,33 @@
 'use client'
 import { motion } from 'framer-motion'
-
-const metrics = [
-  { value: '99.28%', label: 'Training\nAccuracy',    big: true  },
-  { value: '99.07%', label: 'Unseen Attack\nAccuracy', big: false },
-  { value: '93.94%', label: 'Zero-Day\nDetection',    big: false },
-  { value: '0.50ms', label: 'Detection\nLatency',     big: false },
-  { value: '2.21%',  label: 'False-Positive\nRate',   big: false },
-]
+import { useEffect, useState } from 'react'
 
 export default function Research() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   return (
     <section style={{
-      width: '100vw', height: '100vh', flexShrink: 0,
-      display: 'flex', overflowY: 'auto',
+      width: isMobile ? '100%' : '100vw',
+      height: isMobile ? 'auto' : '100vh',
+      flexShrink: 0,
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      overflowY: 'auto',
       background: 'linear-gradient(135deg,#060a14 0%,#0C0C0C 60%)',
     }}>
       {/* Left */}
       <div style={{
-        width: '52%', padding: '5rem 4vw 3rem 7vw',
+        width: isMobile ? '100%' : '52%',
+        padding: isMobile ? '4rem 6vw 2rem' : '5rem 4vw 3rem 7vw',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-        borderRight: '1px solid rgba(75,191,255,0.08)',
+        borderRight: isMobile ? 'none' : '1px solid rgba(75,191,255,0.08)',
+        borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           {/* Status badge */}
@@ -49,7 +56,7 @@ export default function Research() {
 
           <h2 style={{
             fontFamily: 'Inter,sans-serif', fontWeight: 800,
-            fontSize: 'clamp(1.3rem,2.2vw,2rem)',
+            fontSize: 'clamp(1.1rem,2.2vw,2rem)',
             lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '1.2rem',
             color: 'var(--cream)',
           }}>
@@ -63,7 +70,7 @@ export default function Research() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
           <p style={{ fontSize: '0.73rem', lineHeight: 1.85, color: 'var(--muted)', marginBottom: '1.2rem', textAlign: 'justify' }}>
             <strong style={{ color: 'var(--cream)' }}>Abstract: </strong>
-            Zero-day attacks threaten IoT security as signature-based detection fails against novel exploits. This paper proposes a hybrid IDS integrating unsupervised anomaly detection, non-parametric Siamese-based cross-dataset dissimilarity filtering, and PPO-based adaptive defense. Evaluations on CIC-IoT-2023 and CIC-BCCC-NRC TabularIoTAttacks-2024 demonstrate state-of-the-art results.
+            Zero-day attacks threaten IoT security as signature-based detection fails against novel exploits. This paper proposes a hybrid IDS integrating unsupervised anomaly detection, non-parametric Siamese-based cross-dataset dissimilarity filtering, and PPO-based adaptive defense. Evaluations demonstrate state-of-the-art results.
           </p>
 
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.5rem' }}>
@@ -97,6 +104,7 @@ export default function Research() {
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
               fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase',
               padding: '0.7rem 1.5rem', transition: 'box-shadow 0.3s',
+              textDecoration: 'none', cursor: 'pointer',
             }}
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(75,191,255,0.5)'}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
@@ -109,9 +117,9 @@ export default function Research() {
       <div style={{
         flex: 1, display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        padding: '5rem 4vw 3rem', gap: '2.5rem', position: 'relative', overflow: 'hidden',
+        padding: isMobile ? '3rem 6vw 4rem' : '5rem 4vw 3rem',
+        gap: isMobile ? '1.5rem' : '2.5rem', position: 'relative', overflow: 'hidden',
       }}>
-        {/* watermark */}
         <div style={{
           position: 'absolute', inset: 0,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -128,7 +136,7 @@ export default function Research() {
         >
           <div style={{
             fontFamily: 'Inter,sans-serif', fontWeight: 800,
-            fontSize: 'clamp(3.5rem,6vw,5.5rem)', lineHeight: 1,
+            fontSize: 'clamp(3rem,6vw,5.5rem)', lineHeight: 1,
             color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.4)',
           }}>99.28%</div>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '0.7rem' }}>
@@ -137,7 +145,7 @@ export default function Research() {
         </motion.div>
 
         {/* 2×2 sub-metrics */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.2rem 2.5rem', width: '100%', maxWidth: 360 }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '1rem 2rem' : '1.2rem 2.5rem', width: '100%', maxWidth: 360 }}>
           {[
             { v: '99.07%', l: 'Unseen Attack\nAccuracy' },
             { v: '93.94%', l: 'Zero-Day\nDetection Rate' },
@@ -149,7 +157,7 @@ export default function Research() {
               viewport={{ once: true }} transition={{ delay: 0.25 + i * 0.1 }}
               style={{ textAlign: 'center' }}
             >
-              <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.8rem', color: 'var(--cream)' }}>{m.v}</div>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: isMobile ? '1.4rem' : '1.8rem', color: 'var(--cream)' }}>{m.v}</div>
               <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.43rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '0.35rem', whiteSpace: 'pre-line' }}>{m.l}</div>
             </motion.div>
           ))}

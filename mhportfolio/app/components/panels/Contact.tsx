@@ -1,18 +1,26 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaLinkedin, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa'
 
 const socials = [
-  { href: 'https://linkedin.com/in/md-meheraj-hossain',         icon: <FaLinkedin  size={16} />, label: 'LinkedIn',  color: '#0A66C2', primary: false },
-  { href: 'https://github.com/mhstyles7',                       icon: <FaGithub    size={16} />, label: 'GitHub',    color: '#ffffff', primary: false },
-  { href: 'https://www.facebook.com/majinmahir/',               icon: <FaFacebook  size={16} />, label: 'Facebook',  color: '#1877F2', primary: false },
-  { href: 'https://www.instagram.com/this_is_meheraj/',         icon: <FaInstagram size={16} />, label: 'Instagram', color: '#E1306C', primary: false },
+  { href: 'https://linkedin.com/in/md-meheraj-hossain',         icon: <FaLinkedin  size={16} />, label: 'LinkedIn',  color: '#0A66C2' },
+  { href: 'https://github.com/mhstyles7',                       icon: <FaGithub    size={16} />, label: 'GitHub',    color: '#ffffff' },
+  { href: 'https://www.facebook.com/majinmahir/',               icon: <FaFacebook  size={16} />, label: 'Facebook',  color: '#1877F2' },
+  { href: 'https://www.instagram.com/this_is_meheraj/',         icon: <FaInstagram size={16} />, label: 'Instagram', color: '#E1306C' },
 ]
 
 export default function Contact() {
   const [form, setForm]     = useState({ name: '', email: '', msg: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -29,15 +37,21 @@ export default function Contact() {
 
   return (
     <section style={{
-      width: '100vw', height: '100vh', flexShrink: 0,
-      display: 'flex', overflowY: 'auto',
+      width: isMobile ? '100%' : '100vw',
+      height: isMobile ? 'auto' : '100vh',
+      flexShrink: 0,
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      overflowY: 'auto',
       background: 'radial-gradient(ellipse at 50% 80%, rgba(75,191,255,0.05) 0%, transparent 65%)',
     }}>
       {/* Left — Heading + socials */}
       <div style={{
-        width: '45%', padding: '5rem 4vw 3rem 7vw',
+        width: isMobile ? '100%' : '45%',
+        padding: isMobile ? '4rem 6vw 2rem' : '5rem 4vw 3rem 7vw',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        borderRight: '1px solid rgba(75,191,255,0.08)',
+        borderRight: isMobile ? 'none' : '1px solid rgba(75,191,255,0.08)',
+        borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
       }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{
@@ -51,7 +65,7 @@ export default function Contact() {
 
           <h2 style={{
             fontFamily: 'Inter,sans-serif', fontWeight: 800,
-            fontSize: 'clamp(3rem,6vw,5.5rem)',
+            fontSize: 'clamp(2.5rem,6vw,5.5rem)',
             lineHeight: 0.92, letterSpacing: '-0.03em', marginBottom: '1.5rem',
           }}>
             Say{' '}
@@ -63,20 +77,19 @@ export default function Contact() {
           </p>
         </motion.div>
 
-        {/* Social links — icon + label for Email, icon-only for others */}
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
           <div style={{ marginBottom: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)' }}>Find me on</div>
           <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {socials.map(s => (
-              <a key={s.label} href={s.href} target={s.href.startsWith('mailto') ? '_self' : '_blank'} rel="noreferrer"
+              <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
                 title={s.label}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  padding: s.primary ? '0.65rem 1.4rem' : '0.65rem 0.9rem',
+                  padding: '0.65rem 1rem',
                   border: '1px solid rgba(75,191,255,0.15)',
-                  background: s.primary ? 'rgba(75,191,255,0.08)' : 'transparent',
-                  color: s.primary ? 'var(--blue)' : 'var(--muted)',
-                  transition: 'all 0.25s',
+                  background: 'transparent',
+                  color: 'var(--muted)',
+                  transition: 'all 0.25s', textDecoration: 'none', cursor: 'pointer',
                 }}
                 onMouseEnter={e => {
                   (e.currentTarget as HTMLElement).style.color = s.color
@@ -84,13 +97,13 @@ export default function Contact() {
                   ;(e.currentTarget as HTMLElement).style.background = `${s.color}12`
                 }}
                 onMouseLeave={e => {
-                  (e.currentTarget as HTMLElement).style.color = s.primary ? 'var(--blue)' : 'var(--muted)'
+                  (e.currentTarget as HTMLElement).style.color = 'var(--muted)'
                   ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.15)'
-                  ;(e.currentTarget as HTMLElement).style.background = s.primary ? 'rgba(75,191,255,0.08)' : 'transparent'
+                  ;(e.currentTarget as HTMLElement).style.background = 'transparent'
                 }}
               >
                 {s.icon}
-                {s.primary && <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 600 }}>{s.label}</span>}
+                <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
               </a>
             ))}
           </div>
@@ -99,7 +112,7 @@ export default function Contact() {
 
       {/* Right — Anonymous message form */}
       <div style={{
-        flex: 1, padding: '5rem 7vw 3rem 4vw',
+        flex: 1, padding: isMobile ? '3rem 6vw 5rem' : '5rem 7vw 3rem 4vw',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
       }}>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -129,10 +142,10 @@ export default function Contact() {
             </motion.div>
           ) : (
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', maxWidth: 480 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem' }}>
                 {[
-                  { key: 'name',  placeholder: 'Name (optional)',          type: 'text'  },
-                  { key: 'email', placeholder: 'Email (optional)',          type: 'email' },
+                  { key: 'name',  placeholder: 'Name (optional)',  type: 'text'  },
+                  { key: 'email', placeholder: 'Email (optional)', type: 'email' },
                 ].map(f => (
                   <input key={f.key} type={f.type} placeholder={f.placeholder} value={(form as any)[f.key]}
                     onChange={e => setForm(prev => ({ ...prev, [f.key]: e.target.value }))}
@@ -165,7 +178,7 @@ export default function Contact() {
                     background: 'var(--blue)', color: '#000',
                     fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
                     letterSpacing: '0.18em', textTransform: 'uppercase',
-                    fontWeight: 700, padding: '0.8rem 2rem', cursor: 'none',
+                    fontWeight: 700, padding: '0.8rem 2rem', cursor: 'pointer',
                     border: 'none', transition: 'box-shadow 0.3s',
                     opacity: status === 'sending' ? 0.65 : 1,
                   }}

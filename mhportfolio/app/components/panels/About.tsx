@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import { useEffect, useState } from 'react'
 
 const edu = [
   {
@@ -44,18 +45,32 @@ const fadeUp = {
 }
 
 export default function About() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth <= 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
   return (
     <section style={{
-      width: '100vw', height: '100vh', flexShrink: 0,
-      display: 'flex', overflow: 'hidden', position: 'relative',
+      width: isMobile ? '100%' : '100vw',
+      height: isMobile ? 'auto' : '100vh',
+      flexShrink: 0,
+      display: 'flex',
+      flexDirection: isMobile ? 'column' : 'row',
+      overflow: isMobile ? 'visible' : 'hidden',
+      position: 'relative',
     }}>
       {/* Left — Bio */}
       <div style={{
-        width: '42%', background: 'var(--cream)', color: '#111',
+        width: isMobile ? '100%' : '42%',
+        background: 'var(--cream)', color: '#111',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: '5rem 4vw 3rem', position: 'relative', overflow: 'hidden',
+        padding: isMobile ? '4rem 6vw 2.5rem' : '5rem 4vw 3rem',
+        position: 'relative', overflow: 'hidden',
       }}>
-        {/* Ghost "03" — bottom only, very faint */}
         <div style={{
           position: 'absolute', bottom: '-3rem', left: '-1rem',
           fontFamily: 'Inter,sans-serif', fontWeight: 800,
@@ -85,7 +100,7 @@ export default function About() {
           </motion.div>
 
           <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.8rem', lineHeight: 1.85, color: '#444', marginBottom: '1rem' }}>
-            CSE graduate with a rare blend of <strong style={{ color: '#111' }}>production-grade full-stack development</strong>, frontier ML research, and hardware-integrated systems. I approach complex problems with both analytical depth and practical insight.
+            CSE graduate with a rare blend of <strong style={{ color: '#111' }}>production-grade full-stack development</strong>, frontier ML research, and hardware-integrated systems.
           </motion.div>
 
           <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.8rem', lineHeight: 1.85, color: '#444', marginBottom: '1.5rem' }}>
@@ -100,11 +115,8 @@ export default function About() {
                   fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem',
                   letterSpacing: '0.14em', textTransform: 'uppercase',
                   padding: '0.28rem 0.7rem', border: '1px solid rgba(0,0,0,0.15)',
-                  color: '#555', transition: 'all 0.2s', cursor: 'none',
-                }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'; (e.currentTarget as HTMLElement).style.color = 'var(--blue)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(0,0,0,0.15)'; (e.currentTarget as HTMLElement).style.color = '#555' }}
-                >{t}</span>
+                  color: '#555', cursor: 'default',
+                }}>{t}</span>
               ))}
             </div>
           </motion.div>
@@ -115,7 +127,8 @@ export default function About() {
       <div style={{
         flex: 1, background: 'var(--bg)',
         display: 'flex', flexDirection: 'column',
-        padding: '5rem 4vw 3rem', overflowY: 'auto', gap: '2rem',
+        padding: isMobile ? '3rem 6vw 4rem' : '5rem 4vw 3rem',
+        overflowY: 'auto', gap: '2rem',
       }}>
         {/* Education */}
         <div>
@@ -139,7 +152,6 @@ export default function About() {
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 style={{ display: 'flex', gap: '1.2rem', paddingBottom: '1.4rem', paddingLeft: '0.2rem', position: 'relative' }}
               >
-                {/* Timeline */}
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 14 }}>
                   <div style={{
                     width: 10, height: 10, borderRadius: '50%',
