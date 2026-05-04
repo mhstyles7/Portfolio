@@ -34,7 +34,50 @@ img { display: block; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: rgba(75,191,255,0.2); border-radius: 2px; }
 
-/* Panel-level overflow is handled per-component. No global section override. */
+/* ── Mobile overrides ──────────────────────────────────── */
+@media (max-width: 768px) {
+  body { cursor: default; }
+  button { cursor: pointer; }
+
+  /* Panels stack vertically and auto-size */
+  section {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    flex-direction: column !important;
+    overflow: visible !important;
+    padding: 4rem 6vw 3rem !important;
+  }
+
+  /* Hero: stack photo below text on mobile */
+  section > div[style*="flex: 1"],
+  section > div[style*="flex:1"] {
+    width: 100% !important;
+    min-width: unset !important;
+  }
+
+  /* About: remove side-by-side split */
+  section > div[style*="width: '42%'"],
+  section > div[style*="width:'42%'"] {
+    width: 100% !important;
+  }
+
+  /* Contact: remove left/right split */
+  section > div[style*="width: '45%'"],
+  section > div[style*="width:'45%'"] {
+    width: 100% !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(75,191,255,0.08);
+    padding-bottom: 2rem;
+  }
+
+  /* Fix chatbot position on mobile */
+  div[style*="bottom:'2.5rem'"],
+  div[style*="bottom: '2.5rem'"] {
+    bottom: 1rem !important;
+    right: 1rem !important;
+  }
+}
 
 /* ── Print styles ──────────────────────────────────────── */
 @media print {
@@ -43,4 +86,5 @@ img { display: block; }
   section { width: 100% !important; height: auto !important; page-break-inside: avoid; }
   a { color: #000 !important; text-decoration: underline; }
 }
+
 

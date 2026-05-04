@@ -14,6 +14,7 @@ export default function Hero() {
       display: 'flex', alignItems: 'center',
       padding: '5rem 7vw 2rem', justifyContent: 'space-between',
       position: 'relative', overflowY: 'auto', gap: '3vw',
+      flexWrap: 'wrap',
     }}>
       {/* Subtle BG number — moved right and toned down so it doesn't overlap */}
       <div style={{

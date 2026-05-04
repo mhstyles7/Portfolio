@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Meheraj Hossain — Professional Portfolio
 
-## Getting Started
+A high-performance, visually striking interactive portfolio built with **Next.js 15**, **Framer Motion**, and **GSAP**. Designed to showcase full-stack development expertise and machine learning research.
 
-First, run the development server:
+## ✨ Key Features
+- **Custom AI Chatbot:** Integrated with Google's latest **Gemini 2.5 Flash** model via secure Server Actions. The AI has a custom system prompt and acts as a personal assistant, answering questions about skills, hobbies, and projects.
+- **GSAP Horizontal Scroll:** A bespoke horizontal scroll architecture tied to mouse-wheel events, creating a seamless, cinematic navigation experience across different panel sections (Hero, Work, About, Skills, Research, Contact).
+- **Live Visitor Analytics:** Integrated with `counterapi.dev` for a real-time, global visitor counter displayed dynamically in the navigation bar.
+- **Formspree Contact Integration:** Fully functioning contact form routing anonymous messages directly to email.
+- **Responsive & Polished:** Custom desktop cursor, mobile-friendly overlay hamburger menu, and a slick permanent dark-mode UI with sleek glassmorphism effects.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🛠 Tech Stack
+- **Framework:** Next.js (App Router)
+- **Language:** TypeScript
+- **Styling:** CSS Modules / Raw CSS (Zero Tailwind, fully custom `globals.css` with CSS variables)
+- **Animation:** GSAP (ScrollTrigger, ScrollToPlugin) & Framer Motion
+- **Icons:** React Icons
+- **AI:** Google Gemini API (`@google/generative-ai` / direct REST fetch)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Local Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/mhstyles7/portfolio.git
+   cd portfolio
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-## Learn More
+3. **Set up Environment Variables:**
+   Create a `.env.local` file in the root directory and add your Gemini API key for the chatbot:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
+This project is proprietary. Design and source code belong to Md. Meheraj Hossain.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
