@@ -115,9 +115,13 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Photo — hidden on very small phones, shown on larger mobile/desktop */}
-      {!isMobile && (
-        <div style={{ flexShrink: 0, position: 'relative', width: 'clamp(220px,24vw,360px)', height: 'clamp(300px,50vh,500px)', zIndex: 1 }}>
+      {/* Photo */}
+      <div style={{ 
+        flexShrink: 0, position: 'relative', 
+        width: isMobile ? '100%' : 'clamp(220px,24vw,360px)', 
+        height: isMobile ? '380px' : 'clamp(300px,50vh,500px)', 
+        zIndex: 1 
+      }}>
           {(['tl','tr','bl','br'] as const).map(c => (
             <div key={c} style={{
               position: 'absolute', width: 20, height: 20, zIndex: 3,
@@ -177,7 +181,6 @@ export default function Hero() {
             @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
           `}</style>
         </div>
-      )}
 
       {/* Scroll hint — desktop only */}
       {!isMobile && (
