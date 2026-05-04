@@ -1,7 +1,8 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 const socials = [
   { href: 'https://linkedin.com/in/md-meheraj-hossain',         icon: <FaLinkedin  size={16} />, label: 'LinkedIn',  color: '#0A66C2' },
@@ -13,14 +14,7 @@ const socials = [
 export default function Contact() {
   const [form, setForm]     = useState({ name: '', email: '', msg: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
-  const [isMobile, setIsMobile] = useState(false)
-
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const isMobile = useIsMobile()
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()

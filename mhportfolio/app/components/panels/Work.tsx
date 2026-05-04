@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa'
-import { useEffect, useState } from 'react'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 const projects: { num:string; title:string; desc:string; tech:string[]; tag:string; link:string; github:string }[] = [
   {
@@ -37,13 +37,7 @@ const projects: { num:string; title:string; desc:string; tech:string[]; tag:stri
 ]
 
 export default function Work() {
-  const [isMobile, setIsMobile] = useState(false)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const isMobile = useIsMobile()
 
   return (
     <section style={{

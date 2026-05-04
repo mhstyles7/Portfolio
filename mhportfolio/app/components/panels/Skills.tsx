@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 type SkillLevel = 'Production' | 'Research Grade' | 'Research' | 'Shipped' | 'Daily Use' | 'Published'
 
@@ -25,13 +25,7 @@ const levelColors: Record<SkillLevel, string> = {
 }
 
 export default function Skills() {
-  const [isMobile, setIsMobile] = useState(false)
-  useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+  const isMobile = useIsMobile()
 
   return (
     <section style={{

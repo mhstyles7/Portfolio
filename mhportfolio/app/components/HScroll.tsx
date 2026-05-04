@@ -1,7 +1,8 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useIsMobile } from '../hooks/useIsMobile'
 import Hero from './panels/Hero'
 import Work from './panels/Work'
 import About from './panels/About'
@@ -14,41 +15,48 @@ gsap.registerPlugin(ScrollTrigger)
 export default function HScroll() {
   const trackRef = useRef<HTMLDivElement>(null)
   const pinRef   = useRef<HTMLDivElement>(null)
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useIsMobile()
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth <= 768)
-    check()
-    window.addEventListener('resize', check)
-    return () => window.removeEventListener('resize', check)
-  }, [])
+    // Kill any lingering ScrollTrigger instances first
+    ScrollTrigger.getAll().forEach(st => st.kill())
 
-  useEffect(() => {
-    if (isMobile) return
+    if (isMobile) return  // no GSAP on mobile
+
     const track = trackRef.current
     const pin   = pinRef.current
     if (!track || !pin) return
 
-    const ctx = gsap.context(() => {
-      const totalScroll = track.scrollWidth - window.innerWidth
-      // GSAP pins the 100vh wrapper and auto-creates a spacer of the right height.
-      // This eliminates blank space after the last panel.
-      gsap.to(track, {
-        x: () => -totalScroll,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: pin,
-          pin: true,
-          scrub: 1.2,
-          start: 'top top',
-          end: () => `+=${totalScroll}`,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        }
-      })
-    })
+    // Small delay to ensure DOM is painted before GSAP measures
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        const totalScroll = track.scrollWidth - window.innerWidth
 
-    return () => ctx.revert()
+        gsap.to(track, {
+          x: () => -totalScroll,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: pin,
+            pin: true,
+            scrub: 1.2,
+            start: 'top top',
+            end: () => `+=${totalScroll}`,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+          }
+        })
+      })
+
+      // Store cleanup on the ref so we can access it
+      ;(pin as any).__gsapCtx = ctx
+    }, 100)
+
+    return () => {
+      clearTimeout(timer)
+      const ctx = (pin as any)?.__gsapCtx
+      if (ctx) ctx.revert()
+      ScrollTrigger.getAll().forEach(st => st.kill())
+    }
   }, [isMobile])
 
   const footer = (
@@ -65,8 +73,6 @@ export default function HScroll() {
       <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
         <a href="/Meheraj_CV.pdf" target="_blank" rel="noreferrer"
           style={{ color: 'var(--muted)', transition: 'color 0.2s' }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'var(--blue)'}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--muted)'}
         >View CV ↗</a>
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
@@ -76,25 +82,21 @@ export default function HScroll() {
             letterSpacing: '0.12em', textTransform: 'uppercase',
             cursor: 'pointer', transition: 'color 0.2s', padding: 0,
           }}
-          onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'var(--blue)'}
-          onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--muted)'}
         >↑ Back to top</button>
       </div>
     </footer>
   )
 
-  /* ── Mobile: vertical stack ─────────────────────────── */
+  /* ── Mobile: simple vertical stack ────────────────────── */
   if (isMobile) {
     return (
       <>
-        <div style={{ display: 'flex', flexDirection: 'column', width: '100%' }}>
-          <Hero />
-          <Work />
-          <About />
-          <Skills />
-          <Research />
-          <Contact />
-        </div>
+        <Hero />
+        <Work />
+        <About />
+        <Skills />
+        <Research />
+        <Contact />
         {footer}
       </>
     )
