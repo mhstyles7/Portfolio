@@ -2,12 +2,18 @@
 import { useEffect, useRef, useState } from 'react'
 
 export default function Cursor() {
-  const dotRef  = useRef<HTMLDivElement>(null)
-  const ringRef = useRef<HTMLDivElement>(null)
+  const dotRef   = useRef<HTMLDivElement>(null)
+  const ringRef  = useRef<HTMLDivElement>(null)
   const labelRef = useRef<HTMLDivElement>(null)
+  const [isTouchDevice, setIsTouchDevice] = useState(true) // default true = hidden until confirmed mouse
   let rx = 0, ry = 0
 
   useEffect(() => {
+    // Only show custom cursor on true pointer devices (not touch screens)
+    const isTouch = window.matchMedia('(pointer: coarse)').matches
+    if (isTouch) return
+    setIsTouchDevice(false)
+
     const move = (e: MouseEvent) => {
       const { clientX: mx, clientY: my } = e
       if (dotRef.current) {
@@ -54,6 +60,8 @@ export default function Cursor() {
       window.removeEventListener('mouseover', handleHover)
     }
   }, [])
+
+  if (isTouchDevice) return null
 
   return (
     <>

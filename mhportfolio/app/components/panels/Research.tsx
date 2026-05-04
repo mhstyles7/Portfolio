@@ -97,18 +97,16 @@ export default function Research() {
             Co-authored thesis · BRAC University · 2024–2025
           </div>
 
-          <a href="#" target="_blank" rel="noreferrer"
-            style={{
+          <div style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              background: 'var(--blue)', color: '#000',
+              border: '1px solid rgba(75,191,255,0.2)',
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
-              fontWeight: 700, letterSpacing: '0.18em', textTransform: 'uppercase',
-              padding: '0.7rem 1.5rem', transition: 'box-shadow 0.3s',
-              textDecoration: 'none', cursor: 'pointer',
-            }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 24px rgba(75,191,255,0.5)'}
-            onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
-          >Read Paper →</a>
+              letterSpacing: '0.18em', textTransform: 'uppercase',
+              padding: '0.7rem 1.5rem', color: 'var(--muted)',
+            }}>
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block' }} />
+              Published · DOI Link Coming Soon
+            </div>
         </motion.div>
         <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style>
       </div>

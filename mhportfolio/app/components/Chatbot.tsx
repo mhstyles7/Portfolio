@@ -1,6 +1,5 @@
 'use client'
 import { useState, useRef } from 'react'
-
 import { askGemini } from '../actions/chat'
 
 export default function Chatbot() {
@@ -13,22 +12,8 @@ export default function Chatbot() {
   const [sugsVisible, setSugsVisible] = useState(true)
   const endRef = useRef<HTMLDivElement>(null)
 
-  const playClick = () => {
-    try {
-      const ctx = new AudioContext()
-      const osc = ctx.createOscillator()
-      const gain = ctx.createGain()
-      osc.connect(gain); gain.connect(ctx.destination)
-      osc.frequency.setValueAtTime(600, ctx.currentTime)
-      gain.gain.setValueAtTime(0.08, ctx.currentTime)
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08)
-      osc.start(); osc.stop(ctx.currentTime + 0.08)
-    } catch {}
-  }
-
   const chat = async (text: string) => {
     if(!text.trim()) return
-    playClick()
     setInp('')
     setSugsVisible(false)
     setMsgs(m => [...m, {role:'user',text}])
@@ -49,20 +34,20 @@ export default function Chatbot() {
     <>
       {/* FAB */}
       <button
-        onClick={() => { setOpen(o => !o); playClick() }}
+        onClick={() => setOpen(o => !o)}
         style={{
-          position:'fixed',bottom:'2.5rem',right:'2.5rem',zIndex:8000,
-          width:54,height:54,borderRadius:'50%',
-          background:'var(--bg)',border:'1px solid rgba(75,191,255,0.3)',
-          display:'flex',alignItems:'center',justifyContent:'center',
+          position:'fixed', bottom:'2rem', right:'2rem', zIndex:8000,
+          width:54, height:54, borderRadius:'50%',
+          background:'var(--bg)', border:'1px solid rgba(75,191,255,0.3)',
+          display:'flex', alignItems:'center', justifyContent:'center',
           boxShadow:'0 0 20px rgba(75,191,255,0.15),0 4px 20px rgba(0,0,0,0.5)',
-          cursor:'none',transition:'box-shadow 0.3s,transform 0.3s'
+          cursor:'pointer', transition:'box-shadow 0.3s,transform 0.3s'
         }}
         onMouseEnter={e => { (e.currentTarget).style.boxShadow='0 0 35px rgba(75,191,255,0.4),0 4px 30px rgba(0,0,0,0.5)'; (e.currentTarget).style.transform='scale(1.08)' }}
         onMouseLeave={e => { (e.currentTarget).style.boxShadow='0 0 20px rgba(75,191,255,0.15),0 4px 20px rgba(0,0,0,0.5)'; (e.currentTarget).style.transform='scale(1)' }}
       >
         <div style={{
-          position:'absolute',inset:0,borderRadius:'50%',
+          position:'absolute', inset:0, borderRadius:'50%',
           border:'1px solid var(--blue)',
           animation:'ping 2.8s ease-out infinite'
         }}/>
@@ -72,16 +57,18 @@ export default function Chatbot() {
         <style>{`@keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}`}</style>
       </button>
 
-      {/* Chat window */}
+      {/* Chat window — responsive width, no overflow on small phones */}
       <div style={{
-        position:'fixed',bottom:'7.5rem',right:'2.5rem',zIndex:8000,
-        width:360,
+        position:'fixed',
+        bottom:'7rem', right:'1rem',
+        zIndex:8000,
+        width:'min(360px, calc(100vw - 2rem))',
         background:'rgba(8,10,18,0.97)',
         border:'1px solid rgba(75,191,255,0.2)',
         backdropFilter:'blur(30px)',
-        display:'flex',flexDirection:'column',
+        display:'flex', flexDirection:'column',
         transform:open?'translateY(0) scale(1)':'translateY(16px) scale(0.94)',
-        opacity:open?1:0,pointerEvents:open?'all':'none',
+        opacity:open?1:0, pointerEvents:open?'all':'none',
         transition:'transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s',
         boxShadow:'0 20px 60px rgba(0,0,0,0.6),0 0 40px rgba(75,191,255,0.04)'
       }}>
@@ -95,7 +82,7 @@ export default function Chatbot() {
               Online · Ask anything
             </div>
           </div>
-          <button onClick={() => setOpen(false)} style={{background:'none',border:'none',color:'var(--muted)',fontSize:'0.9rem',cursor:'none',transition:'color 0.2s'}}
+          <button onClick={() => setOpen(false)} style={{background:'none',border:'none',color:'var(--muted)',fontSize:'0.9rem',cursor:'pointer',transition:'color 0.2s'}}
             onMouseEnter={e => (e.currentTarget.style.color='var(--cream)')}
             onMouseLeave={e => (e.currentTarget.style.color='var(--muted)')}
           >✕</button>
@@ -133,7 +120,7 @@ export default function Chatbot() {
                 fontFamily:'JetBrains Mono,monospace',fontSize:'0.5rem',letterSpacing:'0.1em',
                 textTransform:'uppercase',padding:'0.3rem 0.65rem',
                 border:'1px solid rgba(75,191,255,0.1)',background:'none',
-                color:'var(--muted)',cursor:'none',transition:'all 0.2s'
+                color:'var(--muted)',cursor:'pointer',transition:'all 0.2s'
               }}
               onMouseEnter={e => { (e.currentTarget).style.borderColor='rgba(75,191,255,0.3)';(e.currentTarget).style.color='var(--blue)' }}
               onMouseLeave={e => { (e.currentTarget).style.borderColor='rgba(75,191,255,0.1)';(e.currentTarget).style.color='var(--muted)' }}
@@ -154,12 +141,12 @@ export default function Chatbot() {
               color:'var(--cream)',outline:'none',transition:'border-color 0.3s'
             }}
             onFocus={e => (e.target.style.borderColor='rgba(75,191,255,0.3)')}
-            onBlur={e => (e.target.style.borderColor='rgba(75,191,255,0.1)')}
+            onBlur={e  => (e.target.style.borderColor='rgba(75,191,255,0.1)')}
           />
           <button onClick={() => chat(inp)} style={{
             background:'none',border:'1px solid rgba(75,191,255,0.2)',
             padding:'0.6rem 0.85rem',color:'var(--blue)',fontSize:'0.75rem',
-            cursor:'none',transition:'background 0.2s,color 0.2s'
+            cursor:'pointer',transition:'background 0.2s,color 0.2s'
           }}
           onMouseEnter={e => { (e.currentTarget).style.background='var(--blue)';(e.currentTarget).style.color='#000' }}
           onMouseLeave={e => { (e.currentTarget).style.background='none';(e.currentTarget).style.color='var(--blue)' }}

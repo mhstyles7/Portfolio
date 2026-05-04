@@ -63,23 +63,36 @@ export default function Nav() {
   /* Scroll progress + active section */
   useEffect(() => {
     const onScroll = () => {
-      const driver = document.getElementById('scroll-driver')
-      if (!driver) return
-      const vw = document.documentElement.clientWidth
-      const totalScroll = vw * (PANEL_COUNT - 1)
-      const scrolled = Math.max(0, window.scrollY - driver.offsetTop)
-      const pct = Math.min(1, scrolled / totalScroll)
-      setProgress(pct * 100)
-      setActiveIdx(Math.round(pct * (PANEL_COUNT - 1)))
+      const isMob = window.innerWidth <= 768
+      if (isMob) {
+        // On mobile, panels stack vertically — use document height
+        const total = document.body.scrollHeight - window.innerHeight
+        const pct = total > 0 ? Math.min(1, window.scrollY / total) : 0
+        setProgress(pct * 100)
+        setActiveIdx(Math.round(pct * (PANEL_COUNT - 1)))
+      } else {
+        // On desktop, GSAP pin-spacer consumes vw*(PANEL_COUNT-1) of scroll
+        const vw = window.innerWidth
+        const totalScroll = vw * (PANEL_COUNT - 1)
+        const pct = Math.min(1, window.scrollY / totalScroll)
+        setProgress(pct * 100)
+        setActiveIdx(Math.round(pct * (PANEL_COUNT - 1)))
+      }
     }
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   const scrollTo = (idx: number) => {
-    const driver = document.getElementById('scroll-driver')
-    if (!driver) return
-    window.scrollTo({ top: driver.offsetTop + document.documentElement.clientWidth * idx, behavior: 'smooth' })
+    const isMob = window.innerWidth <= 768
+    if (isMob) {
+      // On mobile, scroll to the nth section by getting all sections
+      const sections = document.querySelectorAll('section')
+      if (sections[idx]) sections[idx].scrollIntoView({ behavior: 'smooth' })
+    } else {
+      // On desktop, each panel = 1vw of horizontal scroll
+      window.scrollTo({ top: window.innerWidth * idx, behavior: 'smooth' })
+    }
     setMenuOpen(false)
   }
 
@@ -128,7 +141,7 @@ export default function Nav() {
                     color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
                     fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
                     letterSpacing: '0.15em', textTransform: 'uppercase',
-                    cursor: 'none', padding: 0, transition: 'color 0.2s',
+                    cursor: 'pointer', padding: 0, transition: 'color 0.2s',
                     fontWeight: activeIdx === l.idx ? 600 : 400,
                     borderBottom: activeIdx === l.idx ? '1px solid var(--blue)' : '1px solid transparent',
                     paddingBottom: '1px',
@@ -212,7 +225,7 @@ export default function Nav() {
               style={{
                 background: 'none', color: 'var(--cream)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: 32, height: 32, cursor: 'none',
+                width: 32, height: 32, cursor: 'pointer',
                 border: '1px solid rgba(75,191,255,0.2)', borderRadius: '50%',
                 transition: 'all 0.2s', flexShrink: 0,
               }}
@@ -245,7 +258,7 @@ export default function Nav() {
                     color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
                     fontFamily: 'JetBrains Mono,monospace', fontSize: '0.58rem',
                     letterSpacing: '0.18em', textTransform: 'uppercase',
-                    cursor: 'none', transition: 'all 0.2s',
+                    cursor: 'pointer', transition: 'all 0.2s',
                     borderBottom: i < links.length - 1 ? '1px solid rgba(75,191,255,0.06)' : 'none',
                     fontWeight: activeIdx === l.idx ? 600 : 400,
                   }}
