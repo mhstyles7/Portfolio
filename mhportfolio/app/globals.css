@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+:root {
+  --bg: #050507;
+  --surface: #0d0d12;
+  --surface2: #141419;
+  --cream: #F2EDE4;
+  --blue: #4BBFFF;
+  --blue-glow: rgba(75,191,255,0.25);
+  --muted: #8F8A96;
+  --border: rgba(75,191,255,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { background: var(--bg); overflow-x: hidden; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  cursor: none;
+  overscroll-behavior: none;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; cursor: none; border: none; }
+img { display: block; }
+
+::selection { background: var(--blue); color: #000; }
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(75,191,255,0.2); border-radius: 2px; }
+
+/* Panel-level overflow is handled per-component. No global section override. */
+
+/* ── Print styles ──────────────────────────────────────── */
+@media print {
+  nav, [class*="cursor"], [style*="position:fixed"] { display: none !important; }
+  body { background: #fff !important; color: #000 !important; cursor: default !important; }
+  section { width: 100% !important; height: auto !important; page-break-inside: avoid; }
+  a { color: #000 !important; text-decoration: underline; }
+}
+
