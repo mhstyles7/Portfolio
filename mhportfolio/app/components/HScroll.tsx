@@ -105,7 +105,7 @@ export default function HScroll() {
   /* ── Desktop: GSAP horizontal scroll ───────────────── */
   return (
     <>
-      <div ref={pinRef} style={{ height: '100vh', overflow: 'hidden' }}>
+      <div ref={pinRef} style={{ height: '100vh', overflow: 'hidden', background: 'var(--bg)' }}>
         <div ref={trackRef} style={{
           display: 'flex', height: '100vh',
           width: '600vw', willChange: 'transform',
@@ -118,7 +118,6 @@ export default function HScroll() {
           <Contact />
         </div>
       </div>
-      {footer}
     </>
   )
 }

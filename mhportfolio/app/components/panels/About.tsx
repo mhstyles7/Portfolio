@@ -62,8 +62,8 @@ export default function About() {
         width: isMobile ? '100%' : '42%',
         background: 'var(--cream)', color: '#111',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: isMobile ? '4rem 6vw 2rem' : '3.5rem 4vw 1.5rem',
-        position: 'relative', overflowY: 'auto',
+        padding: isMobile ? '4rem 6vw 2rem' : '3rem 4vw 1rem',
+        position: 'relative', overflowY: 'hidden',
       }}>
         <div style={{
           position: 'absolute', bottom: '-3rem', left: '-1rem',
@@ -93,11 +93,11 @@ export default function About() {
             </h2>
           </motion.div>
 
-          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.9rem', lineHeight: 1.85, color: '#444', marginBottom: '0.8rem' }}>
+          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#444', marginBottom: '0.6rem' }}>
             Computer Science and Engineering graduate specializing in <strong style={{ color: '#111' }}>full-stack development</strong>, applied machine learning, and cybersecurity research. I have built and deployed production-grade web platforms using the MERN stack, and authored first-author research on AI-driven zero-day intrusion detection accepted for publication in <strong style={{ color: 'var(--blue)' }}>ICT Express (Elsevier, IF: 4.2)</strong>.
           </motion.div>
 
-          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.9rem', lineHeight: 1.85, color: '#444', marginBottom: '1.2rem' }}>
+          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#444', marginBottom: '1rem' }}>
             I combine hands-on engineering experience across web, IoT, and intelligent systems with a proven ability to deliver end-to-end solutions independently. Currently open to software engineering, machine learning, and technology-focused roles.
           </motion.div>
 
@@ -105,9 +105,9 @@ export default function About() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
               {['MERN Stack', 'ML / AI', 'Cybersecurity', 'IoT', 'Backend', 'Research'].map(t => (
                 <span key={t} style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
                   letterSpacing: '0.14em', textTransform: 'uppercase',
-                  padding: '0.35rem 0.75rem', border: '1px solid rgba(0,0,0,0.15)',
+                  padding: '0.3rem 0.65rem', border: '1px solid rgba(0,0,0,0.15)',
                   color: '#555', cursor: 'default',
                 }}>{t}</span>
               ))}
