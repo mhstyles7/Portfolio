@@ -19,13 +19,12 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--cream);
-  cursor: none;
   overscroll-behavior: none;
   line-height: 1.6;
 }
 
 a { text-decoration: none; color: inherit; }
-button { font-family: inherit; cursor: none; border: none; }
+button { font-family: inherit; border: none; }
 img { display: block; }
 
 ::selection { background: var(--blue); color: #000; }

@@ -23,7 +23,7 @@ const projects: { num:string; title:string; desc:string; tech:string[]; tag:stri
   {
     num: '03', title: 'Air Quality Monitor for Urban Homes',
     desc: 'Active indoor air monitoring system using ESP32, MQ-series gas sensors (smoke/CO₂) and DHT11 (temperature). Triggers exhaust fan via p-channel MOSFET and piezo buzzer on unsafe readings. Data logged to SD card and streamed via Wi-Fi.',
-    tech: ['ESP32', 'C', 'MOSFET', 'I2C/SPI', 'Wi-Fi'],
+    tech: ['ESP32', 'MOSFET', 'I2C/SPI', 'Wi-Fi'],
     tag: 'Hardware · Dec 2025 – Jan 2026',
     link: '', github: '',
   },
@@ -107,7 +107,7 @@ export default function Work() {
               </div>
 
               {/* Description */}
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.68rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p.desc}</div>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p.desc}</div>
 
               {/* Tech + Links row */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>

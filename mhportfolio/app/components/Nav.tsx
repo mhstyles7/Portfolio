@@ -7,7 +7,7 @@ const VisitorCounter = dynamic(() => import('./VisitorCounter'), { ssr: false })
 
 const links = [
   { label: 'Home',     idx: 0 },
-  { label: 'Work',     idx: 1 },
+  { label: 'Projects', idx: 1 },
   { label: 'About',    idx: 2 },
   { label: 'Skills',   idx: 3 },
   { label: 'Research', idx: 4 },

@@ -7,21 +7,21 @@ const edu = [
     degree: 'B.Sc. in Computer Science & Engineering',
     inst: 'BRAC University',
     year: '2021 – 2026',
-    grade: 'CGPA 3.61',
+    grade: 'CGPA 3.61/4.00',
     note: 'Thesis published in Elsevier ICT Express',
   },
   {
     degree: 'Higher Secondary Certificate (HSC)',
     inst: 'Mirpur Cantonment Public School & College',
     year: '2020',
-    grade: 'GPA 5.00',
+    grade: 'GPA 5.00/5.00',
     note: 'Science Group',
   },
   {
     degree: 'Secondary School Certificate (SSC)',
     inst: 'Greenview High School and College',
     year: '2018',
-    grade: 'GPA 5.00',
+    grade: 'GPA 5.00/5.00',
     note: 'Science Group',
   },
 ]
@@ -62,8 +62,8 @@ export default function About() {
         width: isMobile ? '100%' : '42%',
         background: 'var(--cream)', color: '#111',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: isMobile ? '4rem 6vw 2.5rem' : '5rem 4vw 3rem',
-        position: 'relative', overflow: 'hidden',
+        padding: isMobile ? '4rem 6vw 2rem' : '3.5rem 4vw 1.5rem',
+        position: 'relative', overflowY: 'auto',
       }}>
         <div style={{
           position: 'absolute', bottom: '-3rem', left: '-1rem',
@@ -76,7 +76,7 @@ export default function About() {
           <motion.div custom={0} variants={fadeUp}>
             <div style={{
               display: 'flex', alignItems: 'center', gap: '0.7rem',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
               letterSpacing: '0.22em', textTransform: 'uppercase',
               color: 'var(--blue)', marginBottom: '1rem',
             }}>
@@ -93,22 +93,21 @@ export default function About() {
             </h2>
           </motion.div>
 
-          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.8rem', lineHeight: 1.85, color: '#444', marginBottom: '1rem' }}>
-            CSE graduate with a rare blend of <strong style={{ color: '#111' }}>production-grade full-stack development</strong>, frontier ML research, and hardware-integrated systems.
+          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.9rem', lineHeight: 1.85, color: '#444', marginBottom: '0.8rem' }}>
+            Computer Science and Engineering graduate specializing in <strong style={{ color: '#111' }}>full-stack development</strong>, applied machine learning, and cybersecurity research. I have built and deployed production-grade web platforms using the MERN stack, and authored first-author research on AI-driven zero-day intrusion detection accepted for publication in <strong style={{ color: 'var(--blue)' }}>ICT Express (Elsevier, IF: 4.2)</strong>.
           </motion.div>
 
-          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.8rem', lineHeight: 1.85, color: '#444', marginBottom: '1.5rem' }}>
-            My thesis <em style={{ color: '#111' }}>"A Cross-Dataset based Zero-Day Intrusion Detection System by Integrating Siamese Network and Reinforcement Learning"</em> has been{' '}
-            <strong style={{ color: 'var(--blue)' }}>published in ICT Express</strong> (Elsevier, CiteScore: 10.8, IF: 4.2).
+          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.9rem', lineHeight: 1.85, color: '#444', marginBottom: '1.2rem' }}>
+            I combine hands-on engineering experience across web, IoT, and intelligent systems with a proven ability to deliver end-to-end solutions independently. Currently open to software engineering, machine learning, and technology-focused roles.
           </motion.div>
 
           <motion.div custom={3} variants={fadeUp}>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
               {['MERN Stack', 'ML / AI', 'Cybersecurity', 'IoT', 'Backend', 'Research'].map(t => (
                 <span key={t} style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
                   letterSpacing: '0.14em', textTransform: 'uppercase',
-                  padding: '0.28rem 0.7rem', border: '1px solid rgba(0,0,0,0.15)',
+                  padding: '0.35rem 0.75rem', border: '1px solid rgba(0,0,0,0.15)',
                   color: '#555', cursor: 'default',
                 }}>{t}</span>
               ))}
@@ -127,7 +126,7 @@ export default function About() {
         {/* Education */}
         <div>
           <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
             letterSpacing: '0.22em', textTransform: 'uppercase',
             color: 'var(--blue)', marginBottom: '1.2rem',
             display: 'flex', alignItems: 'center', gap: '0.7rem',
@@ -160,14 +159,14 @@ export default function About() {
                 </div>
 
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '0.82rem', color: 'var(--cream)', marginBottom: '0.2rem' }}>{e.degree}</div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.75rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
-                  <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
+                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '1rem', color: 'var(--cream)', marginBottom: '0.2rem' }}>{e.degree}</div>
+                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
+                  <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
                     <span>{e.year}</span>
                     <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--muted)' }} />
                     <span style={{ color: '#6FEA6F' }}>{e.grade}</span>
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.46rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(75,191,255,0.5)' }}>{e.note}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(75,191,255,0.5)' }}>{e.note}</div>
                 </div>
               </motion.div>
             ))}
@@ -177,7 +176,7 @@ export default function About() {
         {/* Experience & Roles */}
         <div>
           <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
             letterSpacing: '0.22em', textTransform: 'uppercase',
             color: 'var(--blue)', marginBottom: '1rem',
             display: 'flex', alignItems: 'center', gap: '0.7rem',
@@ -202,19 +201,19 @@ export default function About() {
               <div style={{ position: 'absolute', top: 0, left: 0, width: 3, height: '100%', background: 'var(--blue)' }} />
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.7rem' }}>
                 <div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.85rem', color: 'var(--cream)', marginBottom: '0.15rem' }}>{ex.role}</div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: 'var(--blue)' }}>{ex.org}</div>
+                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--cream)', marginBottom: '0.15rem' }}>{ex.role}</div>
+                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)' }}>{ex.org}</div>
                 </div>
                 <span style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
                   letterSpacing: '0.12em', textTransform: 'uppercase',
-                  padding: '0.22rem 0.65rem', border: '1px solid rgba(75,191,255,0.2)',
+                  padding: '0.3rem 0.75rem', border: '1px solid rgba(75,191,255,0.2)',
                   color: 'var(--muted)',
                 }}>{ex.duration}</span>
               </div>
               <ul style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                 {ex.points.map((p, j) => (
-                  <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.73rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>
+                  <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>
                 ))}
               </ul>
             </motion.div>

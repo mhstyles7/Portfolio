@@ -91,16 +91,21 @@ export default function Research() {
             Co-authored thesis · BRAC University · 2024–2025
           </div>
 
-          <div style={{
+          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer"
+            style={{
               display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              border: '1px solid rgba(75,191,255,0.2)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
-              letterSpacing: '0.18em', textTransform: 'uppercase',
-              padding: '0.7rem 1.5rem', color: 'var(--muted)',
-            }}>
+              border: '1px solid rgba(75,191,255,0.3)', background: 'rgba(75,191,255,0.05)',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
+              letterSpacing: '0.15em', textTransform: 'uppercase',
+              padding: '0.7rem 1.5rem', color: 'var(--cream)', textDecoration: 'none',
+              transition: 'background 0.2s, box-shadow 0.2s',
+            }}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(75,191,255,0.2)'}
+            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+          >
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block' }} />
-              Published · DOI Link Coming Soon
-            </div>
+              View DOI: 10.1016/j.icte.2026.05.001
+          </a>
         </motion.div>
         <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style>
       </div>

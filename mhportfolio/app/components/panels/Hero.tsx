@@ -37,9 +37,9 @@ export default function Hero() {
       >
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.58rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
           letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: 'var(--blue)', marginBottom: '1.5rem',
+          color: 'var(--blue)', marginBottom: '1rem',
         }}>
           <span style={{ width: 28, height: 1, background: 'var(--blue)', boxShadow: '0 0 6px var(--blue)', display: 'block' }} />
           CSE Graduate · BRAC University · Dhaka
@@ -47,31 +47,31 @@ export default function Hero() {
 
         <h1 style={{
           fontFamily: 'Inter,sans-serif', fontWeight: 800,
-          fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2.4rem,5.5vw,5.5rem)',
+          fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2rem,4.5vw,4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
-          marginBottom: '1.5rem',
+          marginBottom: '1rem',
         }}>
           Md. Meheraj{' '}
           <span style={{ color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.3)' }}>Hossain.</span>
         </h1>
 
         <p style={{
-          fontFamily: 'Inter,sans-serif', fontSize: '0.92rem',
-          lineHeight: 1.9, color: 'var(--muted)', maxWidth: 420, marginBottom: '2rem',
+          fontFamily: 'Inter,sans-serif', fontSize: '1rem',
+          lineHeight: 1.8, color: 'var(--muted)', maxWidth: 480, marginBottom: '1.2rem',
         }}>
-          <strong style={{ color: 'var(--cream)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — building intelligent systems and human-centered products.{' '}
-          Research <strong style={{ color: '#6FEA6F' }}>published</strong> at{' '}
-          <a href="#" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
+          <strong style={{ color: 'var(--cream)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — specializing in applied machine learning, cybersecurity, and building production-grade web platforms. Proven ability to deliver end-to-end intelligent systems.{' '}
+          First-author research <strong style={{ color: '#6FEA6F' }}>published</strong> at{' '}
+          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
             Elsevier ICT Express
           </a>.
         </p>
 
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
           <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
             style={{
               background: 'var(--blue)', color: '#000',
               fontFamily: 'JetBrains Mono,monospace', fontWeight: 700,
-              fontSize: '0.6rem', letterSpacing: '0.18em', textTransform: 'uppercase',
+              fontSize: '0.8rem', letterSpacing: '0.18em', textTransform: 'uppercase',
               padding: '0.85rem 2rem', cursor: 'pointer',
               border: 'none', transition: 'box-shadow 0.3s', display: 'inline-block',
               textDecoration: 'none',
@@ -80,10 +80,10 @@ export default function Hero() {
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
           >Download CV ↓</a>
 
-          <a href="mailto:meherajhossainmahir@gmail.com"
+          <button onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
             style={{
               background: 'transparent', color: 'var(--muted)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
               letterSpacing: '0.18em', textTransform: 'uppercase',
               padding: '0.85rem 2rem', cursor: 'pointer',
               border: '1px solid rgba(75,191,255,0.2)',
@@ -92,7 +92,7 @@ export default function Hero() {
             }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--blue)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.5)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.2)' }}
-          >Contact Me →</a>
+          >Contact Me →</button>
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -105,8 +105,8 @@ export default function Hero() {
             <div key={r.k} style={{
               display: 'flex', justifyContent: 'space-between',
               paddingBottom: '0.5rem', borderBottom: '1px solid rgba(75,191,255,0.08)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
-              letterSpacing: '0.1em', textTransform: 'uppercase', maxWidth: 340,
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
+              letterSpacing: '0.1em', textTransform: 'uppercase', maxWidth: 400,
             }}>
               <span style={{ color: 'var(--muted)' }}>{r.k}</span>
               <span style={{ color: r.k === 'Status' || r.k === 'Research' ? 'var(--blue)' : 'var(--cream)' }}>{r.v}</span>
@@ -161,8 +161,8 @@ export default function Hero() {
               animation: 'pulseGreen 2s ease-in-out infinite',
             }} />
             <div>
-              <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
-              <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
+              <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
+              <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
             </div>
           </div>
 
@@ -172,8 +172,8 @@ export default function Hero() {
             backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
             animation: 'float 4s ease-in-out infinite 2s',
           }}>
-            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.72rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
-            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
+            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
+            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
           </div>
 
           <style>{`
@@ -187,7 +187,7 @@ export default function Hero() {
         <div style={{
           position: 'absolute', bottom: '2rem', right: '5vw',
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem',
           letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)',
         }}>
           SCROLL <span style={{ animation: 'bounceX 0.9s ease-in-out infinite' }}>→</span>

@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa'
 import { useIsMobile } from '../../hooks/useIsMobile'
@@ -13,11 +13,40 @@ const socials = [
 
 export default function Contact() {
   const [form, setForm]     = useState({ name: '', email: '', msg: '' })
-  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err'>('idle')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'err' | 'limit'>('idle')
+  const [msgCount, setMsgCount] = useState(0)
   const isMobile = useIsMobile()
+
+  useEffect(() => {
+    const storedData = localStorage.getItem('anon_msg_data');
+    if (storedData) {
+      try {
+        const msgData = JSON.parse(storedData);
+        const now = Date.now();
+        if (now - msgData.firstMsgTime <= 24 * 60 * 60 * 1000) {
+          setMsgCount(msgData.count);
+        }
+      } catch (e) {}
+    }
+  }, []);
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault()
+
+    const now = Date.now();
+    const storedData = localStorage.getItem('anon_msg_data');
+    let msgData = storedData ? JSON.parse(storedData) : { count: 0, firstMsgTime: now };
+    
+    // Reset if 24 hours passed
+    if (now - msgData.firstMsgTime > 24 * 60 * 60 * 1000) {
+      msgData = { count: 0, firstMsgTime: now };
+    }
+    
+    if (msgData.count >= 3) {
+      setStatus('limit');
+      return;
+    }
+
     setStatus('sending')
     try {
       const res = await fetch('https://formspree.io/f/mlgzjeap', {
@@ -25,7 +54,14 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: form.name || 'Anonymous', email: form.email || 'anonymous@anon.com', message: form.msg }),
       })
-      setStatus(res.ok ? 'ok' : 'err')
+      if (res.ok) {
+        msgData.count += 1;
+        localStorage.setItem('anon_msg_data', JSON.stringify(msgData));
+        setMsgCount(msgData.count);
+        setStatus('ok');
+      } else {
+        setStatus('err');
+      }
     } catch { setStatus('err') }
   }
 
@@ -49,7 +85,7 @@ export default function Contact() {
       }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
             letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)',
             marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem',
           }}>
@@ -66,13 +102,13 @@ export default function Contact() {
             <em style={{ fontStyle: 'italic', color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.3)' }}>Hello.</em>
           </h2>
 
-          <p style={{ fontSize: '0.82rem', color: 'var(--muted)', maxWidth: 360, marginBottom: '2rem', lineHeight: 1.85 }}>
+          <p style={{ fontSize: '1rem', color: 'var(--muted)', maxWidth: 400, marginBottom: '2rem', lineHeight: 1.85 }}>
             Seeking internships and entry-level roles in software engineering, ML engineering, and backend development.
           </p>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
-          <div style={{ marginBottom: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)' }}>Find me on</div>
+          <div style={{ marginBottom: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)' }}>Find me on</div>
           <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {socials.map(s => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
@@ -97,7 +133,7 @@ export default function Contact() {
                 }}
               >
                 {s.icon}
-                <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
+                <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
               </a>
             ))}
           </div>
@@ -111,7 +147,7 @@ export default function Contact() {
       }}>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
             letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)',
             marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.7rem',
           }}>
@@ -119,9 +155,12 @@ export default function Contact() {
             Send a Message
           </div>
 
-          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.78rem', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '1.8rem' }}>
+          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '0.5rem' }}>
             Drop me a note — name and email are optional. Your message goes straight to my inbox.
           </p>
+          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', color: msgCount >= 3 ? '#ff5555' : 'var(--blue)', marginBottom: '1.5rem' }}>
+            Messages sent today: {msgCount} / 3
+          </div>
 
           {status === 'ok' ? (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}
@@ -132,7 +171,7 @@ export default function Contact() {
               }}
             >
               <div style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>✦</div>
-              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', color: '#6FEA6F', letterSpacing: '0.1em' }}>Message received. Thank you!</div>
+              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.95rem', color: '#6FEA6F', letterSpacing: '0.1em' }}>Message received. Thank you!</div>
             </motion.div>
           ) : (
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', maxWidth: 480 }}>
@@ -145,7 +184,7 @@ export default function Contact() {
                     onChange={e => setForm(prev => ({ ...prev, [f.key]: e.target.value }))}
                     style={{
                       background: 'rgba(75,191,255,0.03)', border: '1px solid rgba(75,191,255,0.12)',
-                      padding: '0.75rem 1rem', fontFamily: 'Inter,sans-serif', fontSize: '0.8rem',
+                      padding: '0.75rem 1rem', fontFamily: 'Inter,sans-serif', fontSize: '1rem',
                       color: 'var(--cream)', outline: 'none', width: '100%', transition: 'border-color 0.25s',
                     }}
                     onFocus={e => (e.target.style.borderColor = 'rgba(75,191,255,0.45)')}
@@ -159,7 +198,7 @@ export default function Contact() {
                 rows={5}
                 style={{
                   background: 'rgba(75,191,255,0.03)', border: '1px solid rgba(75,191,255,0.12)',
-                  padding: '0.75rem 1rem', fontFamily: 'Inter,sans-serif', fontSize: '0.8rem',
+                  padding: '0.75rem 1rem', fontFamily: 'Inter,sans-serif', fontSize: '1rem',
                   color: 'var(--cream)', outline: 'none', width: '100%', resize: 'vertical',
                   transition: 'border-color 0.25s',
                 }}
@@ -170,7 +209,7 @@ export default function Contact() {
                 <button type="submit" disabled={status === 'sending'}
                   style={{
                     background: 'var(--blue)', color: '#000',
-                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
                     letterSpacing: '0.18em', textTransform: 'uppercase',
                     fontWeight: 700, padding: '0.8rem 2rem', cursor: 'pointer',
                     border: 'none', transition: 'box-shadow 0.3s',
@@ -182,8 +221,13 @@ export default function Contact() {
                   {status === 'sending' ? 'Sending...' : 'Send Message →'}
                 </button>
                 {status === 'err' && (
-                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem', color: '#ff5555' }}>
+                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', color: '#ff5555' }}>
                     Failed — try emailing directly.
+                  </span>
+                )}
+                {status === 'limit' && (
+                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', color: '#ff5555' }}>
+                    Limit reached (3 msgs / 24h).
                   </span>
                 )}
               </div>
