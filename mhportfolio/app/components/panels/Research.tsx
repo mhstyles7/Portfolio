@@ -77,35 +77,36 @@ export default function Research() {
               }}>{t}</span>
             ))}
           </div>
+
+          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
+              border: '1px solid rgba(75,191,255,0.3)', background: 'rgba(75,191,255,0.08)',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
+              letterSpacing: '0.15em', textTransform: 'uppercase',
+              padding: '0.7rem 1.5rem', color: 'var(--cream)', textDecoration: 'none',
+              transition: 'background 0.2s, box-shadow 0.2s',
+              marginBottom: '1.5rem',
+            }}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(75,191,255,0.2)'}
+            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
+          >
+              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
+              View DOI: 10.1016/j.icte.2026.05.001
+          </a>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
           <div style={{
             paddingTop: '1.2rem', borderTop: '1px solid rgba(75,191,255,0.1)',
             fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-            letterSpacing: '0.1em', color: 'var(--muted)', marginBottom: '1.5rem',
+            letterSpacing: '0.1em', color: 'var(--muted)',
           }}>
             <strong style={{ color: 'var(--cream)' }}>First Author</strong> · Published in{' '}
             <span style={{ color: 'var(--blue)' }}>ICT Express</span> (Elsevier, CiteScore: 10.8, IF: 4.2)
             <br /><br />
             Co-authored thesis · BRAC University · 2024–2025
           </div>
-
-          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              border: '1px solid rgba(75,191,255,0.3)', background: 'rgba(75,191,255,0.05)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
-              letterSpacing: '0.15em', textTransform: 'uppercase',
-              padding: '0.7rem 1.5rem', color: 'var(--cream)', textDecoration: 'none',
-              transition: 'background 0.2s, box-shadow 0.2s',
-            }}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(75,191,255,0.2)'}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-          >
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block' }} />
-              View DOI: 10.1016/j.icte.2026.05.001
-          </a>
         </motion.div>
         <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style>
       </div>
@@ -125,24 +126,24 @@ export default function Research() {
           pointerEvents: 'none', userSelect: 'none',
         }}>RL</div>
 
-        {/* Big number */}
-        <motion.div
-          initial={{ scale: 0.85, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
-          viewport={{ once: true }} transition={{ duration: 0.8, type: 'spring' }}
-          style={{ textAlign: 'center', position: 'relative', zIndex: 2 }}
-        >
-          <div style={{
-            fontFamily: 'Inter,sans-serif', fontWeight: 800,
-            fontSize: 'clamp(3rem,6vw,5.5rem)', lineHeight: 1,
-            color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.4)',
-          }}>99.28%</div>
-          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '0.7rem' }}>
-            Training Accuracy
-          </div>
-        </motion.div>
+        {/* Unified Metrics Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '2.5rem', width: '100%', maxWidth: 500, position: 'relative', zIndex: 2 }}>
+          {/* Main metric spans two columns on desktop if desired, but let's make them all equal sized for symmetry, or top one full width */}
+          <motion.div
+            initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
+            viewport={{ once: true }} transition={{ duration: 0.8, type: 'spring' }}
+            style={{ textAlign: 'center', gridColumn: isMobile ? '1' : '1 / -1', marginBottom: isMobile ? '1rem' : '1.5rem' }}
+          >
+            <div style={{
+              fontFamily: 'Inter,sans-serif', fontWeight: 800,
+              fontSize: 'clamp(2.5rem,5vw,4.5rem)', lineHeight: 1,
+              color: 'var(--blue)', textShadow: '0 0 40px rgba(75,191,255,0.5)',
+            }}>99.28%</div>
+            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--cream)', marginTop: '0.7rem' }}>
+              Training Accuracy
+            </div>
+          </motion.div>
 
-        {/* 2×2 sub-metrics */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: isMobile ? '1rem 2rem' : '1.2rem 2.5rem', width: '100%', maxWidth: 360 }}>
           {[
             { v: '99.07%', l: 'Unseen Attack\nAccuracy' },
             { v: '93.94%', l: 'Zero-Day\nDetection Rate' },
@@ -151,11 +152,15 @@ export default function Research() {
           ].map((m, i) => (
             <motion.div key={i}
               initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: 0.25 + i * 0.1 }}
+              viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.1 }}
               style={{ textAlign: 'center' }}
             >
-              <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: isMobile ? '1.4rem' : '1.8rem', color: 'var(--cream)' }}>{m.v}</div>
-              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.43rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--muted)', marginTop: '0.35rem', whiteSpace: 'pre-line' }}>{m.l}</div>
+              <div style={{ 
+                fontFamily: 'Inter,sans-serif', fontWeight: 800, 
+                fontSize: 'clamp(2rem,3.5vw,2.8rem)', 
+                color: 'var(--blue)', textShadow: '0 0 30px rgba(75,191,255,0.4)',
+              }}>{m.v}</div>
+              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cream)', marginTop: '0.5rem', whiteSpace: 'pre-line' }}>{m.l}</div>
             </motion.div>
           ))}
         </div>

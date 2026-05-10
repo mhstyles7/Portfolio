@@ -59,33 +59,7 @@ export default function HScroll() {
     }
   }, [isMobile])
 
-  const footer = (
-    <footer style={{
-      background: 'var(--bg)', borderTop: '1px solid rgba(75,191,255,0.1)',
-      padding: '1.8rem 5vw',
-      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-      flexWrap: 'wrap', gap: '1rem',
-      fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-      letterSpacing: '0.12em', color: 'var(--muted)', textTransform: 'uppercase',
-    }}>
-      <span>© 2026 <span style={{ color: 'var(--blue)' }}>Md. Meheraj Hossain</span></span>
-      <span>Built with Next.js · <span style={{ color: 'var(--blue)' }}>Dhaka, Bangladesh</span></span>
-      <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
-        <a href="/Meheraj_CV.pdf" target="_blank" rel="noreferrer"
-          style={{ color: 'var(--muted)', transition: 'color 0.2s' }}
-        >View CV ↗</a>
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{
-            background: 'none', color: 'var(--muted)',
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-            letterSpacing: '0.12em', textTransform: 'uppercase',
-            cursor: 'pointer', transition: 'color 0.2s', padding: 0,
-          }}
-        >↑ Back to top</button>
-      </div>
-    </footer>
-  )
+
 
   /* ── Mobile: simple vertical stack ────────────────────── */
   if (isMobile) {
@@ -97,7 +71,6 @@ export default function HScroll() {
         <Skills />
         <Research />
         <Contact />
-        {footer}
       </>
     )
   }

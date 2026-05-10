@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useIsMobile } from '../../hooks/useIsMobile'
+import Image from 'next/image'
 
 const edu = [
   {
@@ -9,6 +10,7 @@ const edu = [
     year: '2021 – 2026',
     grade: 'CGPA 3.61/4.00',
     note: 'Thesis published in Elsevier ICT Express',
+    logo: '/bracu_logo.svg',
   },
   {
     degree: 'Higher Secondary Certificate (HSC)',
@@ -16,6 +18,7 @@ const edu = [
     year: '2020',
     grade: 'GPA 5.00/5.00',
     note: 'Science Group',
+    logo: '/mcpsc_logo.svg',
   },
   {
     degree: 'Secondary School Certificate (SSC)',
@@ -23,6 +26,7 @@ const edu = [
     year: '2018',
     grade: 'GPA 5.00/5.00',
     note: 'Science Group',
+    logo: '/greenview_logo.svg',
   },
 ]
 
@@ -78,9 +82,10 @@ export default function About() {
               display: 'flex', alignItems: 'center', gap: '0.7rem',
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
               letterSpacing: '0.22em', textTransform: 'uppercase',
-              color: 'var(--blue)', marginBottom: '1rem',
+              /* Use a darker blue that passes contrast on cream background */
+              color: '#0070CC', marginBottom: '1rem',
             }}>
-              <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} />
+              <span style={{ width: 20, height: 1, background: '#0070CC', display: 'block' }} />
               About Me
             </div>
             <h2 style={{
@@ -89,15 +94,15 @@ export default function About() {
               lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.2rem',
             }}>
               Engineer.<br />
-              <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Researcher.</em>
+              <em style={{ fontStyle: 'italic', color: '#0070CC' }}>Researcher.</em>
             </h2>
           </motion.div>
 
-          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#444', marginBottom: '0.6rem' }}>
-            Computer Science and Engineering graduate specializing in <strong style={{ color: '#111' }}>full-stack development</strong>, applied machine learning, and cybersecurity research. I have built and deployed production-grade web platforms using the MERN stack, and authored first-author research on AI-driven zero-day intrusion detection accepted for publication in <strong style={{ color: 'var(--blue)' }}>ICT Express (Elsevier, IF: 4.2)</strong>.
+          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.88rem', lineHeight: 1.8, color: '#333', marginBottom: '0.6rem' }}>
+            Computer Science and Engineering graduate specializing in <strong style={{ color: '#111' }}>full-stack development</strong>, applied machine learning, and cybersecurity research. I have built and deployed production-grade web platforms using the MERN stack, and authored first-author research on AI-driven zero-day intrusion detection accepted for publication in <strong style={{ color: '#0070CC' }}>ICT Express (Elsevier, IF: 4.2)</strong>.
           </motion.div>
 
-          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.85rem', lineHeight: 1.8, color: '#444', marginBottom: '1rem' }}>
+          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.88rem', lineHeight: 1.8, color: '#333', marginBottom: '1rem' }}>
             I combine hands-on engineering experience across web, IoT, and intelligent systems with a proven ability to deliver end-to-end solutions independently. Currently open to software engineering, machine learning, and technology-focused roles.
           </motion.div>
 
@@ -105,10 +110,10 @@ export default function About() {
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
               {['MERN Stack', 'ML / AI', 'Cybersecurity', 'IoT', 'Backend', 'Research'].map(t => (
                 <span key={t} style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
-                  letterSpacing: '0.14em', textTransform: 'uppercase',
-                  padding: '0.3rem 0.65rem', border: '1px solid rgba(0,0,0,0.15)',
-                  color: '#555', cursor: 'default',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+                  letterSpacing: '0.12em', textTransform: 'uppercase',
+                  padding: '0.3rem 0.65rem', border: '1px solid rgba(0,0,0,0.2)',
+                  color: '#333', cursor: 'default', background: 'rgba(0,0,0,0.04)',
                 }}>{t}</span>
               ))}
             </div>
@@ -145,20 +150,24 @@ export default function About() {
                 transition={{ delay: i * 0.15, duration: 0.5 }}
                 style={{ display: 'flex', gap: '1.2rem', paddingBottom: '1.4rem', paddingLeft: '0.2rem', position: 'relative' }}
               >
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 14 }}>
+                {/* Icon column */}
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 44 }}>
                   <div style={{
-                    width: 10, height: 10, borderRadius: '50%',
-                    background: i === 0 ? 'var(--blue)' : 'rgba(75,191,255,0.3)',
-                    border: '2px solid var(--blue)', flexShrink: 0,
-                    boxShadow: i === 0 ? '0 0 12px rgba(75,191,255,0.5)' : 'none',
-                    marginTop: 4,
-                  }} />
+                    width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
+                    background: '#ffffff',
+                    border: `1px solid ${i === 0 ? 'rgba(75,191,255,0.5)' : 'rgba(75,191,255,0.2)'}`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    boxShadow: i === 0 ? '0 0 14px rgba(75,191,255,0.25)' : 'none',
+                    overflow: 'hidden', position: 'relative',
+                  }}>
+                    <Image src={e.logo} alt={e.inst} fill style={{ objectFit: 'contain', padding: '6px' }} />
+                  </div>
                   {i < edu.length - 1 && (
-                    <div style={{ flex: 1, width: 1, background: 'rgba(75,191,255,0.12)', minHeight: 36, marginTop: 4 }} />
+                    <div style={{ flex: 1, width: 1, background: 'rgba(75,191,255,0.12)', minHeight: 28, marginTop: 4 }} />
                   )}
                 </div>
 
-                <div style={{ flex: 1 }}>
+                <div style={{ flex: 1, paddingTop: '0.3rem' }}>
                   <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '1rem', color: 'var(--cream)', marginBottom: '0.2rem' }}>{e.degree}</div>
                   <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
                   <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
@@ -166,7 +175,7 @@ export default function About() {
                     <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--muted)' }} />
                     <span style={{ color: '#6FEA6F' }}>{e.grade}</span>
                   </div>
-                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(75,191,255,0.5)' }}>{e.note}</div>
+                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'rgba(75,191,255,0.5)' }}>{e.note}</div>
                 </div>
               </motion.div>
             ))}
@@ -205,7 +214,7 @@ export default function About() {
                   <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)' }}>{ex.org}</div>
                 </div>
                 <span style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
                   letterSpacing: '0.12em', textTransform: 'uppercase',
                   padding: '0.3rem 0.75rem', border: '1px solid rgba(75,191,255,0.2)',
                   color: 'var(--muted)',

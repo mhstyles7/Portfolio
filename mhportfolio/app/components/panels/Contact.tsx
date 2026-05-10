@@ -1,8 +1,10 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FaLinkedin, FaGithub, FaFacebook, FaInstagram } from 'react-icons/fa'
+import { FaLinkedin, FaGithub, FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa'
 import { useIsMobile } from '../../hooks/useIsMobile'
+
+const EMAIL = 'meherajhossainmahir@gmail.com'
 
 const socials = [
   { href: 'https://linkedin.com/in/md-meheraj-hossain',         icon: <FaLinkedin  size={16} />, label: 'LinkedIn',  color: '#0A66C2' },
@@ -73,6 +75,7 @@ export default function Contact() {
       display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
       overflowY: 'auto',
+      position: 'relative',
       background: 'radial-gradient(ellipse at 50% 80%, rgba(75,191,255,0.05) 0%, transparent 65%)',
     }}>
       {/* Left — Heading + socials */}
@@ -102,9 +105,29 @@ export default function Contact() {
             <em style={{ fontStyle: 'italic', color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.3)' }}>Hello.</em>
           </h2>
 
-          <p style={{ fontSize: '1rem', color: 'var(--muted)', maxWidth: 400, marginBottom: '2rem', lineHeight: 1.85 }}>
+          <p style={{ fontSize: '1rem', color: 'var(--muted)', maxWidth: 400, marginBottom: '1.2rem', lineHeight: 1.85 }}>
             Seeking internships and entry-level roles in software engineering, ML engineering, and backend development.
           </p>
+
+          {/* Visible email address */}
+          <a href={`mailto:${EMAIL}`}
+            aria-label="Send email to Meheraj"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
+              letterSpacing: '0.06em', color: 'var(--blue)',
+              textDecoration: 'none', marginBottom: '2rem',
+              padding: '0.55rem 0.9rem',
+              border: '1px solid rgba(75,191,255,0.2)',
+              background: 'rgba(75,191,255,0.04)',
+              transition: 'background 0.2s, box-shadow 0.2s',
+            }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(75,191,255,0.1)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 16px rgba(75,191,255,0.15)' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(75,191,255,0.04)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}
+          >
+            <FaEnvelope size={13} />
+            {EMAIL}
+          </a>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
@@ -113,6 +136,7 @@ export default function Contact() {
             {socials.map(s => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
                 title={s.label}
+                aria-label={`Visit ${s.label} profile`}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
                   padding: '0.65rem 1rem',
@@ -158,7 +182,7 @@ export default function Contact() {
           <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '0.5rem' }}>
             Drop me a note — name and email are optional. Your message goes straight to my inbox.
           </p>
-          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', color: msgCount >= 3 ? '#ff5555' : 'var(--blue)', marginBottom: '1.5rem' }}>
+          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem', color: msgCount >= 3 ? '#ff5555' : 'var(--blue)', marginBottom: '1.5rem' }}>
             Messages sent today: {msgCount} / 3
           </div>
 
@@ -235,6 +259,25 @@ export default function Contact() {
           )}
         </motion.div>
       </div>
+
+      {/* Footer placed at the bottom of the last section */}
+      <footer style={{
+        position: 'absolute', bottom: 0, left: 0, width: '100%',
+        background: 'var(--bg)', borderTop: '1px solid rgba(75,191,255,0.1)',
+        padding: '1.2rem 5vw',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        flexWrap: 'wrap', gap: '1rem', zIndex: 10,
+        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
+        letterSpacing: '0.12em', color: 'var(--muted)', textTransform: 'uppercase',
+      }}>
+        <span>© 2026 <span style={{ color: 'var(--blue)' }}>Md. Meheraj Hossain</span></span>
+        <span>Built with Next.js · <span style={{ color: 'var(--blue)' }}>Dhaka, Bangladesh</span></span>
+        <div style={{ display: 'flex', gap: '1.2rem', alignItems: 'center' }}>
+          <a href="/Meheraj_CV.pdf" target="_blank" rel="noreferrer"
+            style={{ color: 'var(--muted)', transition: 'color 0.2s' }}
+          >View CV ↗</a>
+        </div>
+      </footer>
     </section>
   )
 }

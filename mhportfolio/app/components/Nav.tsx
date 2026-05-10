@@ -222,6 +222,7 @@ export default function Nav() {
             }}>{clock}</div>
             <button
               onClick={() => setMenuOpen(o => !o)}
+              aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               style={{
                 background: 'none', color: 'var(--cream)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',

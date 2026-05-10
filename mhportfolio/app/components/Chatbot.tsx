@@ -35,6 +35,7 @@ export default function Chatbot() {
       {/* FAB */}
       <button
         onClick={() => setOpen(o => !o)}
+        aria-label={open ? 'Close AI chat' : 'Open AI chat'}
         style={{
           position:'fixed', bottom:'2rem', right:'2rem', zIndex:8000,
           width:54, height:54, borderRadius:'50%',
@@ -82,7 +83,7 @@ export default function Chatbot() {
               Online · Ask anything
             </div>
           </div>
-          <button onClick={() => setOpen(false)} style={{background:'none',border:'none',color:'var(--muted)',fontSize:'0.9rem',cursor:'pointer',transition:'color 0.2s'}}
+          <button onClick={() => setOpen(false)} aria-label="Close chat" style={{background:'none',border:'none',color:'var(--muted)',fontSize:'0.9rem',cursor:'pointer',transition:'color 0.2s'}}
             onMouseEnter={e => (e.currentTarget.style.color='var(--cream)')}
             onMouseLeave={e => (e.currentTarget.style.color='var(--muted)')}
           >✕</button>
