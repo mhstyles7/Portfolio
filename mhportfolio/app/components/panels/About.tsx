@@ -35,6 +35,7 @@ const experience = [
     role: 'Social Media Manager',
     org: 'Bangladesh Freight Forwarders Association (BAFFA)',
     duration: '6 Months',
+    logo: '/Baffa.svg',
     points: [
       'Managed digital content strategy and communications for executive leadership.',
       'Coordinated stakeholder engagement campaigns across platforms.',
@@ -205,26 +206,44 @@ export default function About() {
                 border: '1px solid rgba(75,191,255,0.12)',
                 background: 'rgba(75,191,255,0.02)',
                 padding: '1.2rem', position: 'relative', overflow: 'hidden',
+                display: 'flex', gap: '1.2rem',
               }}
             >
               <div style={{ position: 'absolute', top: 0, left: 0, width: 3, height: '100%', background: 'var(--blue)' }} />
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.7rem' }}>
-                <div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--cream)', marginBottom: '0.15rem' }}>{ex.role}</div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)' }}>{ex.org}</div>
+              
+              {ex.logo && (
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 44, marginTop: '0.2rem' }}>
+                  <div style={{
+                    width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
+                    background: '#ffffff',
+                    border: '1px solid rgba(75,191,255,0.2)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    overflow: 'hidden', position: 'relative',
+                  }}>
+                    <Image src={ex.logo} alt={ex.org} fill style={{ objectFit: 'contain', padding: '6px' }} />
+                  </div>
                 </div>
-                <span style={{
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
-                  letterSpacing: '0.12em', textTransform: 'uppercase',
-                  padding: '0.3rem 0.75rem', border: '1px solid rgba(75,191,255,0.2)',
-                  color: 'var(--muted)',
-                }}>{ex.duration}</span>
+              )}
+
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.7rem' }}>
+                  <div>
+                    <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--cream)', marginBottom: '0.15rem' }}>{ex.role}</div>
+                    <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)' }}>{ex.org}</div>
+                  </div>
+                  <span style={{
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+                    letterSpacing: '0.12em', textTransform: 'uppercase',
+                    padding: '0.3rem 0.75rem', border: '1px solid rgba(75,191,255,0.2)',
+                    color: 'var(--muted)',
+                  }}>{ex.duration}</span>
+                </div>
+                <ul style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', margin: 0 }}>
+                  {ex.points.map((p, j) => (
+                    <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>
+                  ))}
+                </ul>
               </div>
-              <ul style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
-                {ex.points.map((p, j) => (
-                  <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>
-                ))}
-              </ul>
             </motion.div>
           ))}
         </div>

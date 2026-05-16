@@ -1,6 +1,13 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useIsMobile } from '../../hooks/useIsMobile'
+import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
+
+const researchProfiles = [
+  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={14} />, label: 'Google Scholar', color: '#4285F4' },
+  { href: 'https://www.researchgate.net/profile/Md-Meheraj-Hossain', icon: <SiResearchgate size={14} />, label: 'ResearchGate', color: '#00CCBB' },
+  { href: 'https://orcid.org/0009-0009-0796-3751', icon: <SiOrcid size={14} />, label: 'ORCID', color: '#A6CE39' },
+]
 
 export default function Research() {
   const isMobile = useIsMobile()
@@ -24,18 +31,50 @@ export default function Research() {
         borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          {/* Status badge */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1.2rem', width: 'fit-content' }}>
-            <div style={{
-              width: 6, height: 6, background: '#6FEA6F', borderRadius: '50%',
-              boxShadow: '0 0 10px #6FEA6F', animation: 'pulse 2s ease-in-out infinite',
-            }} />
-            <span style={{
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-              letterSpacing: '0.18em', textTransform: 'uppercase',
-              color: '#6FEA6F', border: '1px solid rgba(111,234,111,0.3)',
-              padding: '0.35rem 0.9rem',
-            }}>ICT Express · Elsevier · ✓ Published</span>
+          {/* Top row: Status badge + Profiles */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', width: 'fit-content', marginTop: '0.2rem' }}>
+              <div style={{
+                width: 6, height: 6, background: '#6FEA6F', borderRadius: '50%',
+                boxShadow: '0 0 10px #6FEA6F', animation: 'pulse 2s ease-in-out infinite',
+              }} />
+              <span style={{
+                fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
+                letterSpacing: '0.18em', textTransform: 'uppercase',
+                color: '#6FEA6F', border: '1px solid rgba(111,234,111,0.3)',
+                padding: '0.35rem 0.9rem',
+              }}>ICT Express · Elsevier · ✓ Published</span>
+            </div>
+
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+              {researchProfiles.map(s => (
+                <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
+                  title={s.label}
+                  aria-label={`Visit ${s.label} profile`}
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    padding: '0.35rem 0.6rem',
+                    border: '1px solid rgba(75,191,255,0.15)',
+                    background: 'transparent',
+                    color: 'var(--muted)',
+                    transition: 'all 0.25s', textDecoration: 'none', cursor: 'pointer',
+                  }}
+                  onMouseEnter={e => {
+                    (e.currentTarget as HTMLElement).style.color = s.color
+                    ;(e.currentTarget as HTMLElement).style.borderColor = s.color
+                    ;(e.currentTarget as HTMLElement).style.background = `${s.color}12`
+                  }}
+                  onMouseLeave={e => {
+                    (e.currentTarget as HTMLElement).style.color = 'var(--muted)'
+                    ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.15)'
+                    ;(e.currentTarget as HTMLElement).style.background = 'transparent'
+                  }}
+                >
+                  {s.icon}
+                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
+                </a>
+              ))}
+            </div>
           </div>
 
           <div style={{
@@ -94,6 +133,8 @@ export default function Research() {
               <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
               View DOI: 10.1016/j.icte.2026.05.001
           </a>
+
+
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
