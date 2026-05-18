@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import './globals.css'
+import ConstellationBg from './components/ConstellationBg'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mhportfolio.vercel.app'),
@@ -31,7 +32,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body style={{ position: 'relative' }} suppressHydrationWarning>
+        <ConstellationBg />
+        <div style={{ position: 'relative', zIndex: 1 }}>{children}</div>
+      </body>
     </html>
   )
 }

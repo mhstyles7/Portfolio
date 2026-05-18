@@ -18,13 +18,6 @@ export default function Hero() {
       position: 'relative',
       overflow: isMobile ? 'visible' : 'hidden',
     }}>
-      <div style={{
-        position: 'absolute', right: '-2vw', bottom: '5%',
-        fontFamily: 'Inter,sans-serif', fontWeight: 800,
-        fontSize: '22vw', lineHeight: 1, color: 'rgba(75,191,255,0.018)',
-        pointerEvents: 'none', userSelect: 'none', zIndex: 0,
-      }}>01</div>
-
       {/* Centered Wrapper */}
       <div style={{
         display: 'flex', flexDirection: isMobile ? 'column' : 'row',
@@ -53,7 +46,7 @@ export default function Hero() {
         </div>
 
         <h1 style={{
-          fontFamily: 'Inter,sans-serif', fontWeight: 800,
+          fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
           fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2rem,4.5vw,4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
           marginBottom: '1rem',
@@ -133,27 +126,45 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Photo */}
+      {/* Photo — rounded rectangle with spinning glow */}
       <div style={{
         flexShrink: 0, position: 'relative',
-        width: isMobile ? '100%' : 'clamp(220px,24vw,360px)',
-        height: isMobile ? '380px' : 'clamp(300px,50vh,500px)',
+        width: isMobile ? '100%' : 'clamp(260px, 26vw, 380px)',
+        height: isMobile ? '380px' : 'clamp(340px, 48vh, 500px)',
         zIndex: 1,
       }}>
-        {(['tl','tr','bl','br'] as const).map(c => (
-          <div key={c} style={{
-            position: 'absolute', width: 20, height: 20, zIndex: 3,
-            top:    c.startsWith('t') ? 0 : 'auto', bottom: c.startsWith('b') ? 0 : 'auto',
-            left:   c.endsWith('l')   ? 0 : 'auto', right:  c.endsWith('r')   ? 0 : 'auto',
-            borderTop:    c.startsWith('t') ? '2px solid var(--blue)' : 'none',
-            borderBottom: c.startsWith('b') ? '2px solid var(--blue)' : 'none',
-            borderLeft:   c.endsWith('l')   ? '2px solid var(--blue)' : 'none',
-            borderRight:  c.endsWith('r')   ? '2px solid var(--blue)' : 'none',
-            boxShadow: '0 0 10px rgba(75,191,255,0.4)',
-          }} />
-        ))}
+        {/* Ambient glow behind the photo */}
+        <div style={{
+          position: 'absolute', inset: '-25px', borderRadius: 40,
+          background: 'radial-gradient(circle, rgba(75,191,255,0.15) 0%, transparent 70%)',
+          pointerEvents: 'none',
+          animation: 'ring-pulse 3s ease-in-out infinite',
+        }} />
 
-        <div style={{ width: '100%', height: '100%', overflow: 'hidden', position: 'relative' }}>
+        {/* Spinning glow border container */}
+        <div style={{
+          position: 'absolute', inset: '-4px', borderRadius: 34,
+          overflow: 'hidden', zIndex: 0,
+        }}>
+          {/* Spinning gradient */}
+          <div className="hero-ring" style={{
+            position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%',
+            background: 'conic-gradient(from 0deg, rgba(75,191,255,0.95) 0%, rgba(75,191,255,0.15) 35%, transparent 55%, rgba(75,191,255,0.5) 80%, rgba(75,191,255,0.95) 100%)',
+          }} />
+        </div>
+
+        {/* Mask to make border hollow */}
+        <div style={{
+          position: 'absolute', inset: '0px', borderRadius: 30,
+          background: 'var(--bg)', zIndex: 1, pointerEvents: 'none',
+        }} />
+
+        {/* Photo */}
+        <div style={{
+          position: 'absolute', inset: '2px', borderRadius: 28,
+          overflow: 'hidden', zIndex: 2,
+          boxShadow: 'inset 0 0 20px rgba(75,191,255,0.05)',
+        }}>
           <Image
             src="/photo.jpg"
             alt="Md. Meheraj Hossain"
@@ -162,21 +173,21 @@ export default function Hero() {
             priority
           />
           <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%',
-            background: 'linear-gradient(to bottom,transparent,rgba(5,5,7,0.7))', zIndex: 2,
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%',
+            background: 'linear-gradient(to bottom,transparent,rgba(5,5,7,0.6))', zIndex: 2,
           }} />
         </div>
 
+        {/* Open to Work badge — moved to bottom left to avoid watch */}
         <div style={{
-          position: 'absolute', bottom: -16, right: -18, zIndex: 4,
-          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
+          position: 'absolute', bottom: -15, left: -20, zIndex: 4,
+          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(111,234,111,0.3)',
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          display: 'flex', alignItems: 'center', gap: '0.6rem',
+          display: 'flex', alignItems: 'center', gap: '0.6rem', borderRadius: 8,
         }}>
           <span style={{
             width: 7, height: 7, borderRadius: '50%', background: '#6FEA6F', flexShrink: 0,
-            boxShadow: '0 0 8px #6FEA6F',
-            animation: 'pulseGreen 2s ease-in-out infinite',
+            boxShadow: '0 0 8px #6FEA6F', animation: 'pulseGreen 2s ease-in-out infinite',
           }} />
           <div>
             <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
@@ -184,17 +195,19 @@ export default function Hero() {
           </div>
         </div>
 
+        {/* BRAC badge — moved to top right */}
         <div style={{
-          position: 'absolute', top: -16, left: -18, zIndex: 4,
+          position: 'absolute', top: -15, right: -20, zIndex: 4,
           background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          animation: 'float 4s ease-in-out infinite 2s',
+          animation: 'float 4s ease-in-out infinite 2s', borderRadius: 8,
         }}>
           <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
           <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
         </div>
 
         <style>{`
+          .hero-ring { animation: ring-spin 7s linear infinite; }
           @keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
           @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
         `}</style>

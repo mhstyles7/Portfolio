@@ -20,7 +20,7 @@ export default function Research() {
       display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
       overflowY: 'auto',
-      background: 'linear-gradient(135deg,#060a14 0%,#0C0C0C 60%)',
+      background: 'linear-gradient(135deg,rgba(6,10,20,0.88) 0%,rgba(12,12,12,0.88) 60%)',
     }}>
       {/* Left */}
       <div style={{
@@ -29,6 +29,7 @@ export default function Research() {
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
         borderRight: isMobile ? 'none' : '1px solid rgba(75,191,255,0.08)',
         borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
+        position: 'relative', overflow: 'hidden',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           {/* Top row: Status badge + Profiles */}

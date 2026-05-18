@@ -124,10 +124,11 @@ export default function About() {
 
       {/* Right — Education + Experience */}
       <div style={{
-        flex: 1, background: 'var(--bg)',
+        flex: 1, background: 'rgba(5,5,7,0.88)',
         display: 'flex', flexDirection: 'column',
         padding: isMobile ? '3rem 6vw 4rem' : '5rem 4vw 3rem',
         overflowY: 'auto', gap: '2rem',
+        position: 'relative',
       }}>
         {/* Education */}
         <div>

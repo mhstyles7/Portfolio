@@ -91,6 +91,7 @@ export default function Work() {
         display: 'flex', flexDirection: 'column',
         overflowY: isMobile ? 'visible' : 'auto',
         maxHeight: isMobile ? 'none' : '100vh',
+        position: 'relative',
       }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {projects.map((p, i) => (

@@ -85,6 +85,7 @@ export default function Contact() {
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         borderRight: isMobile ? 'none' : '1px solid rgba(75,191,255,0.08)',
         borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
+        position: 'relative', overflow: 'hidden',
       }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{

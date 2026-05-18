@@ -28,6 +28,13 @@ const levelColors: Record<SkillLevel, string> = {
   'Published':     '#6FEA6F',
 }
 
+const marqueeItems = [
+  'React.js', 'Node.js', 'Python', 'TypeScript', 'MongoDB',
+  'TensorFlow', 'Express.js', 'Next.js', 'PyTorch', 'Scikit-learn',
+  'ESP32', 'JWT', 'REST APIs', 'Gemini API', 'Git', 'Vercel',
+  'Wireshark', 'Postman', 'SQL', 'Framer Motion',
+]
+
 export default function Skills() {
   const isMobile = useIsMobile()
 
@@ -39,13 +46,16 @@ export default function Skills() {
       display: 'flex', flexDirection: 'column', justifyContent: 'center',
       padding: isMobile ? '4rem 6vw 3rem' : '5rem 6vw 2rem',
       overflowY: 'auto',
+      position: 'relative',
     }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.6rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+
+      {/* Header row */}
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1.2rem', flexWrap: 'wrap', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
         <div>
           <motion.h2
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} transition={{ duration: 0.6 }}
-            style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem,3.5vw,3.4rem)', lineHeight: 1, letterSpacing: '-0.025em' }}
+            style={{ fontFamily: "'Space Grotesk','Inter',sans-serif", fontWeight: 800, fontSize: 'clamp(1.8rem,3.5vw,3.4rem)', lineHeight: 1, letterSpacing: '-0.025em' }}
           >
             Craft &amp;<br /><em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Expertise</em>
           </motion.h2>
@@ -60,11 +70,40 @@ export default function Skills() {
         >04 — 08 domains</motion.span>
       </div>
 
+      {/* ── Infinite Marquee Ticker ── */}
+      <div style={{
+        overflow: 'hidden', position: 'relative', zIndex: 1,
+        borderTop: '1px solid rgba(75,191,255,0.1)',
+        borderBottom: '1px solid rgba(75,191,255,0.1)',
+        marginBottom: '1.2rem', padding: '0.85rem 0',
+        background: 'rgba(75,191,255,0.02)',
+      }}>
+        <div style={{
+          display: 'flex', width: 'max-content',
+          animation: 'marquee 50s linear infinite',
+        }}>
+          {[...marqueeItems, ...marqueeItems].map((tech, i) => (
+            <span key={i} style={{
+              fontFamily: 'JetBrains Mono,monospace',
+              fontSize: '0.78rem', letterSpacing: '0.14em', textTransform: 'uppercase',
+              color: i % 3 === 0 ? 'var(--blue)' : i % 3 === 1 ? 'rgba(255,255,255,0.5)' : '#a78bfa',
+              padding: '0 1.6rem', whiteSpace: 'nowrap',
+              display: 'inline-flex', alignItems: 'center', gap: '1.6rem',
+            }}>
+              {tech}
+              <span style={{ width: 3, height: 3, borderRadius: '50%', background: 'rgba(75,191,255,0.3)', display: 'inline-block', flexShrink: 0 }} />
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Skills grid */}
       <div style={{
         display: 'grid',
         gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)',
         gap: 1, background: 'rgba(75,191,255,0.06)',
         border: '1px solid rgba(75,191,255,0.08)',
+        position: 'relative', zIndex: 1,
       }}>
         {skills.map((s, i) => (
           <motion.div key={i}
@@ -81,7 +120,6 @@ export default function Skills() {
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--surface2)'}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'var(--bg)'}
           >
-            {/* react-icon */}
             <div style={{ color: levelColors[s.level], opacity: 0.7 }}>
               <s.Icon size={18} />
             </div>
