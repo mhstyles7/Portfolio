@@ -170,16 +170,15 @@ export default function Research() {
           {/* 4 sub-metrics */}
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
             {[
-              { v: '99.07%', l: 'Unseen Attack\nAccuracy',  sub: 'vs DQN: 98.80%' },
-              { v: '93.94%', l: 'Zero-Day\nDetection Rate', sub: 'vs SAC: 84.10%' },
-              { v: '0.50 ms', l: 'Detection\nLatency',      sub: 'vs DQN: 0.65 ms' },
-              { v: '2.21%',  l: 'False-Positive\nRate',     sub: 'CIC-IoT-2023' },
+              { v: '99.07%', l: 'Unseen Attack\nAccuracy' },
+              { v: '93.94%', l: 'Zero-Day\nDetection Rate' },
+              { v: '0.50 ms', l: 'Detection\nLatency' },
+              { v: '2.21%',  l: 'False-Positive\nRate' },
             ].map((m, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}
                 style={{ textAlign: 'center', padding: '0.9rem', border: '1px solid var(--border)', borderRadius: 10, background: 'var(--blue-glow)', backdropFilter: 'blur(8px)' }}>
                 <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.3rem,2.5vw,2rem)', color: 'var(--blue)', textShadow: '0 0 24px var(--blue-glow)' }}>{m.v}</div>
                 <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)', marginTop: '0.35rem', lineHeight: 1.4, whiteSpace: 'pre-line' }}>{m.l}</div>
-                <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.06em', color: 'var(--muted)', marginTop: '0.2rem' }}>{m.sub}</div>
               </motion.div>
             ))}
           </div>
