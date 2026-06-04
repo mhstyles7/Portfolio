@@ -26,14 +26,15 @@ export default function VisitorCounter() {
   // Animate count up from 0
   return (
     <span style={{
-      fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem',
-      letterSpacing: '0.12em', textTransform: 'uppercase',
-      color: 'rgba(75,191,255,0.6)', display: 'inline-flex',
+      fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+      letterSpacing: '0.1em', textTransform: 'uppercase',
+      color: 'var(--blue)', display: 'inline-flex',
       alignItems: 'center', gap: '0.4rem',
+      opacity: 0.75,
     }}>
       <span style={{
-        width: 5, height: 5, borderRadius: '50%',
-        background: '#6FEA6F', boxShadow: '0 0 6px #6FEA6F',
+        width: 6, height: 6, borderRadius: '50%',
+        background: 'var(--green)', boxShadow: `0 0 6px var(--green)`,
         display: 'inline-block', animation: 'visitorPulse 2s ease-in-out infinite',
       }} />
       {count.toLocaleString()} {count === 1 ? 'visit' : 'visits'}

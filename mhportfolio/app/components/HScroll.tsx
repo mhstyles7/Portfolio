@@ -12,6 +12,8 @@ import Contact from './panels/Contact'
 
 gsap.registerPlugin(ScrollTrigger)
 
+const PANEL_COUNT = 6
+
 export default function HScroll() {
   const trackRef = useRef<HTMLDivElement>(null)
   const pinRef   = useRef<HTMLDivElement>(null)
@@ -51,8 +53,30 @@ export default function HScroll() {
       ;(pin as any).__gsapCtx = ctx
     }, 100)
 
+    /* ── Arrow key navigation for horizontal scroll ── */
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Only intercept arrow keys when GSAP horizontal scroll is active
+      const vw = window.innerWidth
+      const totalScroll = vw * (PANEL_COUNT - 1)
+      const currentScroll = window.scrollY
+      const currentPanel = Math.round(currentScroll / vw)
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault()
+        const nextPanel = Math.min(currentPanel + 1, PANEL_COUNT - 1)
+        window.scrollTo({ top: vw * nextPanel, behavior: 'smooth' })
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault()
+        const prevPanel = Math.max(currentPanel - 1, 0)
+        window.scrollTo({ top: vw * prevPanel, behavior: 'smooth' })
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
     return () => {
       clearTimeout(timer)
+      window.removeEventListener('keydown', handleKeyDown)
       const ctx = (pin as any)?.__gsapCtx
       if (ctx) ctx.revert()
       ScrollTrigger.getAll().forEach(st => st.kill())

@@ -2,11 +2,12 @@
 import { motion } from 'framer-motion'
 import { useIsMobile } from '../../hooks/useIsMobile'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
+import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa'
 
 const researchProfiles = [
-  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={14} />, label: 'Google Scholar', color: '#4285F4' },
-  { href: 'https://www.researchgate.net/profile/Md-Meheraj-Hossain', icon: <SiResearchgate size={14} />, label: 'ResearchGate', color: '#00CCBB' },
-  { href: 'https://orcid.org/0009-0009-0796-3751', icon: <SiOrcid size={14} />, label: 'ORCID', color: '#A6CE39' },
+  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={16} />, label: 'Scholar', color: '#4285F4' },
+  { href: 'https://www.researchgate.net/profile/Md-Meheraj-Hossain', icon: <SiResearchgate size={16} />, label: 'ResearchGate', color: '#00CCBB' },
+  { href: 'https://orcid.org/0009-0009-0796-3751', icon: <SiOrcid size={16} />, label: 'ORCID', color: '#A6CE39' },
 ]
 
 export default function Research() {
@@ -19,192 +20,176 @@ export default function Research() {
       flexShrink: 0,
       display: 'flex',
       flexDirection: isMobile ? 'column' : 'row',
-      overflowY: 'auto',
-      background: 'linear-gradient(135deg,rgba(6,10,20,0.88) 0%,rgba(12,12,12,0.88) 60%)',
+      overflow: 'hidden',
+      background: 'var(--card-bg)',
     }}>
-      {/* Left */}
+
+      {/* ── Left column — scrollable ── */}
       <div style={{
-        width: isMobile ? '100%' : '52%',
-        padding: isMobile ? '4rem 6vw 2rem' : '5rem 4vw 3rem 7vw',
+        width: isMobile ? '100%' : '56%',
+        padding: isMobile ? '4rem 6vw 2rem' : '5rem 3.5vw 3rem 6vw',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-        borderRight: isMobile ? 'none' : '1px solid rgba(75,191,255,0.08)',
-        borderBottom: isMobile ? '1px solid rgba(75,191,255,0.08)' : 'none',
-        position: 'relative', overflow: 'hidden',
+        borderRight: isMobile ? 'none' : '1px solid var(--border)',
+        borderBottom: isMobile ? '1px solid var(--border)' : 'none',
+        position: 'relative',
+        overflowY: isMobile ? 'visible' : 'auto',
+        background: 'radial-gradient(circle at 40% 60%, var(--blue-glow) 0%, transparent 70%)',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-          {/* Top row: Status badge + Profiles */}
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.2rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', width: 'fit-content', marginTop: '0.2rem' }}>
-              <div style={{
-                width: 6, height: 6, background: '#6FEA6F', borderRadius: '50%',
-                boxShadow: '0 0 10px #6FEA6F', animation: 'pulse 2s ease-in-out infinite',
-              }} />
-              <span style={{
-                fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-                letterSpacing: '0.18em', textTransform: 'uppercase',
-                color: '#6FEA6F', border: '1px solid rgba(111,234,111,0.3)',
-                padding: '0.35rem 0.9rem',
-              }}>ICT Express · Elsevier · ✓ Published</span>
-            </div>
 
-            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flexWrap: 'wrap' }}>
+          {/* Section label */}
+          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+            <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
+            05 — Research
+          </div>
+
+          {/* ── DOI — highlighted, above title ── */}
+          <a
+            href="https://doi.org/10.1016/j.icte.2026.05.001"
+            target="_blank" rel="noreferrer"
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+              marginBottom: '1rem',
+              padding: '0.65rem 1.3rem',
+              background: 'linear-gradient(135deg, var(--blue) 0%, #0058a3 100%)',
+              border: 'none',
+              borderRadius: 8,
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
+              letterSpacing: '0.12em', textTransform: 'uppercase',
+              color: '#fff', fontWeight: 700,
+              textDecoration: 'none',
+              boxShadow: '0 4px 18px var(--blue-glow)',
+              transition: 'box-shadow 0.25s, transform 0.2s',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px var(--blue-glow)'
+              ;(e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)'
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 18px var(--blue-glow)'
+              ;(e.currentTarget as HTMLElement).style.transform = 'translateY(0)'
+            }}
+          >
+            <FaExternalLinkAlt size={11} />
+            DOI: 10.1016/j.icte.2026.05.001
+          </a>
+
+          {/* Status + profiles row */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.7rem', marginBottom: '0.9rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
+              <span style={{ width: 7, height: 7, background: 'var(--green)', borderRadius: '50%', boxShadow: '0 0 8px var(--green)', animation: 'pulse 2s infinite', flexShrink: 0 }} />
+              <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--green)', border: '1px solid var(--green-glow)', padding: '0.35rem 0.8rem', borderRadius: 6 }}>ICT Express · Elsevier · ✓ Published</span>
+            </div>
+            <div style={{ display: 'flex', gap: '0.4rem' }}>
               {researchProfiles.map(s => (
-                <a key={s.label} href={s.href} target="_blank" rel="noreferrer"
-                  title={s.label}
-                  aria-label={`Visit ${s.label} profile`}
-                  style={{
-                    display: 'flex', alignItems: 'center', gap: '0.4rem',
-                    padding: '0.35rem 0.6rem',
-                    border: '1px solid rgba(75,191,255,0.15)',
-                    background: 'transparent',
-                    color: 'var(--muted)',
-                    transition: 'all 0.25s', textDecoration: 'none', cursor: 'pointer',
-                  }}
-                  onMouseEnter={e => {
-                    (e.currentTarget as HTMLElement).style.color = s.color
-                    ;(e.currentTarget as HTMLElement).style.borderColor = s.color
-                    ;(e.currentTarget as HTMLElement).style.background = `${s.color}12`
-                  }}
-                  onMouseLeave={e => {
-                    (e.currentTarget as HTMLElement).style.color = 'var(--muted)'
-                    ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.15)'
-                    ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-                  }}
-                >
+                <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label}
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.6rem', border: '1px solid var(--border)', borderRadius: 7, background: 'transparent', color: 'var(--muted)', transition: 'all 0.25s', textDecoration: 'none' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = s.color; (e.currentTarget as HTMLElement).style.borderColor = s.color; (e.currentTarget as HTMLElement).style.background = `${s.color}15` }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
                   {s.icon}
-                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.07em', textTransform: 'uppercase' }}>{s.label}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-            letterSpacing: '0.2em', textTransform: 'uppercase',
-            color: 'var(--blue)', marginBottom: '1rem',
-            display: 'flex', alignItems: 'center', gap: '0.8rem',
-          }}>
-            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} />
-            05 — Research
-          </div>
-
-          <h2 style={{
-            fontFamily: 'Inter,sans-serif', fontWeight: 800,
-            fontSize: 'clamp(1.1rem,2.2vw,2rem)',
-            lineHeight: 1.2, letterSpacing: '-0.02em', marginBottom: '1.2rem',
-            color: 'var(--cream)',
-          }}>
-            A Cross-Dataset based Zero-Day Intrusion Detection System by Integrating{' '}
-            <em style={{ fontStyle: 'italic', color: 'var(--blue)', textShadow: '0 0 30px rgba(75,191,255,0.25)' }}>
-              Siamese Network and Reinforcement Learning
-            </em>
+          {/* Title */}
+          <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.05rem,2vw,1.7rem)', lineHeight: 1.25, letterSpacing: '-0.015em', marginBottom: '0.9rem', color: 'var(--text)' }}>
+            A Cross-Dataset Based Zero-Day Intrusion Detection System by Integrating{' '}
+            <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Siamese Network and Reinforcement Learning</em>
           </h2>
+
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
-          <p style={{ fontSize: '0.73rem', lineHeight: 1.85, color: 'var(--muted)', marginBottom: '1.2rem', textAlign: 'justify' }}>
-            <strong style={{ color: 'var(--cream)' }}>Abstract: </strong>
-            Zero-day attacks threaten IoT security as signature-based detection fails against novel exploits. This paper proposes a hybrid IDS integrating unsupervised anomaly detection, non-parametric Siamese-based cross-dataset dissimilarity filtering, and PPO-based adaptive defense. Evaluations demonstrate state-of-the-art results.
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+
+          {/* Abstract */}
+          <p style={{ fontSize: '0.88rem', lineHeight: 1.85, color: 'var(--muted)', marginBottom: '0.8rem', textAlign: 'justify' }}>
+            <strong style={{ color: 'var(--text)' }}>Abstract: </strong>
+            Zero-day attacks threaten IoT security as signature-based detection fails against novel exploits. This paper proposes a hybrid IDS integrating <strong style={{ color: 'var(--text)' }}>unsupervised anomaly detection</strong>, <strong style={{ color: 'var(--text)' }}>non-parametric Siamese-based cross-dataset dissimilarity filtering</strong>, and <strong style={{ color: 'var(--text)' }}>PPO-based adaptive defense</strong>. Unsupervised models isolate anomalous traffic; Siamese correlation extracts structurally rare zero-day candidates; the PPO agent learns optimal defense policies via environmental feedback.
           </p>
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1.5rem' }}>
-            {['Zero-Day', 'Cybersecurity', 'Reinforcement Learning', 'Siamese Network', 'PPO', 'IoT Security'].map(t => (
-              <span key={t} style={{
-                fontFamily: 'JetBrains Mono,monospace', fontSize: '0.44rem',
-                letterSpacing: '0.1em', textTransform: 'uppercase',
-                padding: '0.22rem 0.6rem', background: 'rgba(75,191,255,0.05)',
-                border: '1px solid rgba(75,191,255,0.15)', color: 'var(--blue)',
-              }}>{t}</span>
+          {/* Methodology */}
+          <div style={{ padding: '0.75rem 1rem', background: 'var(--blue-glow)', border: '1px solid var(--border)', borderRadius: 8, marginBottom: '0.75rem' }}>
+            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.4rem', fontWeight: 700 }}>3-Stage Pipeline</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
+              {[
+                '① Unsupervised anomaly detection (PCA · Autoencoder · Isolation Forest)',
+                '② Siamese-based cross-dataset dissimilarity filtering for zero-day candidate extraction',
+                '③ PPO agent learns optimal defense policy via environmental feedback',
+              ].map((item, i) => (
+                <div key={i} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.83rem', color: 'var(--muted)', lineHeight: 1.6 }}>{item}</div>
+              ))}
+            </div>
+          </div>
+
+          {/* Keywords */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', marginBottom: '1rem' }}>
+            {['Zero-Day', 'Cybersecurity', 'Reinforcement Learning', 'Anomaly Detection', 'Siamese Network', 'PPO', 'IoT Security'].map(t => (
+              <span key={t} style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', letterSpacing: '0.08em', textTransform: 'uppercase', padding: '0.22rem 0.55rem', background: 'var(--blue-glow)', border: '1px solid var(--border)', color: 'var(--blue)', borderRadius: 4 }}>{t}</span>
             ))}
           </div>
 
-          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer"
-            style={{
-              display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-              border: '1px solid rgba(75,191,255,0.3)', background: 'rgba(75,191,255,0.08)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
-              letterSpacing: '0.15em', textTransform: 'uppercase',
-              padding: '0.7rem 1.5rem', color: 'var(--cream)', textDecoration: 'none',
-              transition: 'background 0.2s, box-shadow 0.2s',
-              marginBottom: '1.5rem',
-            }}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 20px rgba(75,191,255,0.2)'}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-          >
-              <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#6FEA6F', boxShadow: '0 0 8px #6FEA6F', display: 'inline-block', animation: 'pulse 2s ease-in-out infinite' }} />
-              View DOI: 10.1016/j.icte.2026.05.001
+          {/* Download button */}
+          <a href="/Q1 paper_ICT Express.pdf" download="Hossain_et_al_ICT_Express_2025.pdf"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid var(--border-strong)', background: 'transparent', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.6rem 1.2rem', color: 'var(--muted)', textDecoration: 'none', transition: 'all 0.2s', borderRadius: 8, marginBottom: '1rem' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--blue)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 14px var(--blue-glow)' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-strong)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}>
+            <FaDownload size={12} /> Download Paper
           </a>
 
-
-        </motion.div>
-
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-          <div style={{
-            paddingTop: '1.2rem', borderTop: '1px solid rgba(75,191,255,0.1)',
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-            letterSpacing: '0.1em', color: 'var(--muted)',
-          }}>
-            <strong style={{ color: 'var(--cream)' }}>First Author</strong> · Published in{' '}
-            <span style={{ color: 'var(--blue)' }}>ICT Express</span> (Elsevier, CiteScore: 10.8, IF: 4.2)
-            <br /><br />
-            Co-authored thesis · BRAC University · 2024–2025
+          {/* Research Domain — at bottom */}
+          <div style={{ padding: '0.6rem 0.9rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 8, display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', fontWeight: 700, flexShrink: 0 }}>Research Domain:</span>
+            <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.84rem', color: 'var(--text)' }}>Cybersecurity · Machine Learning · Intrusion Detection · IoT Security</span>
           </div>
+
         </motion.div>
-        <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}`}</style>
+        <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}`}</style>
       </div>
 
-      {/* Right — Metrics */}
+      {/* ── Right column — static, no scroll ── */}
       <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column',
+        flex: 1,
+        display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        padding: isMobile ? '3rem 6vw 4rem' : '5rem 4vw 3rem',
-        gap: isMobile ? '1.5rem' : '2.5rem', position: 'relative', overflow: 'hidden',
+        padding: isMobile ? '3rem 6vw 4rem' : '5.5rem 4vw 3rem',
+        position: 'relative',
+        overflow: 'hidden',  /* static — no scroll */
       }}>
-        <div style={{
-          position: 'absolute', inset: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          fontFamily: 'Inter,sans-serif', fontWeight: 800, fontStyle: 'italic',
-          fontSize: '20vw', color: 'rgba(75,191,255,0.018)',
-          pointerEvents: 'none', userSelect: 'none',
-        }}>RL</div>
+        {/* Ghost watermark */}
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontStyle: 'italic', fontSize: '18vw', color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', opacity: 0.12 }}>RL</div>
 
-        {/* Unified Metrics Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '2rem' : '2.5rem', width: '100%', maxWidth: 500, position: 'relative', zIndex: 2 }}>
-          {/* Main metric spans two columns on desktop if desired, but let's make them all equal sized for symmetry, or top one full width */}
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }}
-            viewport={{ once: true }} transition={{ duration: 0.8, type: 'spring' }}
-            style={{ textAlign: 'center', gridColumn: isMobile ? '1' : '1 / -1', marginBottom: isMobile ? '1rem' : '1.5rem' }}
-          >
-            <div style={{
-              fontFamily: 'Inter,sans-serif', fontWeight: 800,
-              fontSize: 'clamp(2.5rem,5vw,4.5rem)', lineHeight: 1,
-              color: 'var(--blue)', textShadow: '0 0 40px rgba(75,191,255,0.5)',
-            }}>99.28%</div>
-            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--cream)', marginTop: '0.7rem' }}>
-              Training Accuracy
-            </div>
+        <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 420 }}>
+          {/* Hero metric */}
+          <motion.div initial={{ scale: 0.9, opacity: 0 }} whileInView={{ scale: 1, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.7, type: 'spring' }} style={{ textAlign: 'center', marginBottom: '1.5rem' }}>
+            <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(2.6rem,5.5vw,4.5rem)', lineHeight: 1, color: 'var(--blue)', textShadow: '0 0 50px var(--blue-glow)' }}>99.28%</div>
+            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem', letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--text)', marginTop: '0.5rem' }}>Training Accuracy</div>
           </motion.div>
 
-          {[
-            { v: '99.07%', l: 'Unseen Attack\nAccuracy' },
-            { v: '93.94%', l: 'Zero-Day\nDetection Rate' },
-            { v: '0.50ms', l: 'Detection\nLatency' },
-            { v: '2.21%',  l: 'False-Positive\nRate' },
-          ].map((m, i) => (
-            <motion.div key={i}
-              initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ delay: 0.15 + i * 0.1 }}
-              style={{ textAlign: 'center' }}
-            >
-              <div style={{ 
-                fontFamily: 'Inter,sans-serif', fontWeight: 800, 
-                fontSize: 'clamp(2rem,3.5vw,2.8rem)', 
-                color: 'var(--blue)', textShadow: '0 0 30px rgba(75,191,255,0.4)',
-              }}>{m.v}</div>
-              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--cream)', marginTop: '0.5rem', whiteSpace: 'pre-line' }}>{m.l}</div>
-            </motion.div>
-          ))}
+          {/* 4 sub-metrics */}
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.9rem' }}>
+            {[
+              { v: '99.07%', l: 'Unseen Attack\nAccuracy',  sub: 'vs DQN: 98.80%' },
+              { v: '93.94%', l: 'Zero-Day\nDetection Rate', sub: 'vs SAC: 84.10%' },
+              { v: '0.50 ms', l: 'Detection\nLatency',      sub: 'vs DQN: 0.65 ms' },
+              { v: '2.21%',  l: 'False-Positive\nRate',     sub: 'CIC-IoT-2023' },
+            ].map((m, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 14 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 + i * 0.08 }}
+                style={{ textAlign: 'center', padding: '0.9rem', border: '1px solid var(--border)', borderRadius: 10, background: 'var(--blue-glow)', backdropFilter: 'blur(8px)' }}>
+                <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.3rem,2.5vw,2rem)', color: 'var(--blue)', textShadow: '0 0 24px var(--blue-glow)' }}>{m.v}</div>
+                <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)', marginTop: '0.35rem', lineHeight: 1.4, whiteSpace: 'pre-line' }}>{m.l}</div>
+                <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.06em', color: 'var(--muted)', marginTop: '0.2rem' }}>{m.sub}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Author + journal note */}
+          <div style={{ marginTop: '1rem', padding: '0.6rem 0.9rem', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--input-bg)', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', letterSpacing: '0.06em', color: 'var(--muted)', lineHeight: 1.7 }}>
+            <span style={{ color: 'var(--text)', fontWeight: 700 }}>First Author</span> — Md. Meheraj Hossain et al.
+            &nbsp;·&nbsp;<span style={{ color: 'var(--blue)' }}>ICT Express (Elsevier)</span>
+            &nbsp;·&nbsp;IF 4.2 · CiteScore 10.8
+          </div>
         </div>
       </div>
     </section>

@@ -25,6 +25,15 @@ export default function ConstellationBg() {
     let particles: Particle[] = []
     let raf: number
 
+    const getThemeColors = () => {
+      const theme = document.documentElement.getAttribute('data-theme')
+      const isLight = theme === 'light'
+      if (isLight) {
+        return { dot: 'rgba(0,112,204,', line: 'rgba(0,112,204,', isLight }
+      }
+      return { dot: 'rgba(75,191,255,', line: 'rgba(75,191,255,', isLight }
+    }
+
     const resize = () => {
       W = window.innerWidth
       H = window.innerHeight
@@ -45,35 +54,35 @@ export default function ConstellationBg() {
 
     const draw = () => {
       ctx.clearRect(0, 0, W, H)
+      const colors = getThemeColors()
 
-      // Draw connection lines first
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x
           const dy = particles[i].y - particles[j].y
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.2
+            const baseAlpha = colors.isLight ? 0.35 : 0.2
+            const alpha = (1 - dist / MAX_DIST) * baseAlpha
             ctx.beginPath()
             ctx.moveTo(particles[i].x, particles[i].y)
             ctx.lineTo(particles[j].x, particles[j].y)
-            ctx.strokeStyle = `rgba(75,191,255,${alpha})`
-            ctx.lineWidth = 0.7
+            ctx.strokeStyle = `${colors.line}${alpha})`
+            ctx.lineWidth = colors.isLight ? 1 : 0.7
             ctx.stroke()
           }
         }
       }
 
-      // Draw particles
       for (const p of particles) {
         p.x += p.vx
         p.y += p.vy
         if (p.x < 0 || p.x > W) p.vx *= -1
         if (p.y < 0 || p.y > H) p.vy *= -1
-
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
-        ctx.fillStyle = `rgba(75,191,255,${p.opacity})`
+        const dotAlpha = colors.isLight ? Math.min(1, p.opacity * 1.5) : p.opacity
+        ctx.fillStyle = `${colors.dot}${dotAlpha})`
         ctx.fill()
       }
 
@@ -81,7 +90,6 @@ export default function ConstellationBg() {
     }
 
     const onResize = () => { resize(); init() }
-
     resize()
     init()
     draw()
@@ -94,17 +102,7 @@ export default function ConstellationBg() {
   }, [])
 
   return (
-    <canvas
-      ref={canvasRef}
-      aria-hidden="true"
-      style={{
-        position: 'fixed',
-        top: 0, left: 0,
-        width: '100vw',
-        height: '100vh',
-        zIndex: 0,
-        pointerEvents: 'none',
-      }}
-    />
+    <canvas ref={canvasRef} aria-hidden="true"
+      style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', zIndex: 0, pointerEvents: 'none' }} />
   )
 }

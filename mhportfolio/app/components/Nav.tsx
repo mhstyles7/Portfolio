@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import { FaEnvelope, FaBars, FaTimes } from 'react-icons/fa'
 import dynamic from 'next/dynamic'
+import ThemeToggle from './ThemeToggle'
 
 const VisitorCounter = dynamic(() => import('./VisitorCounter'), { ssr: false })
 
@@ -101,9 +102,9 @@ export default function Nav() {
       {/* Progress bar */}
       <div style={{
         position: 'fixed', top: 0, left: 0, zIndex: 9999,
-        height: 2, width: `${progress}%`,
-        background: 'linear-gradient(90deg, var(--blue), rgba(75,191,255,0.4))',
-        boxShadow: '0 0 8px var(--blue)', transition: 'width 0.1s linear',
+        height: 3, width: `${progress}%`,
+        background: 'linear-gradient(90deg, var(--blue), var(--blue-glow))',
+        boxShadow: `0 0 8px var(--blue)`, transition: 'width 0.1s linear',
         pointerEvents: 'none',
       }} />
 
@@ -112,26 +113,26 @@ export default function Nav() {
         <nav style={{
           position: 'fixed', top: '1.1rem', left: '50%', transform: 'translateX(-50%)',
           zIndex: 700,
-          background: 'rgba(5,5,7,0.88)',
+          background: 'var(--nav-bg)',
           backdropFilter: 'blur(24px)',
-          border: '1px solid rgba(75,191,255,0.15)',
+          border: '1px solid var(--nav-border)',
           borderRadius: 100,
-          padding: '0.5rem 1.1rem',
-          display: 'flex', alignItems: 'center', gap: '0.9rem',
+          padding: '0.65rem 1.6rem',
+          display: 'flex', alignItems: 'center', gap: '1.1rem',
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.8s ease',
-          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          boxShadow: 'var(--shadow-lg)',
           whiteSpace: 'nowrap',
         }}>
           {/* Logo */}
-          <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '0.82rem', letterSpacing: '-0.02em', flexShrink: 0 }}>
+          <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '1.1rem', letterSpacing: '-0.02em', flexShrink: 0, color: 'var(--text)' }}>
             MH<span style={{ color: 'var(--blue)' }}>.</span>
           </div>
 
-          <div style={{ width: 1, height: 14, background: 'rgba(75,191,255,0.12)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Nav links */}
-          <ul style={{ display: 'flex', gap: '0.85rem', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul style={{ display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0 }}>
             {links.map(l => (
               <li key={l.label}>
                 <button
@@ -139,12 +140,12 @@ export default function Nav() {
                   style={{
                     background: 'none',
                     color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
-                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-                    letterSpacing: '0.15em', textTransform: 'uppercase',
-                    cursor: 'pointer', padding: 0, transition: 'color 0.2s',
-                    fontWeight: activeIdx === l.idx ? 600 : 400,
-                    borderBottom: activeIdx === l.idx ? '1px solid var(--blue)' : '1px solid transparent',
-                    paddingBottom: '1px',
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
+                    letterSpacing: '0.12em', textTransform: 'uppercase',
+                    cursor: 'pointer', padding: '0.15rem 0', transition: 'color 0.2s',
+                    fontWeight: activeIdx === l.idx ? 700 : 500,
+                    borderBottom: activeIdx === l.idx ? '2px solid var(--blue)' : '2px solid transparent',
+                    paddingBottom: '2px',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'var(--blue)')}
                   onMouseLeave={e => (e.currentTarget.style.color = activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)')}
@@ -153,42 +154,47 @@ export default function Nav() {
             ))}
           </ul>
 
-          <div style={{ width: 1, height: 14, background: 'rgba(75,191,255,0.12)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Visitor count */}
           <VisitorCounter />
 
-          <div style={{ width: 1, height: 14, background: 'rgba(75,191,255,0.12)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Glowing clock */}
           <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.48rem',
-            letterSpacing: '0.1em', color: 'var(--blue)', flexShrink: 0,
-            textShadow: '0 0 12px rgba(75,191,255,0.9), 0 0 24px rgba(75,191,255,0.4)',
-            background: 'rgba(75,191,255,0.07)',
-            padding: '0.28rem 0.55rem',
-            border: '1px solid rgba(75,191,255,0.22)',
-            borderRadius: 4,
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+            letterSpacing: '0.08em', color: 'var(--blue)', flexShrink: 0,
+            textShadow: `0 0 12px var(--blue-glow)`,
+            background: 'var(--input-bg)',
+            padding: '0.32rem 0.65rem',
+            border: '1px solid var(--border-strong)',
+            borderRadius: 6,
           }}>{clock} · GMT+6</div>
 
-          <div style={{ width: 1, height: 14, background: 'rgba(75,191,255,0.12)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
+
+          {/* Theme Toggle */}
+          <ThemeToggle />
+
+          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Email CTA */}
           <a href="mailto:meherajhossainmahir@gmail.com"
             onClick={handleEmailClick}
             style={{
-              display: 'flex', alignItems: 'center', gap: '0.4rem',
-              background: copied ? '#6FEA6F' : 'var(--blue)', color: '#000',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.5rem',
-              letterSpacing: '0.14em', textTransform: 'uppercase',
-              fontWeight: 700, padding: '0.4rem 0.9rem',
+              display: 'flex', alignItems: 'center', gap: '0.45rem',
+              background: copied ? 'var(--green)' : 'var(--blue)', color: '#000',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem',
+              letterSpacing: '0.12em', textTransform: 'uppercase',
+              fontWeight: 700, padding: '0.48rem 1rem',
               borderRadius: 100, transition: 'all 0.3s', flexShrink: 0,
               textDecoration: 'none', cursor: 'pointer',
             }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = copied ? '0 0 18px rgba(111,234,111,0.6)' : '0 0 18px rgba(75,191,255,0.6)'}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = copied ? `0 0 18px var(--green-glow)` : `0 0 18px var(--blue-glow)`}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
           >
-            <FaEnvelope size={10} />
+            <FaEnvelope size={12} />
             {copied ? 'Copied!' : 'Email Me'}
           </a>
         </nav>
@@ -200,53 +206,57 @@ export default function Nav() {
           <nav style={{
             position: 'fixed', top: '1rem', left: '50%', transform: 'translateX(-50%)',
             zIndex: 700,
-            background: 'rgba(5,5,7,0.92)',
+            background: 'var(--nav-bg)',
             backdropFilter: 'blur(24px)',
-            border: '1px solid rgba(75,191,255,0.15)',
+            border: '1px solid var(--nav-border)',
             borderRadius: 100,
-            padding: '0.5rem 1rem',
-            display: 'flex', alignItems: 'center', gap: '0.8rem',
+            padding: '0.6rem 1.2rem',
+            display: 'flex', alignItems: 'center', gap: '0.9rem',
             opacity: visible ? 1 : 0,
             transition: 'opacity 0.8s ease',
-            boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+            boxShadow: 'var(--shadow-lg)',
           }}>
-            <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '0.82rem' }}>
+            <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '1.05rem', color: 'var(--text)' }}>
               MH<span style={{ color: 'var(--blue)' }}>.</span>
             </div>
             <div style={{
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.45rem',
-              letterSpacing: '0.1em', color: 'var(--blue)',
-              textShadow: '0 0 10px rgba(75,191,255,0.8)',
-              background: 'rgba(75,191,255,0.07)', padding: '0.25rem 0.5rem',
-              border: '1px solid rgba(75,191,255,0.2)', borderRadius: 4,
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem',
+              letterSpacing: '0.08em', color: 'var(--blue)',
+              textShadow: `0 0 10px var(--blue-glow)`,
+              background: 'var(--input-bg)', padding: '0.3rem 0.6rem',
+              border: '1px solid var(--border-strong)', borderRadius: 6,
             }}>{clock}</div>
+
+            {/* Theme Toggle for mobile */}
+            <ThemeToggle />
+
             <button
               onClick={() => setMenuOpen(o => !o)}
               aria-label={menuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               style={{
-                background: 'none', color: 'var(--cream)',
+                background: 'none', color: 'var(--text)',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                width: 32, height: 32, cursor: 'pointer',
-                border: '1px solid rgba(75,191,255,0.2)', borderRadius: '50%',
+                width: 36, height: 36, cursor: 'pointer',
+                border: '1px solid var(--border-strong)', borderRadius: '50%',
                 transition: 'all 0.2s', flexShrink: 0,
               }}
               onMouseEnter={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'; (e.currentTarget as HTMLElement).style.color = 'var(--blue)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.2)'; (e.currentTarget as HTMLElement).style.color = 'var(--cream)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-strong)'; (e.currentTarget as HTMLElement).style.color = 'var(--text)' }}
             >
-              {menuOpen ? <FaTimes size={12} /> : <FaBars size={12} />}
+              {menuOpen ? <FaTimes size={14} /> : <FaBars size={14} />}
             </button>
           </nav>
 
           {/* Mobile dropdown */}
           {menuOpen && (
             <div style={{
-              position: 'fixed', top: '4.2rem', left: '50%', transform: 'translateX(-50%)',
-              zIndex: 699, minWidth: 200,
-              background: 'rgba(5,5,7,0.97)',
+              position: 'fixed', top: '4.5rem', left: '50%', transform: 'translateX(-50%)',
+              zIndex: 699, minWidth: 220,
+              background: 'var(--nav-bg)',
               backdropFilter: 'blur(24px)',
-              border: '1px solid rgba(75,191,255,0.15)',
-              borderRadius: 12, overflow: 'hidden',
-              boxShadow: '0 16px 48px rgba(0,0,0,0.7)',
+              border: '1px solid var(--nav-border)',
+              borderRadius: 14, overflow: 'hidden',
+              boxShadow: 'var(--shadow-xl)',
               animation: 'dropIn 0.2s ease',
             }}>
               <style>{`@keyframes dropIn{from{opacity:0;transform:translateX(-50%) translateY(-8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}`}</style>
@@ -254,31 +264,31 @@ export default function Nav() {
                 <button key={l.label} onClick={() => scrollTo(l.idx)}
                   style={{
                     display: 'block', width: '100%', textAlign: 'left',
-                    padding: '0.85rem 1.4rem',
-                    background: activeIdx === l.idx ? 'rgba(75,191,255,0.08)' : 'transparent',
+                    padding: '0.95rem 1.5rem',
+                    background: activeIdx === l.idx ? 'var(--blue-glow)' : 'transparent',
                     color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
-                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.58rem',
-                    letterSpacing: '0.18em', textTransform: 'uppercase',
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem',
+                    letterSpacing: '0.14em', textTransform: 'uppercase',
                     cursor: 'pointer', transition: 'all 0.2s',
-                    borderBottom: i < links.length - 1 ? '1px solid rgba(75,191,255,0.06)' : 'none',
-                    fontWeight: activeIdx === l.idx ? 600 : 400,
+                    borderBottom: i < links.length - 1 ? '1px solid var(--border)' : 'none',
+                    fontWeight: activeIdx === l.idx ? 700 : 500,
                   }}
-                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'rgba(75,191,255,0.1)'; (e.currentTarget as HTMLElement).style.color = 'var(--blue)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = activeIdx === l.idx ? 'rgba(75,191,255,0.08)' : 'transparent'; (e.currentTarget as HTMLElement).style.color = activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)' }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'; (e.currentTarget as HTMLElement).style.color = 'var(--blue)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = activeIdx === l.idx ? 'var(--blue-glow)' : 'transparent'; (e.currentTarget as HTMLElement).style.color = activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)' }}
                 >{l.label}</button>
               ))}
               <a href="mailto:meherajhossainmahir@gmail.com"
                 onClick={handleEmailClick}
                 style={{
                   display: 'flex', alignItems: 'center', gap: '0.5rem',
-                  padding: '0.85rem 1.4rem', textDecoration: 'none', cursor: 'pointer',
-                  color: '#000', background: copied ? '#6FEA6F' : 'var(--blue)',
-                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.58rem',
-                  letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700,
+                  padding: '0.95rem 1.5rem', textDecoration: 'none', cursor: 'pointer',
+                  color: '#000', background: copied ? 'var(--green)' : 'var(--blue)',
+                  fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem',
+                  letterSpacing: '0.14em', textTransform: 'uppercase', fontWeight: 700,
                   transition: 'background 0.3s',
                 }}
               >
-                <FaEnvelope size={11} /> {copied ? 'Mail Copied!' : 'Email Me'}
+                <FaEnvelope size={13} /> {copied ? 'Mail Copied!' : 'Email Me'}
               </a>
             </div>
           )}

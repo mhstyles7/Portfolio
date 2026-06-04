@@ -1,39 +1,118 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
 
+/* ── Dark Theme (Default) ─────────────────────────────── */
 :root {
   --bg: #050507;
   --surface: #0d0d12;
   --surface2: #141419;
   --cream: #F2EDE4;
+  --text: #F2EDE4;
+  --text-secondary: #8F8A96;
   --blue: #4BBFFF;
+  --blue-hover: #7dd3ff;
+  --blue-dark: #0070CC;
   --blue-glow: rgba(75,191,255,0.25);
   --muted: #8F8A96;
   --border: rgba(75,191,255,0.12);
+  --border-strong: rgba(75,191,255,0.25);
+  --card-bg: rgba(5,5,7,0.88);
+  --card-bg-hover: #141419;
+  --nav-bg: rgba(5,5,7,0.88);
+  --nav-border: rgba(75,191,255,0.15);
+  --input-bg: rgba(75,191,255,0.03);
+  --input-border: rgba(75,191,255,0.12);
+  --input-focus: rgba(75,191,255,0.45);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.5);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.7);
+  --selection-bg: #4BBFFF;
+  --selection-text: #000;
+  --scrollbar-thumb: rgba(75,191,255,0.2);
+  --green: #6FEA6F;
+  --green-glow: rgba(111,234,111,0.3);
+  --amber: #f59e0b;
+  --constellation-dot: rgba(75,191,255,VAR_OPACITY);
+  --constellation-line: rgba(75,191,255,VAR_OPACITY);
+  --footer-bg: var(--bg);
+}
+
+/* ── Light Theme ──────────────────────────────────────── */
+[data-theme="light"] {
+  --bg: #FFFFFF;
+  --surface: #F5F7FA;
+  --surface2: #EDF0F5;
+  --cream: #1A1A2E;
+  --text: #1A1A2E;
+  --text-secondary: #5A5F72;
+  --blue: #0070CC;
+  --blue-hover: #0058A3;
+  --blue-dark: #004080;
+  --blue-glow: rgba(0,112,204,0.15);
+  --muted: #5A5F72;
+  --border: rgba(0,112,204,0.12);
+  --border-strong: rgba(0,112,204,0.25);
+  --card-bg: #FFFFFF;
+  --card-bg-hover: #F5F7FA;
+  --nav-bg: rgba(255,255,255,0.92);
+  --nav-border: rgba(0,112,204,0.15);
+  --input-bg: rgba(0,112,204,0.03);
+  --input-border: rgba(0,112,204,0.15);
+  --input-focus: rgba(0,112,204,0.45);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.12);
+  --selection-bg: #0070CC;
+  --selection-text: #fff;
+  --scrollbar-thumb: rgba(0,112,204,0.2);
+  --green: #16a34a;
+  --green-glow: rgba(22,163,74,0.3);
+  --amber: #d97706;
+  --footer-bg: #F5F7FA;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { background: var(--bg); overflow-x: hidden; }
+html {
+  background: var(--bg);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
-  color: var(--cream);
+  color: var(--text);
   overscroll-behavior: none;
   line-height: 1.6;
+  transition: background 0.4s ease, color 0.4s ease;
 }
 
 a { text-decoration: none; color: inherit; }
 button { font-family: inherit; border: none; }
 img { display: block; }
 
-::selection { background: var(--blue); color: #000; }
+::selection { background: var(--selection-bg); color: var(--selection-text); }
 
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: rgba(75,191,255,0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 2px; }
 
-/* ── Print styles ──────────────────────────────────────── */
+/* ── Theme transition for smooth switching ──────────── */
+body *,
+body *::before,
+body *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Opt-out for elements that animate frequently */
+.no-theme-transition,
+.no-theme-transition *,
+[style*="animation"],
+canvas {
+  transition-property: none !important;
+}
+
+/* ── Print styles ──────────────────────────────────── */
 @media print {
   nav, [class*="cursor"], [style*="position:fixed"] { display: none !important; }
   body { background: #fff !important; color: #000 !important; cursor: default !important; }
@@ -41,8 +120,7 @@ img { display: block; }
   a { color: #000 !important; text-decoration: underline; }
 }
 
-
-/* ── Constellation / Marquee animations ─────────────────── */
+/* ── Constellation / Marquee animations ─────────────── */
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

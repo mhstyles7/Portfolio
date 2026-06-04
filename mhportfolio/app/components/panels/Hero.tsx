@@ -14,9 +14,10 @@ export default function Hero() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: isMobile ? '5rem 6vw 3rem' : '0 4vw',
+      padding: isMobile ? '5rem 6vw 3rem' : '5.5rem 4vw 2rem',
       position: 'relative',
       overflow: isMobile ? 'visible' : 'hidden',
+      background: `radial-gradient(circle at 15% 50%, var(--blue-glow) 0%, transparent 50%)`,
     }}>
       {/* Centered Wrapper */}
       <div style={{
@@ -24,7 +25,7 @@ export default function Hero() {
         alignItems: isMobile ? 'flex-start' : 'center',
         justifyContent: 'space-between',
         width: '100%', maxWidth: '1200px', margin: '0 auto',
-        gap: isMobile ? '2rem' : '4rem', zIndex: 2,
+        gap: isMobile ? '2rem' : '6rem', zIndex: 2,
       }}>
 
       {/* Left */}
@@ -41,7 +42,7 @@ export default function Hero() {
           letterSpacing: '0.22em', textTransform: 'uppercase',
           color: 'var(--blue)', marginBottom: '1rem',
         }}>
-          <span style={{ width: 28, height: 1, background: 'var(--blue)', boxShadow: '0 0 6px var(--blue)', display: 'block' }} />
+          <span style={{ width: 28, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block' }} />
           CSE Graduate · BRAC University · Dhaka
         </div>
 
@@ -49,18 +50,18 @@ export default function Hero() {
           fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
           fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2rem,4.5vw,4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
-          marginBottom: '1rem',
+          marginBottom: '1rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}
-          <span style={{ color: 'var(--blue)', textShadow: '0 0 60px rgba(75,191,255,0.3)' }}>Hossain.</span>
+          <span style={{ color: 'var(--blue)', textShadow: `0 0 60px var(--blue-glow)` }}>Hossain</span>
         </h1>
 
         <p style={{
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
           lineHeight: 1.8, color: 'var(--muted)', maxWidth: 480, marginBottom: '1.2rem',
         }}>
-          <strong style={{ color: 'var(--cream)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — specializing in applied machine learning, cybersecurity, and building production-grade web platforms.{' '}
-          First-author research <strong style={{ color: '#6FEA6F' }}>published</strong> at{' '}
+          <strong style={{ color: 'var(--text)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — specializing in applied machine learning, cybersecurity, and building production-grade web platforms.{' '}
+          First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
           <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
             Elsevier ICT Express
           </a>.
@@ -75,9 +76,9 @@ export default function Hero() {
               fontSize: '0.8rem', letterSpacing: '0.18em', textTransform: 'uppercase',
               padding: '0.85rem 2rem', cursor: 'pointer',
               border: 'none', transition: 'box-shadow 0.3s', display: 'inline-block',
-              textDecoration: 'none',
+              textDecoration: 'none', borderRadius: 6,
             }}
-            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 0 30px rgba(75,191,255,0.5)'}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = `0 0 30px var(--blue-glow)`}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = 'none'}
           >Download CV ↓</a>
 
@@ -85,22 +86,22 @@ export default function Hero() {
             onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
             aria-label="Go to Contact section"
             style={{
-              background: 'transparent', color: 'var(--cream)',
+              background: 'transparent', color: 'var(--text)',
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
               letterSpacing: '0.18em', textTransform: 'uppercase',
               padding: '0.85rem 2rem', cursor: 'pointer',
-              border: '1px solid rgba(75,191,255,0.4)',
+              border: '1px solid var(--border-strong)',
               transition: 'color 0.3s,border-color 0.3s,box-shadow 0.3s',
-              display: 'inline-block', textDecoration: 'none',
+              display: 'inline-block', textDecoration: 'none', borderRadius: 6,
             }}
             onMouseEnter={e => {
               (e.currentTarget as HTMLElement).style.color = 'var(--blue)'
-              ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.65)'
-              ;(e.currentTarget as HTMLElement).style.boxShadow = '0 0 18px rgba(75,191,255,0.15)'
+              ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'
+              ;(e.currentTarget as HTMLElement).style.boxShadow = `0 0 18px var(--blue-glow)`
             }}
             onMouseLeave={e => {
-              (e.currentTarget as HTMLElement).style.color = 'var(--cream)'
-              ;(e.currentTarget as HTMLElement).style.borderColor = 'rgba(75,191,255,0.4)'
+              (e.currentTarget as HTMLElement).style.color = 'var(--text)'
+              ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--border-strong)'
               ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
             }}
           >Contact Me →</button>
@@ -115,12 +116,12 @@ export default function Hero() {
           ].map(r => (
             <div key={r.k} style={{
               display: 'flex', justifyContent: 'space-between',
-              paddingBottom: '0.5rem', borderBottom: '1px solid rgba(75,191,255,0.08)',
+              paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)',
               fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
               letterSpacing: '0.1em', textTransform: 'uppercase', maxWidth: 400,
             }}>
               <span style={{ color: 'var(--muted)' }}>{r.k}</span>
-              <span style={{ color: r.k === 'Status' || r.k === 'Research' ? 'var(--blue)' : 'var(--cream)' }}>{r.v}</span>
+              <span style={{ color: r.k === 'Status' || r.k === 'Research' ? 'var(--blue)' : 'var(--text)' }}>{r.v}</span>
             </div>
           ))}
         </div>
@@ -136,7 +137,7 @@ export default function Hero() {
         {/* Ambient glow behind the photo */}
         <div style={{
           position: 'absolute', inset: '-25px', borderRadius: 40,
-          background: 'radial-gradient(circle, rgba(75,191,255,0.15) 0%, transparent 70%)',
+          background: `radial-gradient(circle, var(--blue-glow) 0%, transparent 70%)`,
           pointerEvents: 'none',
           animation: 'ring-pulse 3s ease-in-out infinite',
         }} />
@@ -149,7 +150,8 @@ export default function Hero() {
           {/* Spinning gradient */}
           <div className="hero-ring" style={{
             position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%',
-            background: 'conic-gradient(from 0deg, rgba(75,191,255,0.95) 0%, rgba(75,191,255,0.15) 35%, transparent 55%, rgba(75,191,255,0.5) 80%, rgba(75,191,255,0.95) 100%)',
+            background: 'conic-gradient(from 0deg, var(--blue) 0%, transparent 35%, transparent 55%, var(--blue) 80%, var(--blue) 100%)',
+            opacity: 0.7,
           }} />
         </div>
 
@@ -163,7 +165,7 @@ export default function Hero() {
         <div style={{
           position: 'absolute', inset: '2px', borderRadius: 28,
           overflow: 'hidden', zIndex: 2,
-          boxShadow: 'inset 0 0 20px rgba(75,191,255,0.05)',
+          boxShadow: `inset 0 0 20px var(--blue-glow)`,
         }}>
           <Image
             src="/photo.jpg"
@@ -174,31 +176,32 @@ export default function Hero() {
           />
           <div style={{
             position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%',
-            background: 'linear-gradient(to bottom,transparent,rgba(5,5,7,0.6))', zIndex: 2,
+            background: `linear-gradient(to bottom,transparent,var(--bg))`, zIndex: 2,
+            opacity: 0.6,
           }} />
         </div>
 
-        {/* Open to Work badge — moved to bottom left to avoid watch */}
+        {/* Open to Work badge */}
         <div style={{
           position: 'absolute', bottom: -15, left: -20, zIndex: 4,
-          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(111,234,111,0.3)',
+          background: 'var(--nav-bg)', border: `1px solid var(--green-glow)`,
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
           display: 'flex', alignItems: 'center', gap: '0.6rem', borderRadius: 8,
         }}>
           <span style={{
-            width: 7, height: 7, borderRadius: '50%', background: '#6FEA6F', flexShrink: 0,
-            boxShadow: '0 0 8px #6FEA6F', animation: 'pulseGreen 2s ease-in-out infinite',
+            width: 7, height: 7, borderRadius: '50%', background: 'var(--green)', flexShrink: 0,
+            boxShadow: `0 0 8px var(--green)`, animation: 'pulseGreen 2s ease-in-out infinite',
           }} />
           <div>
-            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: '#6FEA6F', display: 'block' }}>Open to Work</strong>
+            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--green)', display: 'block' }}>Open to Work</strong>
             <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
           </div>
         </div>
 
-        {/* BRAC badge — moved to top right */}
+        {/* BRAC badge */}
         <div style={{
           position: 'absolute', top: -15, right: -20, zIndex: 4,
-          background: 'rgba(5,5,7,0.92)', border: '1px solid rgba(75,191,255,0.25)',
+          background: 'var(--nav-bg)', border: '1px solid var(--border-strong)',
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
           animation: 'float 4s ease-in-out infinite 2s', borderRadius: 8,
         }}>
@@ -215,7 +218,7 @@ export default function Hero() {
       {/* End Centered Wrapper */}
       </div>
 
-      {/* Scroll hint — desktop only, centered at absolute bottom as glowing pill */}
+      {/* Scroll hint — desktop only */}
       {!isMobile && (
         <div style={{
           position: 'absolute',
@@ -227,12 +230,12 @@ export default function Hero() {
           fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
           letterSpacing: '0.2em', textTransform: 'uppercase',
           color: 'var(--blue)',
-          background: 'rgba(75,191,255,0.06)',
-          border: '1px solid rgba(75,191,255,0.22)',
+          background: 'var(--blue-glow)',
+          border: '1px solid var(--border-strong)',
           borderRadius: 100,
           padding: '0.45rem 1.2rem',
           backdropFilter: 'blur(8px)',
-          boxShadow: '0 0 18px rgba(75,191,255,0.18), inset 0 0 12px rgba(75,191,255,0.05)',
+          boxShadow: `0 0 18px var(--blue-glow)`,
           whiteSpace: 'nowrap',
           pointerEvents: 'none',
         }}>
