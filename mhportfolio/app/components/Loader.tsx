@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
 
 export default function Loader() {
   const [pct, setPct] = useState(0)
@@ -37,33 +38,48 @@ export default function Loader() {
       pointerEvents: exiting ? 'none' : 'all',
       overflow: 'hidden'
     }}>
-      {/* Background Subtle Glow */}
-      <div style={{
-        position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
-        width: '60vw', height: '60vw', borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(0, 112, 204, 0.08) 0%, transparent 60%)',
-        pointerEvents: 'none'
-      }} />
+      {/* Background Subtle Breathing Glow */}
+      <motion.div 
+        animate={{ scale: [1, 1.1, 1], opacity: [0.6, 1, 0.6] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        style={{
+          position: 'absolute', top: '50%', left: '50%', 
+          x: '-50%', y: '-50%', // Framer motion safe centering
+          width: '60vw', height: '60vw', borderRadius: '50%',
+          background: 'radial-gradient(circle, rgba(0, 112, 204, 0.1) 0%, transparent 60%)',
+          pointerEvents: 'none'
+        }} 
+      />
 
-      {/* Name */}
-      <div style={{
-        fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
-        fontSize: 'clamp(2rem, 6vw, 4.5rem)', letterSpacing: '-0.03em',
-        color: '#fff', display: 'flex', alignItems: 'center',
-        marginBottom: '2.5rem', position: 'relative', zIndex: 2
-      }}>
+      {/* Name with elegant blur-in reveal */}
+      <motion.div 
+        initial={{ opacity: 0, filter: 'blur(12px)', scale: 0.95 }}
+        animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+        transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
+          fontSize: 'clamp(2rem, 6vw, 4.5rem)', letterSpacing: '-0.03em',
+          color: '#fff', display: 'flex', alignItems: 'center',
+          marginBottom: '2.5rem', position: 'relative', zIndex: 2
+        }}
+      >
         Md. Meheraj Hossain<span style={{ color: '#0070cc' }}>.</span>
-      </div>
+      </motion.div>
 
-      {/* Loading Track */}
-      <div style={{ width: 'min(300px, 70vw)', height: 1, background: 'rgba(255,255,255,0.1)', position: 'relative', zIndex: 2 }}>
+      {/* Loading Track fading in slightly after */}
+      <motion.div 
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        style={{ width: 'min(300px, 70vw)', height: 1, background: 'rgba(255,255,255,0.1)', position: 'relative', zIndex: 2 }}
+      >
         <div style={{
           position: 'absolute', top: -1, left: 0, height: 3,
           width: `${pct}%`, background: '#0070cc',
           boxShadow: '0 0 12px #0070cc, 0 0 4px #0070cc',
           transition: 'width 0.1s ease-out'
         }} />
-      </div>
+      </motion.div>
 
       {/* Percentage & Status */}
       <div style={{

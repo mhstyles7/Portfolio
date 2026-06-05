@@ -58,19 +58,21 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Grid — 4 cols × 2 rows */}
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? 'repeat(2,1fr)' : 'repeat(4,1fr)', gridTemplateRows: isMobile ? 'auto' : 'repeat(2, 1fr)', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', position: 'relative', zIndex: 1, borderRadius: 10, overflow: 'hidden', flex: 1, minHeight: 0 }}>
+      {/* Grid */}
+      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4,1fr)', gridTemplateRows: isMobile ? 'auto' : 'repeat(2, 1fr)', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', position: 'relative', zIndex: 1, borderRadius: 10, overflow: 'hidden', flex: 1, minHeight: 0 }}>
         {skills.map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.04, duration: 0.35 }}
             style={{ background: 'var(--bg)', padding: isMobile ? '0.9rem 1rem' : '1rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'relative', transition: 'background 0.3s', overflow: 'hidden' }}
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--surface2)'}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'var(--bg)'}>
 
-            {/* Icon + Name */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.2rem' }}>
-              <span style={{ color: levelColors[s.level], opacity: 0.85 }}><s.Icon size={16} /></span>
-              <span style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.88rem', color: 'var(--text)' }}>{s.name}</span>
-              <span style={{ marginLeft: 'auto', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: levelColors[s.level], background: `${levelColors[s.level]}14`, border: `1px solid ${levelColors[s.level]}40`, padding: '0.1rem 0.4rem', borderRadius: 4, flexShrink: 0 }}>{s.level}</span>
+            {/* Icon + Name + Badge */}
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.5rem', marginBottom: '0.6rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <span style={{ color: levelColors[s.level], opacity: 0.85 }}><s.Icon size={16} /></span>
+                <span style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.88rem', color: 'var(--text)' }}>{s.name}</span>
+              </div>
+              <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: levelColors[s.level], background: `${levelColors[s.level]}14`, border: `1px solid ${levelColors[s.level]}40`, padding: '0.15rem 0.4rem', borderRadius: 4, flexShrink: 0 }}>{s.level}</span>
             </div>
 
             {/* Skill items as mini-pills */}
