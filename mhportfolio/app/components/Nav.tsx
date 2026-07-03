@@ -9,7 +9,7 @@ const links = [
   { label: 'Background', id: 'about' },
   { label: 'Skills',   id: 'skills' },
   { label: 'Research', id: 'research' },
-  { label: 'Certs',    id: 'certifications' },
+  { label: 'Certifications', id: 'certifications' },
   { label: 'Contact',  id: 'contact' },
 ]
 
