@@ -183,7 +183,7 @@ export default function Hero() {
         </div>
 
         {/* Open to Work badge */}
-        <div style={{
+        <div className="hero-badge-bottom" style={{
           position: 'absolute', bottom: -15, left: -20, zIndex: 4,
           background: 'var(--nav-bg)', border: `1px solid var(--green-glow)`,
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
@@ -200,7 +200,7 @@ export default function Hero() {
         </div>
 
         {/* BRAC badge */}
-        <div style={{
+        <div className="hero-badge-top" style={{
           position: 'absolute', top: -15, right: -20, zIndex: 4,
           background: 'var(--nav-bg)', border: '1px solid var(--border-strong)',
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
@@ -214,13 +214,17 @@ export default function Hero() {
           .hero-ring { animation: ring-spin 7s linear infinite; }
           @keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
           @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+          @media (max-width: 700px) {
+            .hero-badge-bottom, .hero-badge-top { display: none !important; }
+            .hero-scroll-hint { display: none !important; }
+          }
         `}</style>
       </div>
       {/* End Centered Wrapper */}
       </div>
 
       {/* Scroll hint */}
-      <div style={{
+      <div className="hero-scroll-hint" style={{
         position: 'absolute',
         bottom: '1.6rem',
         left: '50%',
@@ -246,3 +250,4 @@ export default function Hero() {
     </section>
   )
 }
+
