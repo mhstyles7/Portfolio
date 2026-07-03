@@ -145,8 +145,8 @@ section {
 
 /* Remove border-right on wrapped columns for small screens */
 @media (max-width: 860px) {
-  #research > div:first-child,
-  #contact > div:first-child {
+  #research > div > div:first-child,
+  #contact > div > div > div:first-child {
     border-right: none !important;
     border-bottom: 1px solid var(--border) !important;
   }

@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
-import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa'
+import { FaDownload, FaExternalLinkAlt, FaMicrochip } from 'react-icons/fa'
 
 const researchProfiles = [
   { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={16} />, label: 'Scholar', color: '#4285F4' },
@@ -13,11 +13,17 @@ export default function Research() {
   return (
     <section id="research" style={{
       width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      background: 'var(--card-bg)',
+      padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)',
+      display: 'flex', justifyContent: 'center',
+      background: 'var(--bg)',
     }}>
+      <div style={{
+        maxWidth: 1200, width: '100%',
+        display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+        borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
+        background: 'var(--card-bg)',
+        boxShadow: 'var(--shadow-lg)',
+      }}>
 
       {/* ── Left column ── */}
       <div style={{
@@ -96,23 +102,38 @@ export default function Research() {
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
 
-          {/* Abstract */}
-          <p style={{ fontSize: '0.88rem', lineHeight: 1.85, color: 'var(--muted)', marginBottom: '0.8rem', textAlign: 'justify' }}>
-            <strong style={{ color: 'var(--text)' }}>Abstract: </strong>
-            Zero-day attacks threaten IoT security as signature-based detection fails against novel exploits. This paper proposes a hybrid IDS integrating <strong style={{ color: 'var(--text)' }}>unsupervised anomaly detection</strong>, <strong style={{ color: 'var(--text)' }}>non-parametric Siamese-based cross-dataset dissimilarity filtering</strong>, and <strong style={{ color: 'var(--text)' }}>PPO-based adaptive defense</strong>. Unsupervised models isolate anomalous traffic; Siamese correlation extracts structurally rare zero-day candidates; the PPO agent learns optimal defense policies via environmental feedback.
-          </p>
+          {/* Executive Summary / The Challenge & Solution */}
+          <div style={{ marginBottom: '1.2rem' }}>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--muted)', marginBottom: '0.5rem', textAlign: 'justify' }}>
+              <strong style={{ color: 'var(--text)' }}>The Challenge:</strong> Signature-based intrusion detection fails against zero-day attacks in IoT networks because they rely on known attack patterns.
+            </p>
+            <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--muted)', textAlign: 'justify' }}>
+              <strong style={{ color: 'var(--text)' }}>My Solution:</strong> I engineered a hybrid, self-learning Intrusion Detection System (IDS) that dynamically identifies and mitigates novel exploits without relying on prior attack signatures.
+            </p>
+          </div>
 
-          {/* Methodology */}
-          <div style={{ padding: '0.75rem 1rem', background: 'var(--blue-glow)', border: '1px solid var(--border)', borderRadius: 8, marginBottom: '0.75rem' }}>
-            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.4rem', fontWeight: 700 }}>3-Stage Pipeline</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
-              {[
-                '① Unsupervised anomaly detection (PCA · Autoencoder · Isolation Forest)',
-                '② Siamese-based cross-dataset dissimilarity filtering for zero-day candidate extraction',
-                '③ PPO agent learns optimal defense policy via environmental feedback',
-              ].map((item, i) => (
-                <div key={i} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.83rem', color: 'var(--muted)', lineHeight: 1.6 }}>{item}</div>
-              ))}
+          {/* Core Contributions */}
+          <div style={{ padding: '1rem 1.2rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 10, marginBottom: '1.2rem', boxShadow: 'inset 0 0 20px rgba(0,0,0,0.2)' }}>
+            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.8rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <FaMicrochip size={12} /> Core Architecture &amp; Contributions
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
+                 <span style={{ color: 'var(--green)', marginTop: '0.2rem', fontSize: '0.7rem' }}>✦</span>
+                 <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.85rem', color: 'var(--text)', lineHeight: 1.6 }}><strong>Unsupervised Anomaly Detection:</strong> Built multi-model pipelines (PCA, Autoencoder, Isolation Forest) to isolate abnormal IoT traffic from benign network behavior.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
+                 <span style={{ color: 'var(--blue)', marginTop: '0.2rem', fontSize: '0.7rem' }}>✦</span>
+                 <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.85rem', color: 'var(--text)', lineHeight: 1.6 }}><strong>Cross-Dataset Siamese Filtering:</strong> Developed a non-parametric Siamese distance analyzer to extract structurally rare zero-day attack candidates across diverse environments.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
+                 <span style={{ color: 'var(--amber)', marginTop: '0.2rem', fontSize: '0.7rem' }}>✦</span>
+                 <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.85rem', color: 'var(--text)', lineHeight: 1.6 }}><strong>Adaptive PPO RL Agent:</strong> Engineered a Proximal Policy Optimization (PPO) reinforcement learning agent that autonomously learns optimal defense policies via environmental feedback.</span>
+              </div>
+              <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'flex-start' }}>
+                 <span style={{ color: '#a78bfa', marginTop: '0.2rem', fontSize: '0.7rem' }}>✦</span>
+                 <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.85rem', color: 'var(--text)', lineHeight: 1.6 }}><strong>Scalable Evaluation:</strong> Validated the architecture on massive datasets (CIC-IoT-2023 &amp; CIC-BCCC-NRC-2024), proving high cross-dataset generalization and real-time operational capability.</span>
+              </div>
             </div>
           </div>
 
@@ -182,6 +203,7 @@ export default function Research() {
             &nbsp;·&nbsp;<span style={{ color: 'var(--blue)' }}>ICT Express (Elsevier)</span>
             &nbsp;·&nbsp;IF 4.2 · CiteScore 10.8
           </div>
+        </div>
         </div>
       </div>
     </section>

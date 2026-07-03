@@ -21,12 +21,17 @@ export default function About() {
   return (
     <section id="about" style={{
       width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
+      padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)',
+      display: 'flex', justifyContent: 'center',
       position: 'relative',
       background: `radial-gradient(circle at 50% 50%, var(--blue-glow) 0%, transparent 60%)`,
     }}>
+      <div style={{
+        maxWidth: 1200, width: '100%',
+        display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+        borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
+        boxShadow: 'var(--shadow-lg)',
+      }}>
       {/* Left — Bio */}
       <div style={{
         flex: '1 1 400px', minWidth: 320,
@@ -121,6 +126,7 @@ export default function About() {
               </div>
             </motion.div>
           ))}
+        </div>
         </div>
       </div>
     </section>

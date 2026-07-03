@@ -44,10 +44,18 @@ export default function Contact() {
   return (
     <section id="contact" style={{
       width: '100%',
-      display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+      display: 'flex', flexDirection: 'column',
       position: 'relative',
       background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
     }}>
+      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+        <div style={{
+          maxWidth: 1200, width: '100%',
+          display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+          borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
+          background: 'var(--card-bg)',
+          boxShadow: 'var(--shadow-lg)',
+        }}>
       {/* Left */}
       <div style={{
         flex: '1 1 400px',
@@ -136,6 +144,8 @@ export default function Contact() {
             </form>
           )}
         </motion.div>
+        </div>
+        </div>
       </div>
       {/* Footer */}
       <footer style={{
