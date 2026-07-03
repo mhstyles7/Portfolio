@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaGithub, FaExternalLinkAlt, FaFilePdf, FaChevronDown, FaChevronUp, FaMicrochip } from 'react-icons/fa'
-import { useIsMobile } from '../../hooks/useIsMobile'
 
 const projects: {
   num: string; title: string; desc: string; tech: string[];
@@ -76,26 +75,23 @@ const projects: {
 ]
 
 export default function Work() {
-  const isMobile = useIsMobile()
   const [expandedIdx, setExpandedIdx] = useState<number | null>(null)
 
   return (
-    <section style={{
-      width: isMobile ? '100%' : '100vw',
-      height: isMobile ? 'auto' : '100vh',
-      flexShrink: 0,
+    <section id="work" style={{
+      width: '100%',
+      minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
-      overflowY: isMobile ? 'visible' : 'auto',
-      overflowX: 'hidden',
       position: 'relative',
+      padding: 'clamp(5rem, 8vh, 7rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 4vh, 4rem)',
       background: `radial-gradient(circle at 85% 20%, var(--blue-glow) 0%, transparent 60%)`,
     }}>
       {/* Header */}
       <div style={{
-        padding: isMobile ? '4rem 6vw 1.5rem' : '5rem 5vw 1rem',
         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end',
-        flexWrap: 'wrap', gap: '0.5rem',
+        flexWrap: 'wrap', gap: '0.5rem', marginBottom: '2rem',
+        maxWidth: 1200, width: '100%', margin: '0 auto 2rem',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div style={{
@@ -122,14 +118,10 @@ export default function Work() {
 
       {/* Project Cards Grid */}
       <div style={{
-        flex: 1,
-        padding: isMobile ? '0 6vw 4rem' : '0 5vw 2rem',
-        overflowY: isMobile ? 'visible' : 'auto',
         display: 'grid',
-        gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-        gridAutoRows: 'max-content',
-        gap: '0.85rem',
-        alignContent: 'start',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))',
+        gap: '1rem',
+        maxWidth: 1200, width: '100%', margin: '0 auto',
       }}>
         {projects.map((p, i) => {
           const isExpanded = expandedIdx === i

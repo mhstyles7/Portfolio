@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import { useIsMobile } from '../../hooks/useIsMobile'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
 import { FaDownload, FaExternalLinkAlt } from 'react-icons/fa'
 
@@ -11,28 +10,22 @@ const researchProfiles = [
 ]
 
 export default function Research() {
-  const isMobile = useIsMobile()
-
   return (
-    <section style={{
-      width: isMobile ? '100%' : '100vw',
-      height: isMobile ? 'auto' : '100vh',
-      flexShrink: 0,
+    <section id="research" style={{
+      width: '100%',
       display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      overflow: 'hidden',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
       background: 'var(--card-bg)',
     }}>
 
-      {/* ── Left column — scrollable ── */}
+      {/* ── Left column ── */}
       <div style={{
-        width: isMobile ? '100%' : '56%',
-        padding: isMobile ? '4rem 6vw 2rem' : '5rem 3.5vw 3rem 6vw',
+        flex: '1 1 500px',
+        padding: 'clamp(4rem, 8vh, 5rem) clamp(1.5rem, 4vw, 6rem)',
         display: 'flex', flexDirection: 'column', justifyContent: 'flex-start',
-        borderRight: isMobile ? 'none' : '1px solid var(--border)',
-        borderBottom: isMobile ? '1px solid var(--border)' : 'none',
+        borderRight: '1px solid var(--border)',
         position: 'relative',
-        overflowY: isMobile ? 'visible' : 'auto',
         background: 'radial-gradient(circle at 40% 60%, var(--blue-glow) 0%, transparent 70%)',
       }}>
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
@@ -80,7 +73,7 @@ export default function Research() {
               <span style={{ width: 7, height: 7, background: 'var(--green)', borderRadius: '50%', boxShadow: '0 0 8px var(--green)', animation: 'pulse 2s infinite', flexShrink: 0 }} />
               <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.12em', textTransform: 'uppercase', color: 'var(--green)', border: '1px solid var(--green-glow)', padding: '0.35rem 0.8rem', borderRadius: 6 }}>ICT Express · Elsevier · ✓ Published</span>
             </div>
-            <div style={{ display: 'flex', gap: '0.4rem' }}>
+            <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
               {researchProfiles.map(s => (
                 <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label}
                   style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.6rem', border: '1px solid var(--border)', borderRadius: 7, background: 'transparent', color: 'var(--muted)', transition: 'all 0.25s', textDecoration: 'none' }}
@@ -148,17 +141,17 @@ export default function Research() {
         <style>{`@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.35}}`}</style>
       </div>
 
-      {/* ── Right column — static, no scroll ── */}
+      {/* ── Right column — metrics ── */}
       <div style={{
-        flex: 1,
+        flex: '1 1 360px',
         display: 'flex', flexDirection: 'column',
         alignItems: 'center', justifyContent: 'center',
-        padding: isMobile ? '3rem 6vw 4rem' : '5.5rem 4vw 3rem',
+        padding: 'clamp(3rem, 6vh, 5.5rem) clamp(1.5rem, 4vw, 4rem)',
         position: 'relative',
-        overflow: 'hidden',  /* static — no scroll */
+        overflow: 'hidden',
       }}>
         {/* Ghost watermark */}
-        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontStyle: 'italic', fontSize: '18vw', color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', opacity: 0.12 }}>RL</div>
+        <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontStyle: 'italic', fontSize: 'clamp(6rem, 18vw, 18rem)', color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', opacity: 0.12 }}>RL</div>
 
         <div style={{ position: 'relative', zIndex: 2, width: '100%', maxWidth: 420 }}>
           {/* Hero metric */}

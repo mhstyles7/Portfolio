@@ -1,31 +1,28 @@
 'use client'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { useIsMobile } from '../../hooks/useIsMobile'
 
 export default function Hero() {
-  const isMobile = useIsMobile()
-
   return (
-    <section style={{
-      width: isMobile ? '100%' : '100vw',
-      height: isMobile ? 'auto' : '100vh',
-      flexShrink: 0,
+    <section id="hero" style={{
+      width: '100%',
+      minHeight: '100vh',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: isMobile ? '5rem 6vw 3rem' : '5.5rem 4vw 2rem',
+      padding: 'clamp(5rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem) clamp(2rem, 4vh, 3rem)',
       position: 'relative',
-      overflow: isMobile ? 'visible' : 'hidden',
+      overflow: 'visible',
       background: `radial-gradient(circle at 15% 50%, var(--blue-glow) 0%, transparent 50%)`,
     }}>
       {/* Centered Wrapper */}
       <div style={{
-        display: 'flex', flexDirection: isMobile ? 'column' : 'row',
-        alignItems: isMobile ? 'flex-start' : 'center',
+        display: 'flex', flexDirection: 'row',
+        alignItems: 'center',
         justifyContent: 'space-between',
         width: '100%', maxWidth: '1200px', margin: '0 auto',
-        gap: isMobile ? '2rem' : '6rem', zIndex: 2,
+        gap: 'clamp(2rem, 4vw, 6rem)', zIndex: 2,
+        flexWrap: 'wrap',
       }}>
 
       {/* Left */}
@@ -34,7 +31,7 @@ export default function Hero() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        style={{ flex: 1, minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
+        style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
@@ -48,7 +45,7 @@ export default function Hero() {
 
         <h1 style={{
           fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
-          fontSize: isMobile ? 'clamp(2rem,10vw,3rem)' : 'clamp(2rem,4.5vw,4.5rem)',
+          fontSize: 'clamp(2rem, 5vw, 4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
           marginBottom: '1rem', color: 'var(--text)',
         }}>
@@ -83,7 +80,10 @@ export default function Hero() {
           >Download CV ↓</a>
 
           <button
-            onClick={() => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })}
+            onClick={() => {
+              const el = document.getElementById('contact')
+              if (el) el.scrollIntoView({ behavior: 'smooth' })
+            }}
             aria-label="Go to Contact section"
             style={{
               background: 'transparent', color: 'var(--text)',
@@ -130,9 +130,10 @@ export default function Hero() {
       {/* Photo — rounded rectangle with spinning glow */}
       <div style={{
         flexShrink: 0, position: 'relative',
-        width: isMobile ? '100%' : 'clamp(260px, 26vw, 380px)',
-        height: isMobile ? '380px' : 'clamp(340px, 48vh, 500px)',
+        width: 'clamp(260px, 26vw, 380px)',
+        height: 'clamp(340px, 48vh, 500px)',
         zIndex: 1,
+        margin: '0 auto',
       }}>
         {/* Ambient glow behind the photo */}
         <div style={{
@@ -218,32 +219,30 @@ export default function Hero() {
       {/* End Centered Wrapper */}
       </div>
 
-      {/* Scroll hint — desktop only */}
-      {!isMobile && (
-        <div style={{
-          position: 'absolute',
-          bottom: '1.6rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 10,
-          display: 'flex', alignItems: 'center', gap: '0.55rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
-          letterSpacing: '0.2em', textTransform: 'uppercase',
-          color: 'var(--blue)',
-          background: 'var(--blue-glow)',
-          border: '1px solid var(--border-strong)',
-          borderRadius: 100,
-          padding: '0.45rem 1.2rem',
-          backdropFilter: 'blur(8px)',
-          boxShadow: `0 0 18px var(--blue-glow)`,
-          whiteSpace: 'nowrap',
-          pointerEvents: 'none',
-        }}>
-          SCROLL
-          <span style={{ animation: 'bounceX 0.9s ease-in-out infinite', display: 'inline-block' }}>→</span>
-          <style>{`@keyframes bounceX{0%,100%{transform:translateX(0)}50%{transform:translateX(5px)}}`}</style>
-        </div>
-      )}
+      {/* Scroll hint */}
+      <div style={{
+        position: 'absolute',
+        bottom: '1.6rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        zIndex: 10,
+        display: 'flex', alignItems: 'center', gap: '0.55rem',
+        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+        letterSpacing: '0.2em', textTransform: 'uppercase',
+        color: 'var(--blue)',
+        background: 'var(--blue-glow)',
+        border: '1px solid var(--border-strong)',
+        borderRadius: 100,
+        padding: '0.45rem 1.2rem',
+        backdropFilter: 'blur(8px)',
+        boxShadow: `0 0 18px var(--blue-glow)`,
+        whiteSpace: 'nowrap',
+        pointerEvents: 'none',
+      }}>
+        SCROLL
+        <span style={{ animation: 'bounceY 0.9s ease-in-out infinite', display: 'inline-block' }}>↓</span>
+        <style>{`@keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}`}</style>
+      </div>
     </section>
   )
 }

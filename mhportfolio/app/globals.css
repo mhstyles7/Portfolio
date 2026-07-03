@@ -135,3 +135,19 @@ canvas {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0.6; }
 }
+
+/* ── Responsive vertical scroll layout ──────────────── */
+section {
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0;
+}
+
+/* Remove border-right on wrapped columns for small screens */
+@media (max-width: 860px) {
+  #research > div:first-child,
+  #contact > div:first-child {
+    border-right: none !important;
+    border-bottom: 1px solid var(--border) !important;
+  }
+}

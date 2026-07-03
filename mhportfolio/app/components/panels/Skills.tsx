@@ -1,7 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
 import { FaReact, FaNodeJs, FaPython, FaShieldAlt, FaMicrochip, FaKey, FaGitAlt, FaFlask } from 'react-icons/fa'
-import { useIsMobile } from '../../hooks/useIsMobile'
 
 type SkillLevel = 'Production' | 'Research Grade' | 'Research' | 'Shipped' | 'Daily Use' | 'Published'
 
@@ -28,12 +27,17 @@ const levelColors: Record<SkillLevel, string> = {
 const marqueeItems = ['React.js','Node.js','Python','TypeScript','MongoDB','TensorFlow','Express.js','Next.js','PyTorch','Scikit-learn','ESP32','JWT','REST APIs','Gemini API','Git','Vercel','Wireshark','Postman','SQL','Framer Motion']
 
 export default function Skills() {
-  const isMobile = useIsMobile()
   return (
-    <section style={{ width: isMobile ? '100%' : '100vw', height: isMobile ? 'auto' : '100vh', flexShrink: 0, display: 'flex', flexDirection: 'column', padding: isMobile ? '4rem 6vw 3rem' : '5.5rem 6vw 3rem', overflowY: 'auto', position: 'relative', background: `radial-gradient(circle at 10% 90%, var(--blue-glow) 0%, transparent 60%)` }}>
+    <section id="skills" style={{
+      width: '100%',
+      display: 'flex', flexDirection: 'column',
+      padding: 'clamp(4rem, 8vh, 5.5rem) clamp(1.5rem, 6vw, 5rem) clamp(2rem, 4vh, 3rem)',
+      position: 'relative',
+      background: `radial-gradient(circle at 10% 90%, var(--blue-glow) 0%, transparent 60%)`,
+    }}>
 
       {/* Header */}
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem', position: 'relative', zIndex: 1 }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '1rem', flexWrap: 'wrap', gap: '0.5rem', position: 'relative', zIndex: 1, maxWidth: 1200, width: '100%', margin: '0 auto 1rem' }}>
         <div>
           <motion.h2 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             style={{ fontFamily: "'Space Grotesk','Inter',sans-serif", fontWeight: 800, fontSize: 'clamp(1.6rem,3vw,2.8rem)', lineHeight: 1, letterSpacing: '-0.025em', color: 'var(--text)' }}>
@@ -47,7 +51,7 @@ export default function Skills() {
       </div>
 
       {/* Marquee */}
-      <div style={{ overflow: 'hidden', position: 'relative', zIndex: 1, borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', marginBottom: '1rem', padding: '0.7rem 0', background: 'var(--blue-glow)' }}>
+      <div style={{ overflow: 'hidden', position: 'relative', zIndex: 1, borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', marginBottom: '1.5rem', padding: '0.7rem 0', background: 'var(--blue-glow)', maxWidth: 1200, width: '100%', margin: '0 auto 1.5rem' }}>
         <div style={{ display: 'flex', width: 'max-content', animation: 'marquee 50s linear infinite' }}>
           {[...marqueeItems, ...marqueeItems].map((tech, i) => (
             <span key={i} style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: i % 3 === 0 ? 'var(--blue)' : i % 3 === 1 ? 'var(--muted)' : '#a78bfa', padding: '0 1.4rem', whiteSpace: 'nowrap', display: 'inline-flex', alignItems: 'center', gap: '1.4rem' }}>
@@ -59,10 +63,18 @@ export default function Skills() {
       </div>
 
       {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : 'repeat(4,1fr)', gridTemplateRows: isMobile ? 'auto' : 'repeat(2, 1fr)', gap: 1, background: 'var(--border)', border: '1px solid var(--border)', position: 'relative', zIndex: 1, borderRadius: 10, overflow: 'hidden', flex: 1, minHeight: 0 }}>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+        gap: 1,
+        background: 'var(--border)', border: '1px solid var(--border)',
+        position: 'relative', zIndex: 1,
+        borderRadius: 10, overflow: 'hidden',
+        maxWidth: 1200, width: '100%', margin: '0 auto',
+      }}>
         {skills.map((s, i) => (
           <motion.div key={i} initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.04, duration: 0.35 }}
-            style={{ background: 'var(--bg)', padding: isMobile ? '0.9rem 1rem' : '1rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'relative', transition: 'background 0.3s', overflow: 'hidden' }}
+            style={{ background: 'var(--bg)', padding: '1rem 1.2rem', display: 'flex', flexDirection: 'column', gap: '0.4rem', position: 'relative', transition: 'background 0.3s', overflow: 'hidden' }}
             onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--surface2)'}
             onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'var(--bg)'}>
 

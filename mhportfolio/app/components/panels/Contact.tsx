@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { FaLinkedin, FaGithub, FaFacebook, FaInstagram, FaEnvelope } from 'react-icons/fa'
-import { useIsMobile } from '../../hooks/useIsMobile'
 
 const EMAIL = 'meherajhossainmahir@gmail.com'
 const socials = [
@@ -16,7 +15,6 @@ export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', msg: '' })
   const [status, setStatus] = useState<'idle'|'sending'|'ok'|'err'|'limit'>('idle')
   const [msgCount, setMsgCount] = useState(0)
-  const isMobile = useIsMobile()
 
   useEffect(() => {
     const storedData = localStorage.getItem('anon_msg_data');
@@ -44,9 +42,20 @@ export default function Contact() {
   }
 
   return (
-    <section style={{ width: isMobile ? '100%' : '100vw', height: isMobile ? 'auto' : '100vh', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', overflowY: 'auto', position: 'relative', background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)` }}>
+    <section id="contact" style={{
+      width: '100%',
+      display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
+      position: 'relative',
+      background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
+    }}>
       {/* Left */}
-      <div style={{ width: isMobile ? '100%' : '45%', padding: isMobile ? '4rem 6vw 2rem' : '5rem 4vw 3rem 7vw', display: 'flex', flexDirection: 'column', justifyContent: 'center', borderRight: isMobile ? 'none' : '1px solid var(--border)', borderBottom: isMobile ? '1px solid var(--border)' : 'none', position: 'relative', overflow: 'hidden' }}>
+      <div style={{
+        flex: '1 1 400px',
+        padding: 'clamp(4rem, 8vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        borderRight: '1px solid var(--border)',
+        position: 'relative', overflow: 'hidden',
+      }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> 06 — Let's Connect
@@ -79,7 +88,11 @@ export default function Contact() {
         </motion.div>
       </div>
       {/* Right — Form */}
-      <div style={{ flex: 1, padding: isMobile ? '3rem 6vw 5rem' : '5rem 7vw 3rem 4vw', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+      <div style={{
+        flex: '1 1 400px',
+        padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+      }}>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Send a Message
@@ -97,7 +110,7 @@ export default function Contact() {
             </motion.div>
           ) : (
             <form onSubmit={submit} style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem', maxWidth: 480 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: '0.9rem' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.9rem' }}>
                 {[{ key: 'name', placeholder: 'Name (optional)', type: 'text' }, { key: 'email', placeholder: 'Email (optional)', type: 'email' }].map(f => (
                   <input key={f.key} type={f.type} placeholder={f.placeholder} value={(form as any)[f.key]}
                     onChange={e => setForm(prev => ({ ...prev, [f.key]: e.target.value }))}
@@ -110,7 +123,7 @@ export default function Contact() {
                 style={{ background: 'var(--input-bg)', border: '1px solid var(--input-border)', padding: '0.75rem 1rem', fontFamily: 'Inter,sans-serif', fontSize: '1rem', color: 'var(--text)', outline: 'none', width: '100%', resize: 'vertical', transition: 'border-color 0.25s', borderRadius: 6 }}
                 onFocus={e => (e.target.style.borderColor = 'var(--input-focus)')}
                 onBlur={e => (e.target.style.borderColor = 'var(--input-border)')} />
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
                 <button type="submit" disabled={status === 'sending'}
                   style={{ background: 'var(--blue)', color: '#000', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.18em', textTransform: 'uppercase', fontWeight: 700, padding: '0.8rem 2rem', cursor: 'pointer', border: 'none', transition: 'box-shadow 0.3s', opacity: status === 'sending' ? 0.65 : 1, borderRadius: 6 }}
                   onMouseEnter={e => (e.currentTarget.style.boxShadow = '0 0 24px var(--blue-glow)')}
@@ -125,7 +138,15 @@ export default function Contact() {
         </motion.div>
       </div>
       {/* Footer */}
-      <footer style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', background: 'var(--footer-bg)', borderTop: '1px solid var(--border)', padding: '1.2rem 5vw', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', zIndex: 10, fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem', letterSpacing: '0.12em', color: 'var(--muted)', textTransform: 'uppercase' }}>
+      <footer style={{
+        width: '100%',
+        background: 'var(--footer-bg)', borderTop: '1px solid var(--border)',
+        padding: '1.2rem clamp(1.5rem, 5vw, 5rem)',
+        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        flexWrap: 'wrap', gap: '1rem', zIndex: 10,
+        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
+        letterSpacing: '0.12em', color: 'var(--muted)', textTransform: 'uppercase',
+      }}>
         <span>© 2026 <span style={{ color: 'var(--blue)' }}>Md. Meheraj Hossain</span></span>
         <span>Built with Next.js · <span style={{ color: 'var(--blue)' }}>Dhaka, Bangladesh</span></span>
       </footer>

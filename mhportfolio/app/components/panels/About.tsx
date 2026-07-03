@@ -1,6 +1,5 @@
 'use client'
 import { motion } from 'framer-motion'
-import { useIsMobile } from '../../hooks/useIsMobile'
 import Image from 'next/image'
 
 const edu = [
@@ -19,11 +18,23 @@ const fadeUp = {
 }
 
 export default function About() {
-  const isMobile = useIsMobile()
   return (
-    <section style={{ width: isMobile ? '100%' : '100vw', height: isMobile ? 'auto' : '100vh', flexShrink: 0, display: 'flex', flexDirection: isMobile ? 'column' : 'row', overflow: isMobile ? 'visible' : 'hidden', position: 'relative', background: `radial-gradient(circle at 50% 50%, var(--blue-glow) 0%, transparent 60%)` }}>
+    <section id="about" style={{
+      width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      position: 'relative',
+      background: `radial-gradient(circle at 50% 50%, var(--blue-glow) 0%, transparent 60%)`,
+    }}>
       {/* Left — Bio */}
-      <div style={{ width: isMobile ? '100%' : '42%', minWidth: 320, background: 'var(--surface)', color: 'var(--text)', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: isMobile ? '4rem 6vw 2rem' : '5.5rem 4vw 2rem', position: 'relative', overflowY: 'hidden', flexShrink: 0 }}>
+      <div style={{
+        flex: '1 1 400px', minWidth: 320,
+        background: 'var(--surface)', color: 'var(--text)',
+        display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        padding: 'clamp(4rem, 8vh, 5.5rem) clamp(1.5rem, 4vw, 4rem)',
+        position: 'relative', overflow: 'hidden',
+      }}>
         <div style={{ position: 'absolute', bottom: '-3rem', left: '-1rem', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '16rem', lineHeight: 1, color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', zIndex: 0, opacity: 0.4 }}>03</div>
         <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} style={{ position: 'relative', zIndex: 1 }}>
           <motion.div custom={0} variants={fadeUp}>
@@ -50,7 +61,13 @@ export default function About() {
         </motion.div>
       </div>
       {/* Right — Education + Experience */}
-      <div style={{ flex: 1, minWidth: 0, background: 'var(--card-bg)', display: 'flex', flexDirection: 'column', padding: isMobile ? '3rem 6vw 4rem' : '5rem 4vw 3rem', overflowY: 'auto', gap: '2rem', position: 'relative' }}>
+      <div style={{
+        flex: '1 1 400px', minWidth: 0,
+        background: 'var(--card-bg)',
+        display: 'flex', flexDirection: 'column',
+        padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem)',
+        gap: '2rem', position: 'relative',
+      }}>
         <div>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Education

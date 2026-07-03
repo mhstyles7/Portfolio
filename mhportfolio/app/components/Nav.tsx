@@ -7,19 +7,17 @@ import ThemeToggle from './ThemeToggle'
 const VisitorCounter = dynamic(() => import('./VisitorCounter'), { ssr: false })
 
 const links = [
-  { label: 'Home',     idx: 0 },
-  { label: 'Projects', idx: 1 },
-  { label: 'About',    idx: 2 },
-  { label: 'Skills',   idx: 3 },
-  { label: 'Research', idx: 4 },
-  { label: 'Contact',  idx: 5 },
+  { label: 'Home',     id: 'hero' },
+  { label: 'Projects', id: 'work' },
+  { label: 'About',    id: 'about' },
+  { label: 'Skills',   id: 'skills' },
+  { label: 'Research', id: 'research' },
+  { label: 'Contact',  id: 'contact' },
 ]
-
-const PANEL_COUNT = 6
 
 export default function Nav() {
   const [visible, setVisible]     = useState(false)
-  const [activeIdx, setActiveIdx] = useState(0)
+  const [activeId, setActiveId]   = useState('hero')
   const [clock, setClock]         = useState('')
   const [progress, setProgress]   = useState(0)
   const [menuOpen, setMenuOpen]   = useState(false)
@@ -61,38 +59,53 @@ export default function Nav() {
     return () => clearInterval(id)
   }, [])
 
-  /* Scroll progress + active section */
+  /* Scroll progress + active section via IntersectionObserver */
   useEffect(() => {
     const onScroll = () => {
-      const isMob = window.innerWidth <= 768
-      if (isMob) {
-        // On mobile, panels stack vertically — use document height
-        const total = document.body.scrollHeight - window.innerHeight
-        const pct = total > 0 ? Math.min(1, window.scrollY / total) : 0
-        setProgress(pct * 100)
-        setActiveIdx(Math.round(pct * (PANEL_COUNT - 1)))
-      } else {
-        // On desktop, GSAP pin-spacer consumes vw*(PANEL_COUNT-1) of scroll
-        const vw = window.innerWidth
-        const totalScroll = vw * (PANEL_COUNT - 1)
-        const pct = Math.min(1, window.scrollY / totalScroll)
-        setProgress(pct * 100)
-        setActiveIdx(Math.round(pct * (PANEL_COUNT - 1)))
-      }
+      const total = document.documentElement.scrollHeight - window.innerHeight
+      const pct = total > 0 ? Math.min(1, window.scrollY / total) : 0
+      setProgress(pct * 100)
     }
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+
+    // Intersection Observer for active section
+    const sectionIds = links.map(l => l.id)
+    const observers: IntersectionObserver[] = []
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveId(entry.target.id)
+        }
+      })
+    }
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: '-30% 0px -60% 0px',
+      threshold: 0,
+    })
+
+    // Delay observer setup to let DOM settle
+    const timer = setTimeout(() => {
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id)
+        if (el) observer.observe(el)
+      })
+    }, 100)
+
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      clearTimeout(timer)
+      observer.disconnect()
+    }
   }, [])
 
-  const scrollTo = (idx: number) => {
-    const isMob = window.innerWidth <= 768
-    if (isMob) {
-      // On mobile, scroll to the nth section by getting all sections
-      const sections = document.querySelectorAll('section')
-      if (sections[idx]) sections[idx].scrollIntoView({ behavior: 'smooth' })
-    } else {
-      // On desktop, each panel = 1vw of horizontal scroll
-      window.scrollTo({ top: window.innerWidth * idx, behavior: 'smooth' })
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id)
+    if (el) {
+      const navHeight = 80
+      const top = el.getBoundingClientRect().top + window.scrollY - navHeight
+      window.scrollTo({ top, behavior: 'smooth' })
     }
     setMenuOpen(false)
   }
@@ -136,19 +149,19 @@ export default function Nav() {
             {links.map(l => (
               <li key={l.label}>
                 <button
-                  onClick={() => scrollTo(l.idx)}
+                  onClick={() => scrollTo(l.id)}
                   style={{
                     background: 'none',
-                    color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
+                    color: activeId === l.id ? 'var(--blue)' : 'var(--muted)',
                     fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
                     letterSpacing: '0.12em', textTransform: 'uppercase',
                     cursor: 'pointer', padding: '0.15rem 0', transition: 'color 0.2s',
-                    fontWeight: activeIdx === l.idx ? 700 : 500,
-                    borderBottom: activeIdx === l.idx ? '2px solid var(--blue)' : '2px solid transparent',
+                    fontWeight: activeId === l.id ? 700 : 500,
+                    borderBottom: activeId === l.id ? '2px solid var(--blue)' : '2px solid transparent',
                     paddingBottom: '2px',
                   }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'var(--blue)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)')}
+                  onMouseLeave={e => (e.currentTarget.style.color = activeId === l.id ? 'var(--blue)' : 'var(--muted)')}
                 >{l.label}</button>
               </li>
             ))}
@@ -261,20 +274,20 @@ export default function Nav() {
             }}>
               <style>{`@keyframes dropIn{from{opacity:0;transform:translateX(-50%) translateY(-8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}`}</style>
               {links.map((l, i) => (
-                <button key={l.label} onClick={() => scrollTo(l.idx)}
+                <button key={l.label} onClick={() => scrollTo(l.id)}
                   style={{
                     display: 'block', width: '100%', textAlign: 'left',
                     padding: '0.95rem 1.5rem',
-                    background: activeIdx === l.idx ? 'var(--blue-glow)' : 'transparent',
-                    color: activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)',
+                    background: activeId === l.id ? 'var(--blue-glow)' : 'transparent',
+                    color: activeId === l.id ? 'var(--blue)' : 'var(--muted)',
                     fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem',
                     letterSpacing: '0.14em', textTransform: 'uppercase',
                     cursor: 'pointer', transition: 'all 0.2s',
                     borderBottom: i < links.length - 1 ? '1px solid var(--border)' : 'none',
-                    fontWeight: activeIdx === l.idx ? 700 : 500,
+                    fontWeight: activeId === l.id ? 700 : 500,
                   }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'; (e.currentTarget as HTMLElement).style.color = 'var(--blue)' }}
-                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = activeIdx === l.idx ? 'var(--blue-glow)' : 'transparent'; (e.currentTarget as HTMLElement).style.color = activeIdx === l.idx ? 'var(--blue)' : 'var(--muted)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = activeId === l.id ? 'var(--blue-glow)' : 'transparent'; (e.currentTarget as HTMLElement).style.color = activeId === l.id ? 'var(--blue)' : 'var(--muted)' }}
                 >{l.label}</button>
               ))}
               <a href="mailto:meherajhossainmahir@gmail.com"
