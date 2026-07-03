@@ -35,7 +35,7 @@ export default function Nav() {
 
   /* Responsive breakpoint */
   useEffect(() => {
-    const check = () => setNarrow(window.innerWidth < 920)
+    const check = () => setNarrow(window.innerWidth < 1100)
     check()
     window.addEventListener('resize', check)
     return () => window.removeEventListener('resize', check)
