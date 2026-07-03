@@ -1,10 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import { FaEnvelope, FaBars, FaTimes } from 'react-icons/fa'
-import dynamic from 'next/dynamic'
 import ThemeToggle from './ThemeToggle'
-
-const VisitorCounter = dynamic(() => import('./VisitorCounter'), { ssr: false })
 
 const links = [
   { label: 'Home',     id: 'hero' },
@@ -12,6 +9,7 @@ const links = [
   { label: 'Background', id: 'about' },
   { label: 'Skills',   id: 'skills' },
   { label: 'Research', id: 'research' },
+  { label: 'Certs',    id: 'certifications' },
   { label: 'Contact',  id: 'contact' },
 ]
 
@@ -166,24 +164,6 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-
-          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
-
-          {/* Visitor count */}
-          <VisitorCounter />
-
-          <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
-
-          {/* Glowing clock */}
-          <div style={{
-            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
-            letterSpacing: '0.08em', color: 'var(--blue)', flexShrink: 0,
-            textShadow: `0 0 12px var(--blue-glow)`,
-            background: 'var(--input-bg)',
-            padding: '0.32rem 0.65rem',
-            border: '1px solid var(--border-strong)',
-            borderRadius: 6,
-          }}>{clock} · GMT+6</div>
 
           <div style={{ width: 1, height: 20, background: 'var(--border)', flexShrink: 0 }} />
 

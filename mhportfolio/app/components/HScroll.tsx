@@ -4,6 +4,7 @@ import Work from './panels/Work'
 import About from './panels/About'
 import Skills from './panels/Skills'
 import Research from './panels/Research'
+import Certifications from './panels/Certifications'
 import Contact from './panels/Contact'
 
 export default function HScroll() {
@@ -14,6 +15,7 @@ export default function HScroll() {
       <About />
       <Skills />
       <Research />
+      <Certifications />
       <Contact />
     </main>
   )
