@@ -32,75 +32,18 @@ export default function About() {
         borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
         boxShadow: 'var(--shadow-lg)',
       }}>
-      {/* Left — Bio */}
+      {/* Left — Experience */}
       <div style={{
         flex: '1 1 400px', minWidth: 320,
         background: 'var(--surface)', color: 'var(--text)',
-        display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: 'clamp(4rem, 8vh, 5.5rem) clamp(1.5rem, 4vw, 4rem)',
-        position: 'relative', overflow: 'hidden',
-      }}>
-        <div style={{ position: 'absolute', bottom: '-3rem', left: '-1rem', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '16rem', lineHeight: 1, color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', zIndex: 0, opacity: 0.4 }}>03</div>
-        <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div custom={0} variants={fadeUp}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem' }}>
-              <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> About Me
-            </div>
-            <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(2rem,3.5vw,3rem)', lineHeight: 1.05, letterSpacing: '-0.03em', marginBottom: '1.2rem', color: 'var(--text)' }}>
-              Engineer.<br /><em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Researcher.</em>
-            </h2>
-          </motion.div>
-          <motion.div custom={1} variants={fadeUp} style={{ fontSize: '0.88rem', lineHeight: 1.8, color: 'var(--muted)', marginBottom: '0.6rem' }}>
-            Computer Science and Engineering graduate specializing in <strong style={{ color: 'var(--text)' }}>full-stack development</strong>, applied machine learning, and cybersecurity research. I have built and deployed production-grade web platforms using the MERN stack, and authored first-author research on AI-driven zero-day intrusion detection accepted for publication in <strong style={{ color: 'var(--blue)' }}>ICT Express (Elsevier, IF: 4.2)</strong>.
-          </motion.div>
-          <motion.div custom={2} variants={fadeUp} style={{ fontSize: '0.88rem', lineHeight: 1.8, color: 'var(--muted)', marginBottom: '1rem' }}>
-            I combine hands-on engineering experience across web, IoT, and intelligent systems with a proven ability to deliver end-to-end solutions independently. Currently open to software engineering, machine learning, and technology-focused roles.
-          </motion.div>
-          <motion.div custom={3} variants={fadeUp}>
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-              {['MERN Stack', 'ML / AI', 'Cybersecurity', 'IoT', 'Backend', 'Research'].map(t => (
-                <span key={t} style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.3rem 0.65rem', border: '1px solid var(--border)', color: 'var(--muted)', cursor: 'default', background: 'var(--blue-glow)', borderRadius: 4 }}>{t}</span>
-              ))}
-            </div>
-          </motion.div>
-        </motion.div>
-      </div>
-      {/* Right — Education + Experience */}
-      <div style={{
-        flex: '1 1 400px', minWidth: 0,
-        background: 'var(--card-bg)',
         display: 'flex', flexDirection: 'column',
         padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem)',
-        gap: '2rem', position: 'relative',
+        position: 'relative', overflow: 'hidden', gap: '2rem'
       }}>
-        <div>
+        <div style={{ position: 'absolute', bottom: '-3rem', left: '-1rem', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '16rem', lineHeight: 1, color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', zIndex: 0, opacity: 0.4 }}>03</div>
+        <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Education
-          </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
-            {edu.map((e, i) => (
-              <motion.div key={i} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.5 }} style={{ display: 'flex', gap: '1.2rem', paddingBottom: '1.4rem', paddingLeft: '0.2rem', position: 'relative' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 44 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: '50%', flexShrink: 0, background: '#ffffff', border: `1px solid ${i === 0 ? 'var(--blue)' : 'var(--border)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: i === 0 ? '0 0 14px var(--blue-glow)' : 'none', overflow: 'hidden', position: 'relative' }}>
-                    <Image src={e.logo} alt={e.inst} fill style={{ objectFit: 'contain', padding: '6px' }} />
-                  </div>
-                  {i < edu.length - 1 && <div style={{ flex: 1, width: 1, background: 'var(--border)', minHeight: 28, marginTop: 4 }} />}
-                </div>
-                <div style={{ flex: 1, paddingTop: '0.3rem' }}>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>{e.degree}</div>
-                  <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
-                  <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
-                    <span>{e.year}</span><span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--muted)' }} /><span style={{ color: 'var(--green)' }}>{e.grade}</span>
-                  </div>
-                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', opacity: 0.7 }}>{e.note}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-        <div>
-          <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Experience &amp; Roles
+            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Experience &amp; Leadership
           </div>
           {experience.map((ex, i) => (
             <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ border: '1px solid var(--border)', background: 'var(--blue-glow)', padding: '1.2rem', position: 'relative', overflow: 'hidden', display: 'flex', gap: '1.2rem', borderRadius: 10 }}>
@@ -123,6 +66,38 @@ export default function About() {
                 <ul style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', margin: 0 }}>
                   {ex.points.map((p, j) => <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>)}
                 </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      {/* Right — Education */}
+      <div style={{
+        flex: '1 1 400px', minWidth: 0,
+        background: 'var(--card-bg)',
+        display: 'flex', flexDirection: 'column',
+        padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem)',
+        position: 'relative',
+      }}>
+        <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+          <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Education
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
+          {edu.map((e, i) => (
+            <motion.div key={i} initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.15, duration: 0.5 }} style={{ display: 'flex', gap: '1.2rem', paddingBottom: '1.4rem', paddingLeft: '0.2rem', position: 'relative' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 44 }}>
+                <div style={{ width: 44, height: 44, borderRadius: '50%', flexShrink: 0, background: '#ffffff', border: `1px solid ${i === 0 ? 'var(--blue)' : 'var(--border)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: i === 0 ? '0 0 14px var(--blue-glow)' : 'none', overflow: 'hidden', position: 'relative' }}>
+                  <Image src={e.logo} alt={e.inst} fill style={{ objectFit: 'contain', padding: '6px' }} />
+                </div>
+                {i < edu.length - 1 && <div style={{ flex: 1, width: 1, background: 'var(--border)', minHeight: 28, marginTop: 4 }} />}
+              </div>
+              <div style={{ flex: 1, paddingTop: '0.3rem' }}>
+                <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>{e.degree}</div>
+                <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
+                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
+                  <span>{e.year}</span><span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--muted)' }} /><span style={{ color: 'var(--green)' }}>{e.grade}</span>
+                </div>
+                <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', opacity: 0.7 }}>{e.note}</div>
               </div>
             </motion.div>
           ))}

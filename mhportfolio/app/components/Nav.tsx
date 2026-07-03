@@ -9,7 +9,7 @@ const VisitorCounter = dynamic(() => import('./VisitorCounter'), { ssr: false })
 const links = [
   { label: 'Home',     id: 'hero' },
   { label: 'Projects', id: 'work' },
-  { label: 'About',    id: 'about' },
+  { label: 'Background', id: 'about' },
   { label: 'Skills',   id: 'skills' },
   { label: 'Research', id: 'research' },
   { label: 'Contact',  id: 'contact' },
