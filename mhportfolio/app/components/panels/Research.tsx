@@ -225,8 +225,8 @@ export default function Research() {
           {/* Background Image */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
-            backgroundImage: 'url("/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG")',
-            backgroundSize: 'cover', backgroundPosition: 'center 40%',
+            backgroundImage: 'url("/nsucsc%20cover.jpg")',
+            backgroundSize: 'cover', backgroundPosition: 'center',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{
@@ -309,7 +309,7 @@ export default function Research() {
               scrollSnapType: 'x mandatory', scrollbarWidth: 'thin'
             }}>
               {[
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG',
+                '/nsucsc%20cover.jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).png',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).jpg',
