@@ -226,7 +226,7 @@ export default function Research() {
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'url("/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG")',
-            backgroundSize: 'cover', backgroundPosition: 'center 15%',
+            backgroundSize: 'cover', backgroundPosition: 'center 40%',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{
