@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaGithub, FaExternalLinkAlt, FaFilePdf, FaChevronDown, FaChevronUp, FaMicrochip } from 'react-icons/fa'
+import { FaGithub, FaExternalLinkAlt, FaFilePdf, FaChevronDown, FaChevronUp, FaMicrochip, FaYoutube } from 'react-icons/fa'
 
 const projects: {
   num: string; title: string; desc: string; tech: string[];
@@ -9,22 +9,26 @@ const projects: {
   report: string;
   highlights: string[];
   architecture: string;
+  image?: string;
 }[] = [
   {
-    num: '01', title: 'PothChola',
-    desc: 'Localized smart travel & cultural discovery — social posts, friend groups, shared itineraries, Gemini AI recommendations.',
-    tech: ['React', 'Node.js', 'MongoDB', 'Gemini API'],
-    tag: 'Full-Stack · Dec 2025 – Feb 2026',
-    link: 'https://poth-chola.vercel.app',
-    github: 'https://github.com/mhstyles7/PothChola',
+    num: '01', title: 'CollabBD — Bangladesh\'s Talent Network',
+    desc: 'Full-stack talent marketplace connecting verified students, freelancers, and professionals with clients. Features local talent discovery, emergency task posting, and real-time messaging.',
+    tech: ['Next.js 16', 'TypeScript', 'Node.js', 'MongoDB', 'Socket.IO'],
+    tag: 'Full-Stack · Apr 2026 – Present',
+    link: '',
+    github: '',
     report: '',
+    image: '/CollabBD.png',
     highlights: [
-      'AI-powered travel recommendations via Gemini API integration',
-      'Real-time social features: posts, friend groups, shared itineraries',
-      'Role-based dashboards for travelers and local guides',
-      'Responsive design with mobile-first approach',
+      'Verified trust system with admin-reviewed student ID verification',
+      'Geospatial talent discovery with interactive map view',
+      'Emergency task posting with real-time socket notifications',
+      'Real-time 1-on-1 messaging & community rooms via Socket.IO',
+      'Proposal system for workers to bid on jobs with custom budgets',
+      'Enterprise-grade security: rate limiting, NoSQL injection protection, Helmet headers, JWT auth'
     ],
-    architecture: 'MERN stack architecture — React frontend deployed on Vercel, Node.js/Express REST API with MongoDB Atlas. Gemini API handles NLP-based recommendation engine. JWT auth with role-based access control.',
+    architecture: 'Full-stack monorepo — Next.js 16 frontend, Node.js/Express REST API with MongoDB. Real-time communication via Socket.IO. Zod for schema validation and Multer for file uploads. Admin dashboard for moderation.',
   },
   {
     num: '02', title: 'Trippy 2.0',
@@ -34,6 +38,7 @@ const projects: {
     link: 'https://trippy-2-0.vercel.app/',
     github: 'https://github.com/mhstyles7/Trippy-2.0',
     report: '',
+    image: '/Trippy%202.0.png',
     highlights: [
       'OCR-powered NID verification for user identity validation',
       'VoiceFlow chatbot for automated customer support',
@@ -43,12 +48,30 @@ const projects: {
     architecture: 'Full MERN stack — Express REST API with JWT-based authentication flow. OCR API integration for document verification. VoiceFlow SDK embedded for conversational AI. Deployed on Vercel (frontend) + Render (backend).',
   },
   {
-    num: '03', title: 'Air Quality Monitor for Urban Homes',
+    num: '03', title: 'PothChola',
+    desc: 'Localized smart travel & cultural discovery — social posts, friend groups, shared itineraries, Gemini AI recommendations.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Gemini API'],
+    tag: 'Full-Stack · Dec 2025 – Feb 2026',
+    link: 'https://poth-chola.vercel.app',
+    github: 'https://github.com/mhstyles7/PothChola',
+    report: '',
+    image: '/PothChola.png',
+    highlights: [
+      'AI-powered travel recommendations via Gemini API integration',
+      'Real-time social features: posts, friend groups, shared itineraries',
+      'Role-based dashboards for travelers and local guides',
+      'Responsive design with mobile-first approach',
+    ],
+    architecture: 'MERN stack architecture — React frontend deployed on Vercel, Node.js/Express REST API with MongoDB Atlas. Gemini API handles NLP-based recommendation engine. JWT auth with role-based access control.',
+  },
+  {
+    num: '04', title: 'Air Quality Monitor for Urban Homes',
     desc: 'Active indoor air monitoring using ESP32, MQ-series gas sensors (smoke/CO₂) and DHT11. Triggers exhaust fan via p-channel MOSFET and piezo buzzer on unsafe readings. Data logged to SD card and streamed via Wi-Fi.',
     tech: ['ESP32', 'MOSFET', 'I2C/SPI', 'Wi-Fi'],
     tag: 'Hardware · Dec 2025 – Jan 2026',
-    link: '', github: '', hardware: true,
+    link: 'https://youtube.com/shorts/9QiRM2_Dl7w?si=IccLwjJQwS6G8Ybt', github: '', hardware: true,
     report: '',
+    image: 'https://img.youtube.com/vi/9QiRM2_Dl7w/hqdefault.jpg',
     highlights: [
       'Multi-sensor fusion: MQ-series (CO₂/smoke) + DHT11 (temp/humidity)',
       'Automated actuator response via p-channel MOSFET switching',
@@ -58,12 +81,13 @@ const projects: {
     architecture: 'ESP32 microcontroller as central hub. I2C/SPI buses for sensor communication. p-channel MOSFET circuit for high-side switching of exhaust fan. Wi-Fi module streams sensor data to web dashboard. Piezo buzzer for audible alerts.',
   },
   {
-    num: '04', title: 'Voltage Deviation Visualizer',
+    num: '05', title: 'Voltage Deviation Visualizer',
     desc: 'Analog circuit that quantizes voltage deviations from a simulated pressure sensor into discrete levels, visualised via a colour-coded LED array using op-amps and diodes.',
     tech: ['Op-Amps', 'Diodes', 'Analog', 'LEDs'],
     tag: 'Hardware · Mar 2024',
-    link: '', github: '', hardware: true,
+    link: 'https://youtube.com/shorts/Ab4WL24I230?si=ecJ2Zvk_cAMfGCUN', github: '', hardware: true,
     report: '',
+    image: 'https://img.youtube.com/vi/Ab4WL24I230/hqdefault.jpg',
     highlights: [
       'Op-amp comparator cascade for multi-level voltage quantization',
       'Color-coded LED bar graph for intuitive visual feedback',
@@ -150,6 +174,21 @@ export default function Work() {
                 ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
             >
+              {/* Thumbnail Image */}
+              {p.image && (
+                <div style={{
+                  width: '100%', aspectRatio: '16/9', marginBottom: '1rem',
+                  borderRadius: '8px', overflow: 'hidden',
+                  background: 'var(--card-bg-hover)',
+                  border: '1px solid var(--border)',
+                  flexShrink: 0,
+                }}>
+                  <img src={p.image} alt={p.title} style={{
+                    width: '100%', height: '100%', objectFit: 'cover'
+                  }} />
+                </div>
+              )}
+
               {/* Top: number + title + tag */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', flexWrap: 'wrap', marginBottom: '0.6rem' }}>
                 <span style={{
@@ -269,8 +308,10 @@ export default function Work() {
                       cursor: 'pointer', transition: 'all 0.2s', borderRadius: 6,
                       display: 'flex', alignItems: 'center', gap: '0.4rem',
                     }}>
-                    <FaExternalLinkAlt size={11} />
-                    <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>Live</span>
+                    {p.link.includes('youtube') ? <FaYoutube size={13} /> : <FaExternalLinkAlt size={11} />}
+                    <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
+                      {p.link.includes('youtube') ? 'YouTube' : 'Live'}
+                    </span>
                   </button>
                 )}
                 {p.github && (

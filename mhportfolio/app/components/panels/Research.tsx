@@ -14,7 +14,7 @@ export default function Research() {
     <section id="research" style={{
       width: '100%',
       padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)',
-      display: 'flex', justifyContent: 'center',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem',
       background: 'var(--bg)',
     }}>
       <div style={{
@@ -205,6 +205,128 @@ export default function Research() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* ── NEW: NSU Cybersecurity Center Showcase ── */}
+      <div style={{
+        maxWidth: 1200, width: '100%',
+        borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
+        background: 'var(--card-bg)',
+        boxShadow: 'var(--shadow-lg)',
+        display: 'flex', flexDirection: 'column'
+      }}>
+        {/* Hero Section */}
+        <div style={{
+          position: 'relative',
+          width: '100%', minHeight: '40vh',
+          display: 'flex', alignItems: 'flex-end',
+          padding: 'clamp(2rem, 5vw, 4rem)',
+        }}>
+          {/* Background Image */}
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 0,
+            backgroundImage: 'url("/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG")',
+            backgroundSize: 'cover', backgroundPosition: 'center 30%',
+          }} />
+          {/* Gradient Overlay for text readability */}
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 1,
+            background: 'linear-gradient(to top, var(--card-bg) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.3) 100%)',
+          }} />
+          
+          {/* Title & Subtitle */}
+          <div style={{ position: 'relative', zIndex: 2, maxWidth: 850 }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4BBFFF', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                <span style={{ width: 20, height: 2, background: '#4BBFFF', display: 'block' }} />
+                Event Showcase
+              </div>
+              <h3 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+                North South University Cybersecurity Center (NSU CSC) Showcase 2026
+              </h3>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', color: '#eaeaea', lineHeight: 1.6, textShadow: '0 1px 5px rgba(0,0,0,0.5)' }}>
+                Presented our Q1-indexed research and AI-powered cybersecurity platform during the inaugural NSU Cybersecurity Center Showcase.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Content Section */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', padding: 'clamp(2rem, 5vw, 4rem)' }}>
+          
+          {/* Left Col: About & Highlights */}
+          <div style={{ flex: '1 1 450px', paddingRight: 'clamp(0px, 4vw, 3rem)' }}>
+            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+              <h4 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1rem' }}>About the Event</h4>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '2.5rem', textAlign: 'justify' }}>
+                Selected to present our published Q1-indexed cybersecurity research and AI-powered platform at the inaugural NSU Cybersecurity Center Showcase, engaging with researchers, industry professionals, and government representatives.
+              </p>
+              
+              <h4 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1.2rem' }}>Highlights</h4>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {[
+                  { icon: '📄', text: 'Presented Q1-indexed research paper' },
+                  { icon: '💻', text: 'Demonstrated AI-powered cybersecurity platform' },
+                  { icon: '🎤', text: 'Discussed research with professors and cybersecurity professionals' },
+                  { icon: '🏛️', text: 'Presented during the inauguration of NSU CSC' },
+                  { icon: '🤝', text: 'Received encouraging feedback from researchers and government representatives' },
+                ].map((hl, i) => (
+                  <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '0.8rem 1.2rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 10 }}>
+                    <span style={{ fontSize: '1.2rem' }}>{hl.icon}</span>
+                    <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.5 }}>{hl.text}</span>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Right Col: Video */}
+          <div style={{ flex: '1 1 350px', marginTop: 'clamp(2.5rem, 5vw, 0px)' }}>
+            <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} style={{ width: '100%', height: '100%', minHeight: 400, borderRadius: 16, overflow: 'hidden', border: '1px solid var(--border)', background: 'var(--bg)', boxShadow: 'var(--shadow-lg)' }}>
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/km0UOh83MNY"
+                title="NSU CSC Showcase Video"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                style={{ minHeight: 500 }}
+              ></iframe>
+            </motion.div>
+          </div>
+          
+        </div>
+
+        {/* Gallery Section */}
+        <div style={{ padding: '0 clamp(2rem, 5vw, 4rem) clamp(2rem, 5vw, 4rem)' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+            <h4 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1.5rem' }}>Event Gallery</h4>
+            
+            {/* Image Grid / Scroll */}
+            <div style={{ 
+              display: 'flex', gap: '1rem', overflowX: 'auto', paddingBottom: '1rem', 
+              scrollSnapType: 'x mandatory', scrollbarWidth: 'thin'
+            }}>
+              {[
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).jpg',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).png',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).jpg',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).png',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(3).jpg',
+              ].map((src, i) => (
+                <div key={i} style={{
+                  flex: '0 0 auto', width: 'clamp(250px, 35vw, 350px)', aspectRatio: '4/3', 
+                  borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)',
+                  scrollSnapAlign: 'start', position: 'relative', background: 'var(--surface2)'
+                }}>
+                  <img src={src} alt={`NSU CSC Event ${i+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   )
