@@ -1,7 +1,8 @@
 'use client'
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
-import { FaDownload, FaExternalLinkAlt, FaMicrochip } from 'react-icons/fa'
+import { FaDownload, FaExternalLinkAlt, FaMicrochip, FaTimes, FaExpandAlt } from 'react-icons/fa'
 
 const researchProfiles = [
   { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={16} />, label: 'Scholar', color: '#4285F4' },
@@ -10,6 +11,8 @@ const researchProfiles = [
 ]
 
 export default function Research() {
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null)
+
   return (
     <section id="research" style={{
       width: '100%',
@@ -226,7 +229,7 @@ export default function Research() {
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'url("/nsucsc%20cover.jpg")',
-            backgroundSize: 'cover', backgroundPosition: 'center',
+            backgroundSize: 'cover', backgroundPosition: 'center top',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{
@@ -309,7 +312,6 @@ export default function Research() {
               scrollSnapType: 'x mandatory', scrollbarWidth: 'thin'
             }}>
               {[
-                '/nsucsc%20cover.jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).png',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).jpg',
@@ -319,12 +321,35 @@ export default function Research() {
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(1).jpeg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(2).jpg',
               ].map((src, i) => (
-                <div key={i} style={{
-                  flex: '0 0 auto', width: 'clamp(250px, 35vw, 350px)', aspectRatio: '4/3', 
-                  borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)',
-                  scrollSnapAlign: 'start', position: 'relative', background: 'var(--surface2)'
-                }}>
+                <div key={i}
+                  onClick={() => setLightboxImg(src)}
+                  style={{
+                    flex: '0 0 auto', width: 'clamp(250px, 35vw, 350px)', aspectRatio: '4/3', 
+                    borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)',
+                    scrollSnapAlign: 'start', position: 'relative', background: 'var(--surface2)',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={e => {
+                    const overlay = e.currentTarget.querySelector('.expand-overlay') as HTMLElement;
+                    if (overlay) overlay.style.opacity = '1';
+                  }}
+                  onMouseLeave={e => {
+                    const overlay = e.currentTarget.querySelector('.expand-overlay') as HTMLElement;
+                    if (overlay) overlay.style.opacity = '0';
+                  }}
+                >
                   <img src={src} alt={`NSU CSC Event ${i+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                  <div className="expand-overlay" style={{
+                    position: 'absolute', top: '0.7rem', right: '0.7rem',
+                    background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(8px)',
+                    padding: '0.35rem 0.6rem', borderRadius: 6,
+                    display: 'flex', alignItems: 'center', gap: '0.4rem',
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+                    letterSpacing: '0.1em', textTransform: 'uppercase', color: '#fff',
+                    opacity: 0, transition: 'opacity 0.2s', pointerEvents: 'none',
+                  }}>
+                    <FaExpandAlt size={9} /> View
+                  </div>
                 </div>
               ))}
             </div>
@@ -332,6 +357,83 @@ export default function Research() {
         </div>
 
       </div>
+
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightboxImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setLightboxImg(null)}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 9000,
+              background: 'rgba(0,0,0,0.88)',
+              backdropFilter: 'blur(12px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '1.5rem',
+              cursor: 'zoom-out',
+            }}
+          >
+            <motion.div
+              initial={{ scale: 0.88, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.88, opacity: 0 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 28 }}
+              onClick={e => e.stopPropagation()}
+              style={{
+                position: 'relative',
+                background: 'var(--card-bg)',
+                border: '1px solid var(--border)',
+                borderRadius: 20,
+                overflow: 'hidden',
+                maxWidth: 1000,
+                width: '100%',
+                display: 'flex', flexDirection: 'column',
+                boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
+                cursor: 'default',
+              }}
+            >
+              {/* Lightbox header */}
+              <div style={{
+                padding: '1rem 1.4rem',
+                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                borderBottom: '1px solid var(--border)',
+                flexShrink: 0,
+              }}>
+                <div>
+                  <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--text)' }}>Event Gallery</div>
+                  <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', marginTop: '0.2rem' }}>NSU Cybersecurity Center Showcase</div>
+                </div>
+                <button
+                  onClick={() => setLightboxImg(null)}
+                  style={{
+                    background: 'var(--surface)', border: '1px solid var(--border)',
+                    color: 'var(--muted)', borderRadius: '50%',
+                    width: 36, height: 36, display: 'flex', alignItems: 'center',
+                    justifyContent: 'center', cursor: 'pointer',
+                    transition: 'all 0.2s', flexShrink: 0,
+                  }}
+                  onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--text)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--text)' }}
+                  onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)' }}
+                >
+                  <FaTimes size={14} />
+                </button>
+              </div>
+
+              {/* Full image */}
+              <div style={{ position: 'relative', width: '100%', minHeight: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000' }}>
+                <img
+                  src={lightboxImg}
+                  alt="Gallery Lightbox"
+                  style={{ width: '100%', maxHeight: '75vh', objectFit: 'contain' }}
+                />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
