@@ -16,8 +16,8 @@ const projects: {
     desc: 'Full-stack talent marketplace connecting verified students, freelancers, and professionals with clients. Features local talent discovery, emergency task posting, and real-time messaging.',
     tech: ['Next.js 16', 'TypeScript', 'Node.js', 'MongoDB', 'Socket.IO'],
     tag: 'Full-Stack · Apr 2026 – Present',
-    link: '',
-    github: '',
+    link: 'https://collab-bd-server.vercel.app/',
+    github: 'https://github.com/mhstyles7/CollabBD',
     report: '',
     image: '/CollabBD.png',
     highlights: [
@@ -151,11 +151,13 @@ export default function Work() {
           const isExpanded = expandedIdx === i
           return (
             <motion.div key={i}
+              id={`project-${p.num}`}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.08, duration: 0.5 }}
               style={{
+                scrollMarginTop: '120px',
                 display: 'flex', flexDirection: 'column',
                 padding: '1.3rem 1.5rem',
                 border: '1px solid var(--border)',

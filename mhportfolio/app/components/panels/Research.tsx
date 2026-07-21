@@ -211,7 +211,8 @@ export default function Research() {
       </div>
 
       {/* ── NEW: NSU Cybersecurity Center Showcase ── */}
-      <div style={{
+      <div id="nsu-showcase" style={{
+        scrollMarginTop: '120px',
         maxWidth: 1200, width: '100%',
         borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
         background: 'var(--card-bg)',
@@ -229,7 +230,7 @@ export default function Research() {
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'url("/nsucsc%20cover.jpg")',
-            backgroundSize: 'cover', backgroundPosition: 'center top',
+            backgroundSize: 'cover', backgroundPosition: 'center',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{
