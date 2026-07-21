@@ -226,7 +226,7 @@ export default function Research() {
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'url("/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG")',
-            backgroundSize: 'cover', backgroundPosition: 'center 30%',
+            backgroundSize: 'cover', backgroundPosition: 'center 15%',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{
@@ -309,11 +309,15 @@ export default function Research() {
               scrollSnapType: 'x mandatory', scrollbarWidth: 'thin'
             }}>
               {[
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(4).JPG',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).png',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).jpg',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).png',
                 '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(3).jpg',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(1).JPG',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(1).jpeg',
+                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(2).jpg',
               ].map((src, i) => (
                 <div key={i} style={{
                   flex: '0 0 auto', width: 'clamp(250px, 35vw, 350px)', aspectRatio: '4/3', 
