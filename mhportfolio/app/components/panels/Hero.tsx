@@ -1,6 +1,13 @@
 'use client'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
+import { SiGooglescholar, SiGithub, SiLinkedin } from 'react-icons/si'
+
+const socials = [
+  { href: 'https://github.com/mhstyles7', Icon: SiGithub,         label: 'GitHub' },
+  { href: 'https://www.linkedin.com/in/md-meheraj-hossain/', Icon: SiLinkedin,      label: 'LinkedIn' },
+  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', Icon: SiGooglescholar, label: 'Scholar' },
+]
 
 export default function Hero() {
   return (
@@ -33,38 +40,67 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
-        {/* Compact subtitle */}
+        {/* Subtitle — hidden on very small screens, shortened */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.7rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
-          letterSpacing: '0.05em', textTransform: 'uppercase',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
+          letterSpacing: '0.04em', textTransform: 'uppercase',
           color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
           lineHeight: 1.5,
         }}>
           <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
-          Fans Operations Engineer @ Ismartu Technology BD Limited | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier) | CSE Graduate
+          <span className="hero-subtitle-full">CSE Graduate | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier)</span>
+          <span className="hero-subtitle-short">Full-Stack · AI · Published Researcher</span>
         </div>
 
         <h1 style={{
           fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
           fontSize: 'clamp(2rem, 5vw, 4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
-          marginBottom: '1.2rem', color: 'var(--text)',
+          marginBottom: '0.6rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}
           <span style={{ color: 'var(--blue)', textShadow: `0 0 60px var(--blue-glow)` }}>Hossain</span>
         </h1>
 
+        {/* Q1 metric chip — right under the name */}
+        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: 'var(--green)', border: '1px solid var(--green)',
+            background: 'var(--green-glow)', padding: '0.28rem 0.7rem', borderRadius: 6,
+          }}>
+            <span style={{ width: 5, height: 5, borderRadius: '50%', background: 'var(--green)', boxShadow: '0 0 6px var(--green)', display: 'block', flexShrink: 0 }} />
+            Q1 Published · IF 4.2 · ICT Express
+          </span>
+          <span style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+            fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            color: 'var(--blue)', border: '1px solid var(--blue)',
+            background: 'var(--blue-glow)', padding: '0.28rem 0.7rem', borderRadius: 6,
+          }}>
+            MERN · Python · ML
+          </span>
+        </div>
+
         <p style={{
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
           lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.5rem',
         }}>
-          <strong style={{ color: 'var(--text)' }}>Based in Dhaka, Bangladesh.</strong>{' '}
-          Passionate about solving complex problems through applied machine learning, advancing cybersecurity, and engineering robust, production-grade web platforms.
+          <strong style={{ color: 'var(--text)' }}>Fans Operations Engineer</strong> at Ismartu Technology BD Limited (R&amp;D).
+          Full-Stack Developer specializing in AI &amp; Cybersecurity.{' '}
+          First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
+          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
+            Elsevier ICT Express
+          </a>
+          {' '}— Dhaka, Bangladesh.
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
           <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
             aria-label="Download CV PDF"
             style={{
@@ -107,34 +143,70 @@ export default function Hero() {
           >Contact Me →</button>
         </div>
 
-        {/* Current role badge */}
-        <div style={{
-          display: 'inline-flex', alignItems: 'center', gap: '0.7rem',
-          padding: '0.6rem 1rem',
-          background: 'var(--blue-glow)',
-          border: '1px solid var(--blue)',
-          borderRadius: 10,
-          backdropFilter: 'blur(12px)',
-        }}>
-          <span style={{
-            width: 8, height: 8, borderRadius: '50%', background: 'var(--green)', flexShrink: 0,
-            boxShadow: '0 0 8px var(--green)', animation: 'heroPulse 2s ease-in-out infinite',
-          }} />
-          <div>
-            <div style={{
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
-              letterSpacing: '0.15em', textTransform: 'uppercase',
-              color: 'var(--muted)', marginBottom: '0.15rem',
-            }}>Currently</div>
-            <div style={{
-              fontFamily: 'Inter,sans-serif', fontSize: '0.85rem',
-              fontWeight: 600, color: 'var(--text)', lineHeight: 1.3,
-            }}>
-              Fans Operations Engineer <span style={{ color: 'var(--blue)' }}>@ Ismartu Technology</span>
+        {/* Social links + Current role badge row */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          {/* Social icons */}
+          {socials.map(s => (
+            <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
+              style={{
+                width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                border: '1px solid var(--border)', background: 'transparent', color: 'var(--muted)',
+                transition: 'all 0.25s', textDecoration: 'none',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLElement).style.color = 'var(--blue)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'
+                ;(e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLElement).style.color = 'var(--muted)'
+                ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'
+                ;(e.currentTarget as HTMLElement).style.background = 'transparent'
+              }}
+            >
+              <s.Icon size={15} />
+            </a>
+          ))}
+
+          <span style={{ width: 1, height: 28, background: 'var(--border)', flexShrink: 0 }} />
+
+          {/* Current role badge */}
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+            padding: '0.5rem 0.9rem',
+            background: 'var(--blue-glow)',
+            border: '1px solid var(--blue)',
+            borderRadius: 8,
+            backdropFilter: 'blur(12px)',
+          }}>
+            <span style={{
+              width: 7, height: 7, borderRadius: '50%', background: 'var(--green)', flexShrink: 0,
+              boxShadow: '0 0 8px var(--green)', animation: 'heroPulse 2s ease-in-out infinite',
+            }} />
+            <div>
+              <div style={{
+                fontFamily: 'JetBrains Mono,monospace', fontSize: '0.55rem',
+                letterSpacing: '0.15em', textTransform: 'uppercase',
+                color: 'var(--muted)', marginBottom: '0.1rem',
+              }}>Currently</div>
+              <div style={{
+                fontFamily: 'Inter,sans-serif', fontSize: '0.8rem',
+                fontWeight: 600, color: 'var(--text)', lineHeight: 1.2,
+              }}>
+                Fans Ops Engineer <span style={{ color: 'var(--blue)' }}>@ Ismartu</span>
+              </div>
             </div>
           </div>
         </div>
-        <style>{`@keyframes heroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}`}</style>
+
+        <style>{`
+          @keyframes heroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}
+          .hero-subtitle-short { display: none; }
+          @media (max-width: 600px) {
+            .hero-subtitle-full { display: none; }
+            .hero-subtitle-short { display: inline; }
+          }
+        `}</style>
       </motion.div>
 
       {/* Photo — clean rounded rectangle with spinning glow */}
@@ -158,7 +230,6 @@ export default function Hero() {
           position: 'absolute', inset: '-4px', borderRadius: 34,
           overflow: 'hidden', zIndex: 0,
         }}>
-          {/* Spinning gradient */}
           <div className="hero-ring" style={{
             position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%',
             background: 'conic-gradient(from 0deg, var(--blue) 0%, transparent 35%, transparent 55%, var(--blue) 80%, var(--blue) 100%)',
@@ -185,10 +256,11 @@ export default function Hero() {
             style={{ objectFit: 'cover', objectPosition: 'center 18%', filter: 'contrast(1.1) brightness(0.95) saturate(1.05)' }}
             priority
           />
+          {/* Lightened fade — was 0.6, now 0.25 so the photo is clean */}
           <div style={{
-            position: 'absolute', bottom: 0, left: 0, right: 0, height: '35%',
+            position: 'absolute', bottom: 0, left: 0, right: 0, height: '30%',
             background: `linear-gradient(to bottom,transparent,var(--bg))`, zIndex: 2,
-            opacity: 0.6,
+            opacity: 0.25,
           }} />
         </div>
 

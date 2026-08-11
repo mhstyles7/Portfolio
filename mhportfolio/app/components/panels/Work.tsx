@@ -134,7 +134,7 @@ export default function Work() {
           }}>
             Featured <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Projects</em>
           </h2>
-          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--muted)', marginTop: '0.4rem' }}>
+          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--text)', marginTop: '0.4rem' }}>
             Full-Stack Development · Hardware Engineering
           </p>
         </motion.div>
@@ -218,7 +218,7 @@ export default function Work() {
               </div>
 
               {/* Description */}
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '0.7rem' }}>{p.desc}</div>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.7, marginBottom: '0.7rem' }}>{p.desc}</div>
 
               {/* Tech tags */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '0.9rem' }}>
@@ -268,7 +268,7 @@ export default function Work() {
                     }}>System Architecture</div>
                     <div style={{
                       fontFamily: 'Inter,sans-serif', fontSize: '0.85rem',
-                      color: 'var(--muted)', lineHeight: 1.7,
+                      color: 'var(--text)', lineHeight: 1.7,
                     }}>{p.architecture}</div>
                   </div>
 
@@ -283,7 +283,7 @@ export default function Work() {
                       {p.highlights.map((h, j) => (
                         <li key={j} style={{
                           fontFamily: 'Inter,sans-serif', fontSize: '0.85rem',
-                          color: 'var(--muted)', lineHeight: 1.8,
+                          color: 'var(--text)', lineHeight: 1.8,
                         }}>{h}</li>
                       ))}
                     </ul>

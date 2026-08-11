@@ -102,7 +102,7 @@ export default function About() {
               <div style={{ flex: 1, paddingTop: '0.3rem' }}>
                 <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 600, fontSize: '1rem', color: 'var(--text)', marginBottom: '0.2rem' }}>{e.degree}</div>
                 <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', marginBottom: '0.2rem' }}>{e.inst}</div>
-                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '0.2rem' }}>
+                <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)', marginBottom: '0.2rem' }}>
                   <span>{e.year}</span><span style={{ width: 3, height: 3, borderRadius: '50%', background: 'var(--muted)' }} /><span style={{ color: 'var(--green)' }}>{e.grade}</span>
                 </div>
                 <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--blue)', opacity: 0.7 }}>{e.note}</div>

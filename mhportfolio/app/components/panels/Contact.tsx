@@ -71,7 +71,7 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.03em', marginBottom: '1.5rem', color: 'var(--text)' }}>
             Say <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Hello.</em>
           </h2>
-          <p style={{ fontSize: '1rem', color: 'var(--muted)', maxWidth: 400, marginBottom: '1.2rem', lineHeight: 1.85 }}>
+          <p style={{ fontSize: '1rem', color: 'var(--text)', maxWidth: 400, marginBottom: '1.2rem', lineHeight: 1.85 }}>
             Seeking internships and entry-level roles in software engineering, ML engineering, and backend development.
           </p>
           <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.06em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6 }}
@@ -105,7 +105,7 @@ export default function Contact() {
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Send a Message
           </div>
-          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.8, marginBottom: '0.5rem' }}>
+          <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--text)', lineHeight: 1.8, marginBottom: '0.5rem' }}>
             Drop me a note — name and email are optional. Your message goes straight to my inbox.
           </p>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem', color: msgCount >= 3 ? '#ff5555' : 'var(--blue)', marginBottom: '1.5rem' }}>

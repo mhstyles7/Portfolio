@@ -146,9 +146,9 @@ export default function Certifications() {
                   <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.08em', textTransform: 'uppercase', color: c.accent }}>{c.subtitle}</div>
                 </div>
               </div>
-              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.6, marginBottom: '0.7rem', flex: 1 }}>{c.org}</div>
+              <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.82rem', color: 'var(--text)', lineHeight: 1.6, marginBottom: '0.7rem', flex: 1 }}>{c.org}</div>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border)', paddingTop: '0.6rem' }}>
-                <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--muted)' }}>{c.year}</span>
+                <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text)' }}>{c.year}</span>
                 <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.08em', color: 'var(--green)' }}>{c.grade}</span>
               </div>
             </div>

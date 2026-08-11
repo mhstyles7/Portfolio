@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
-import { FaDownload, FaExternalLinkAlt, FaMicrochip, FaTimes, FaExpandAlt } from 'react-icons/fa'
+import { FaDownload, FaExternalLinkAlt, FaMicrochip, FaTimes, FaExpandAlt, FaFileAlt, FaLaptopCode, FaMicrophone, FaUniversity, FaHandshake } from 'react-icons/fa'
 
 const researchProfiles = [
   { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', icon: <SiGooglescholar size={16} />, label: 'Scholar', color: '#4285F4' },
@@ -108,10 +108,10 @@ export default function Research() {
 
             {/* Executive Summary / The Challenge & Solution */}
             <div style={{ marginBottom: '1.2rem' }}>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--muted)', marginBottom: '0.5rem', textAlign: 'justify' }}>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--text)', marginBottom: '0.5rem', textAlign: 'justify' }}>
                 <strong style={{ color: 'var(--text)' }}>The Challenge:</strong> Signature-based intrusion detection fails against zero-day attacks in IoT networks because they rely on known attack patterns.
               </p>
-              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--muted)', textAlign: 'justify' }}>
+              <p style={{ fontSize: '0.9rem', lineHeight: 1.8, color: 'var(--text)', textAlign: 'justify' }}>
                 <strong style={{ color: 'var(--text)' }}>My Solution:</strong> I engineered a hybrid, self-learning Intrusion Detection System (IDS) that dynamically identifies and mitigates novel exploits without relying on prior attack signatures.
               </p>
             </div>
@@ -211,7 +211,7 @@ export default function Research() {
             </div>
 
             {/* Author + journal note */}
-            <div style={{ marginTop: '1rem', padding: '0.6rem 0.9rem', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--input-bg)', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', letterSpacing: '0.06em', color: 'var(--muted)', lineHeight: 1.7 }}>
+            <div style={{ marginTop: '1rem', padding: '0.6rem 0.9rem', border: '1px solid var(--border)', borderRadius: 8, background: 'var(--input-bg)', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', letterSpacing: '0.06em', color: 'var(--text)', lineHeight: 1.7 }}>
               <span style={{ color: 'var(--text)', fontWeight: 700 }}>First Author</span> — Md. Meheraj Hossain et al.
               &nbsp;·&nbsp;<span style={{ color: 'var(--blue)' }}>ICT Express (Elsevier)</span>
               &nbsp;·&nbsp;IF 4.2 · CiteScore 10.8
@@ -278,21 +278,21 @@ export default function Research() {
           <div style={{ flex: '1 1 450px', paddingRight: 'clamp(0px, 4vw, 3rem)' }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <h4 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1rem' }}>About the Event</h4>
-              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--muted)', lineHeight: 1.7, marginBottom: '2.5rem', textAlign: 'justify' }}>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.95rem', color: 'var(--text)', lineHeight: 1.7, marginBottom: '2.5rem', textAlign: 'justify' }}>
                 Selected to present our published Q1-indexed cybersecurity research and AI-powered platform at the inaugural NSU Cybersecurity Center Showcase, engaging with researchers, industry professionals, and government representatives.
               </p>
               
               <h4 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.2rem', color: 'var(--text)', marginBottom: '1.2rem' }}>Highlights</h4>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {[
-                  { icon: '📄', text: 'Presented Q1-indexed research paper' },
-                  { icon: '💻', text: 'Demonstrated AI-powered cybersecurity platform' },
-                  { icon: '🎤', text: 'Discussed research with professors and cybersecurity professionals' },
-                  { icon: '🏛️', text: 'Presented during the inauguration of NSU CSC' },
-                  { icon: '🤝', text: 'Received encouraging feedback from researchers and government representatives' },
+                  { icon: <FaFileAlt size={14} />,    text: 'Presented Q1-indexed research paper' },
+                  { icon: <FaLaptopCode size={14} />, text: 'Demonstrated AI-powered cybersecurity platform' },
+                  { icon: <FaMicrophone size={14} />, text: 'Discussed research with professors and cybersecurity professionals' },
+                  { icon: <FaUniversity size={14} />, text: 'Presented during the inauguration of NSU CSC' },
+                  { icon: <FaHandshake size={14} />,  text: 'Received encouraging feedback from researchers and government representatives' },
                 ].map((hl, i) => (
                   <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start', padding: '0.8rem 1.2rem', background: 'var(--surface2)', border: '1px solid var(--border)', borderRadius: 10 }}>
-                    <span style={{ fontSize: '1.2rem' }}>{hl.icon}</span>
+                    <span style={{ color: 'var(--blue)', marginTop: '0.15rem', flexShrink: 0 }}>{hl.icon}</span>
                     <span style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.5 }}>{hl.text}</span>
                   </div>
                 ))}

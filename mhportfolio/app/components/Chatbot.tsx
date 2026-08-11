@@ -2,10 +2,34 @@
 import { useState, useRef } from 'react'
 import { askGemini } from '../actions/chat'
 
+/* ── AI Brain SVG icon used in both FAB and header ── */
+function AiIcon({ size = 22, color = 'var(--blue)' }: { size?: number; color?: string }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+      {/* Brain outline */}
+      <path d="M9.5 2a2.5 2.5 0 0 1 5 0" />
+      <path d="M12 2v2" />
+      {/* Left brain lobe */}
+      <path d="M4 9.5a3.5 3.5 0 0 1 3.5-3.5H12v5H7.5A3.5 3.5 0 0 1 4 9.5z" />
+      {/* Right brain lobe */}
+      <path d="M20 9.5a3.5 3.5 0 0 0-3.5-3.5H12v5h4.5A3.5 3.5 0 0 0 20 9.5z" />
+      {/* Bottom left lobe */}
+      <path d="M4 14.5a3.5 3.5 0 0 0 3.5 3.5H12v-5H7.5A3.5 3.5 0 0 0 4 14.5z" />
+      {/* Bottom right lobe */}
+      <path d="M20 14.5a3.5 3.5 0 0 1-3.5 3.5H12v-5h4.5A3.5 3.5 0 0 1 20 14.5z" />
+      {/* Circuit dots */}
+      <circle cx="12" cy="11" r="1" fill={color} stroke="none" />
+      <path d="M12 12v4" />
+      <path d="M10 22h4" />
+      <path d="M12 18v4" />
+    </svg>
+  )
+}
+
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
   const [msgs, setMsgs] = useState<{role:'bot'|'user',text:string}[]>([
-    {role:'bot',text:"Hey! 👋 I'm Meheraj's AI. Ask me about his projects, research, skills, or anything!"}
+    {role:'bot',text:"Hi! I'm Meheraj's AI assistant. Ask me about his projects, research, skills, or background."}
   ])
   const [inp, setInp] = useState('')
   const [loading, setLoading] = useState(false)
@@ -34,39 +58,52 @@ export default function Chatbot() {
     <>
       {/* FAB */}
       <button onClick={() => setOpen(o => !o)} aria-label={open ? 'Close AI chat' : 'Open AI chat'}
+        className="chatbot-fab"
         style={{
           position:'fixed', bottom:'2rem', right:'2rem', zIndex:8000,
           borderRadius: 30, background:'var(--blue-glow)', border:'1px solid var(--blue)',
-          display:'flex', alignItems:'center', gap: '0.6rem', padding: '0.7rem 1.2rem',
+          display:'flex', alignItems:'center', gap: '0.55rem', padding: '0.65rem 1.1rem',
           boxShadow:'0 0 20px var(--blue-glow)', cursor:'pointer', transition:'all 0.3s'
         }}
         onMouseEnter={e => { e.currentTarget.style.boxShadow='0 0 35px var(--blue-glow)'; e.currentTarget.style.transform='scale(1.05)' }}
         onMouseLeave={e => { e.currentTarget.style.boxShadow='0 0 20px var(--blue-glow)'; e.currentTarget.style.transform='scale(1)' }}>
         <div style={{ position:'absolute', inset:0, borderRadius:30, border:'1px solid var(--blue)', animation:'ping 2.8s ease-out infinite' }}/>
+        <AiIcon size={18} />
         <span style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.85rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>Let's talk!</span>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
         <style>{`@keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.3);opacity:0}}`}</style>
       </button>
 
       {/* Chat window */}
-      <div style={{ position:'fixed', bottom:'7rem', right:'1rem', zIndex:8000, width:'min(360px, calc(100vw - 2rem))', background:'var(--nav-bg)', border:'1px solid var(--border-strong)', backdropFilter:'blur(30px)', display:'flex', flexDirection:'column', transform:open?'translateY(0) scale(1)':'translateY(16px) scale(0.94)', opacity:open?1:0, pointerEvents:open?'all':'none', transition:'transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s', boxShadow:'var(--shadow-xl)', borderRadius: 12 }}>
+      <div className="chatbot-window" style={{ position:'fixed', bottom:'7rem', right:'1rem', zIndex:8000, width:'min(360px, calc(100vw - 2rem))', background:'var(--nav-bg)', border:'1px solid var(--border-strong)', backdropFilter:'blur(30px)', display:'flex', flexDirection:'column', transform:open?'translateY(0) scale(1)':'translateY(16px) scale(0.94)', opacity:open?1:0, pointerEvents:open?'all':'none', transition:'transform 0.4s cubic-bezier(.34,1.56,.64,1),opacity 0.3s', boxShadow:'var(--shadow-xl)', borderRadius: 12 }}>
         {/* Header */}
-        <div style={{ padding:'1.2rem 1.4rem', borderBottom:'1px solid var(--border)', display:'flex', alignItems:'center', gap:'0.9rem' }}>
-          <div style={{ width:32, height:32, borderRadius:'50%', border:'1px solid var(--border-strong)', background:'var(--blue-glow)', display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'Inter,sans-serif', fontWeight:800, fontSize:'0.8rem', color:'var(--blue)' }}>M</div>
+        <div style={{ padding:'1rem 1.2rem', borderBottom:'1px solid var(--border)', display:'flex', alignItems:'center', gap:'0.8rem' }}>
+          {/* AI avatar with brain icon */}
+          <div style={{
+            width: 38, height: 38, borderRadius: 10, flexShrink: 0,
+            background: 'linear-gradient(135deg, var(--blue-glow) 0%, var(--surface2) 100%)',
+            border: '1px solid var(--blue)',
+            boxShadow: '0 0 12px var(--blue-glow)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            <AiIcon size={20} />
+          </div>
           <div style={{ flex:1 }}>
-            <div style={{ fontFamily:'Inter,sans-serif', fontWeight:700, fontSize:'0.82rem', color:'var(--text)' }}>Meheraj's AI</div>
-            <div style={{ fontFamily:'JetBrains Mono,monospace', fontSize:'0.5rem', letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--blue)', display:'flex', alignItems:'center', gap:'0.35rem', marginTop:'0.1rem' }}>
-              <span style={{ width:4, height:4, background:'var(--blue)', borderRadius:'50%', boxShadow:'0 0 5px var(--blue)', display:'block' }}/>Online · Ask anything
+            <div style={{ fontFamily:'Inter,sans-serif', fontWeight:700, fontSize:'0.88rem', color:'var(--text)' }}>Meheraj's AI</div>
+            <div style={{ fontFamily:'JetBrains Mono,monospace', fontSize:'0.52rem', letterSpacing:'0.14em', textTransform:'uppercase', color:'var(--blue)', display:'flex', alignItems:'center', gap:'0.35rem', marginTop:'0.1rem' }}>
+              <span style={{ width:5, height:5, background:'var(--green)', borderRadius:'50%', boxShadow:'0 0 5px var(--green)', display:'block' }}/>
+              Online · Ask anything
             </div>
           </div>
-          <button onClick={() => setOpen(false)} aria-label="Close chat" style={{ background:'none', border:'none', color:'var(--muted)', fontSize:'0.9rem', cursor:'pointer', transition:'color 0.2s' }}
-            onMouseEnter={e => (e.currentTarget.style.color='var(--text)')} onMouseLeave={e => (e.currentTarget.style.color='var(--muted)')}>✕</button>
+          <button onClick={() => setOpen(false)} aria-label="Close chat"
+            style={{ background:'none', border:'none', color:'var(--text)', fontSize:'1rem', cursor:'pointer', transition:'color 0.2s', lineHeight:1, padding:'0.2rem' }}
+            onMouseEnter={e => (e.currentTarget.style.color='var(--blue)')}
+            onMouseLeave={e => (e.currentTarget.style.color='var(--text)')}>✕</button>
         </div>
 
         {/* Messages */}
         <div style={{ flex:1, overflowY:'auto', padding:'1rem', display:'flex', flexDirection:'column', gap:'0.7rem', maxHeight:300 }}>
           {msgs.map((m,i) => (
-            <div key={i} style={{ maxWidth:'88%', padding:'0.7rem 1rem', fontSize:'0.8rem', lineHeight:1.65, borderRadius:m.role==='bot'?'0 10px 10px 10px':'10px 0 10px 10px', alignSelf:m.role==='bot'?'flex-start':'flex-end', background:m.role==='bot'?'var(--blue-glow)':'var(--input-bg)', border:`1px solid var(--border)`, color:'var(--text)', fontFamily:'Inter,sans-serif' }}>{m.text}</div>
+            <div key={i} style={{ maxWidth:'88%', padding:'0.7rem 1rem', fontSize:'0.82rem', lineHeight:1.65, borderRadius:m.role==='bot'?'0 10px 10px 10px':'10px 0 10px 10px', alignSelf:m.role==='bot'?'flex-start':'flex-end', background:m.role==='bot'?'var(--blue-glow)':'var(--input-bg)', border:`1px solid var(--border)`, color:'var(--text)', fontFamily:'Inter,sans-serif' }}>{m.text}</div>
           ))}
           {loading && (
             <div style={{ maxWidth:'88%', padding:'0.65rem 1rem', background:'var(--blue-glow)', border:'1px solid var(--border)', borderRadius:'0 10px 10px 10px', display:'flex', alignItems:'center', gap:4 }}>
@@ -79,11 +116,12 @@ export default function Chatbot() {
 
         {/* Suggestions */}
         {sugsVisible && (
-          <div style={{ padding:'0.6rem 1rem', display:'flex', flexWrap:'wrap', gap:'0.35rem', borderTop:'1px solid var(--border)' }}>
+          <div style={{ padding:'0.6rem 1rem', display:'flex', flexWrap:'wrap', gap:'0.4rem', borderTop:'1px solid var(--border)' }}>
             {sugs.map(s => (
-              <button key={s} onClick={() => chat(s)} style={{ fontFamily:'JetBrains Mono,monospace', fontSize:'0.5rem', letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.3rem 0.65rem', border:'1px solid var(--border)', background:'none', color:'var(--muted)', cursor:'pointer', transition:'all 0.2s', borderRadius: 4 }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor='var(--blue)'; e.currentTarget.style.color='var(--blue)' }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border)'; e.currentTarget.style.color='var(--muted)' }}>{s}</button>
+              <button key={s} onClick={() => chat(s)}
+                style={{ fontFamily:'JetBrains Mono,monospace', fontSize:'0.55rem', letterSpacing:'0.1em', textTransform:'uppercase', padding:'0.35rem 0.7rem', border:'1px solid var(--border-strong)', background:'var(--surface2)', color:'var(--text)', cursor:'pointer', transition:'all 0.2s', borderRadius: 6 }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor='var(--blue)'; e.currentTarget.style.color='var(--blue)'; e.currentTarget.style.background='var(--blue-glow)' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor='var(--border-strong)'; e.currentTarget.style.color='var(--text)'; e.currentTarget.style.background='var(--surface2)' }}>{s}</button>
             ))}
           </div>
         )}
@@ -91,11 +129,12 @@ export default function Chatbot() {
         {/* Input */}
         <div style={{ padding:'0.85rem 1rem', borderTop:'1px solid var(--border)', display:'flex', gap:'0.5rem' }}>
           <input value={inp} onChange={e => setInp(e.target.value)} onKeyDown={e => e.key==='Enter' && chat(inp)} placeholder="Ask about Meheraj..."
-            style={{ flex:1, background:'var(--input-bg)', border:'1px solid var(--input-border)', padding:'0.6rem 0.85rem', fontFamily:'JetBrains Mono,monospace', fontSize:'0.78rem', color:'var(--text)', outline:'none', transition:'border-color 0.3s', borderRadius: 4 }}
+            style={{ flex:1, background:'var(--input-bg)', border:'1px solid var(--input-border)', padding:'0.6rem 0.85rem', fontFamily:'JetBrains Mono,monospace', fontSize:'0.78rem', color:'var(--text)', outline:'none', transition:'border-color 0.3s', borderRadius: 6 }}
             onFocus={e => (e.target.style.borderColor='var(--input-focus)')} onBlur={e => (e.target.style.borderColor='var(--input-border)')} />
-          <button onClick={() => chat(inp)} style={{ background:'none', border:'1px solid var(--border-strong)', padding:'0.6rem 0.85rem', color:'var(--blue)', fontSize:'0.75rem', cursor:'pointer', transition:'background 0.2s,color 0.2s', borderRadius: 4 }}
-          onMouseEnter={e => { e.currentTarget.style.background='var(--blue)'; e.currentTarget.style.color='#000' }}
-          onMouseLeave={e => { e.currentTarget.style.background='none'; e.currentTarget.style.color='var(--blue)' }}>→</button>
+          <button onClick={() => chat(inp)}
+            style={{ background:'var(--blue)', border:'none', padding:'0.6rem 1rem', color:'#000', fontWeight:700, fontSize:'0.8rem', cursor:'pointer', transition:'box-shadow 0.2s', borderRadius: 6 }}
+            onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow='0 0 18px var(--blue-glow)' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow='none' }}>→</button>
         </div>
       </div>
     </>
