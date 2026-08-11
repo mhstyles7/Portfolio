@@ -36,12 +36,13 @@ export default function Hero() {
         {/* Compact subtitle */}
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.7rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
-          letterSpacing: '0.15em', textTransform: 'uppercase',
-          color: 'var(--blue)', marginBottom: '1rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+          letterSpacing: '0.05em', textTransform: 'uppercase',
+          color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
+          lineHeight: 1.5,
         }}>
           <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
-          CSE Graduate · Engineer · Researcher
+          Fans Operations Engineer @ Ismartu Technology BD Limited | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier) | CSE Graduate
         </div>
 
         <h1 style={{
@@ -58,12 +59,8 @@ export default function Hero() {
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
           lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.5rem',
         }}>
-          <strong style={{ color: 'var(--text)' }}>Fans Operations Engineer</strong> at Ismartu Technology BD Limited.
-          Full-Stack Developer specializing in AI &amp; Cybersecurity.{' '}
-          First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
-          <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
-            Elsevier ICT Express
-          </a>.
+          <strong style={{ color: 'var(--text)' }}>Based in Dhaka, Bangladesh.</strong>{' '}
+          Passionate about solving complex problems through applied machine learning, advancing cybersecurity, and engineering robust, production-grade web platforms.
         </p>
 
         {/* CTA Buttons */}

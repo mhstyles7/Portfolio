@@ -34,12 +34,18 @@ export default function Chatbot() {
     <>
       {/* FAB */}
       <button onClick={() => setOpen(o => !o)} aria-label={open ? 'Close AI chat' : 'Open AI chat'}
-        style={{ position:'fixed', bottom:'2rem', right:'2rem', zIndex:8000, width:54, height:54, borderRadius:'50%', background:'var(--bg)', border:'1px solid var(--border-strong)', display:'flex', alignItems:'center', justifyContent:'center', boxShadow:'var(--shadow-lg)', cursor:'pointer', transition:'box-shadow 0.3s,transform 0.3s' }}
-        onMouseEnter={e => { e.currentTarget.style.boxShadow='0 0 35px var(--blue-glow)'; e.currentTarget.style.transform='scale(1.08)' }}
-        onMouseLeave={e => { e.currentTarget.style.boxShadow='var(--shadow-lg)'; e.currentTarget.style.transform='scale(1)' }}>
-        <div style={{ position:'absolute', inset:0, borderRadius:'50%', border:'1px solid var(--blue)', animation:'ping 2.8s ease-out infinite' }}/>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <style>{`@keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.7);opacity:0}}`}</style>
+        style={{
+          position:'fixed', bottom:'2rem', right:'2rem', zIndex:8000,
+          borderRadius: 30, background:'var(--blue-glow)', border:'1px solid var(--blue)',
+          display:'flex', alignItems:'center', gap: '0.6rem', padding: '0.7rem 1.2rem',
+          boxShadow:'0 0 20px var(--blue-glow)', cursor:'pointer', transition:'all 0.3s'
+        }}
+        onMouseEnter={e => { e.currentTarget.style.boxShadow='0 0 35px var(--blue-glow)'; e.currentTarget.style.transform='scale(1.05)' }}
+        onMouseLeave={e => { e.currentTarget.style.boxShadow='0 0 20px var(--blue-glow)'; e.currentTarget.style.transform='scale(1)' }}>
+        <div style={{ position:'absolute', inset:0, borderRadius:30, border:'1px solid var(--blue)', animation:'ping 2.8s ease-out infinite' }}/>
+        <span style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.85rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>Let's talk!</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" strokeWidth="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <style>{`@keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.3);opacity:0}}`}</style>
       </button>
 
       {/* Chat window */}
