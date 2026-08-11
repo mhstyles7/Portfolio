@@ -21,6 +21,16 @@ export default function Research() {
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem',
       background: 'var(--bg)',
     }}>
+      {/* Section Header */}
+      <div style={{ maxWidth: 1200, width: '100%' }}>
+        <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+          <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> 05 — Research
+        </div>
+        <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,4.5rem)', lineHeight: 0.95, letterSpacing: '-0.04em', color: 'var(--text)' }}>
+          Published <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Work.</em>
+        </h2>
+      </div>
+
       <div style={{
         maxWidth: 1200, width: '100%',
         display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
@@ -40,11 +50,7 @@ export default function Research() {
         }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
 
-            {/* Section label */}
-            <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-              <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
-              05 — Research
-            </div>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
 
             {/* ── DOI — highlighted, above title ── */}
             <a
@@ -236,24 +242,34 @@ export default function Research() {
           display: 'flex', alignItems: 'flex-end',
           padding: 'clamp(2rem, 5vw, 4rem)',
         }}>
-          {/* Background Image */}
+          {/* Premium Mesh Gradient Background */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
-            backgroundImage: 'url("/nsucsc cover.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }} />
-          {/* Dark Overlay for Text Readability */}
-          <div style={{
-            position: 'absolute', inset: 0, zIndex: 0,
-            background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.3) 100%)',
-          }} />
+            background: 'var(--surface)',
+            overflow: 'hidden'
+          }}>
+            {/* Base rich gradient */}
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, #0f172a 0%, #020617 100%)' }} />
+            {/* Glowing orbs */}
+            <div style={{
+              position: 'absolute', top: '-20%', right: '-10%', width: '60%', height: '140%',
+              background: 'radial-gradient(circle, rgba(75,191,255,0.15) 0%, transparent 60%)',
+              filter: 'blur(40px)', mixBlendMode: 'screen'
+            }} />
+            <div style={{
+              position: 'absolute', bottom: '-30%', left: '-10%', width: '50%', height: '100%',
+              background: 'radial-gradient(circle, rgba(16,185,129,0.1) 0%, transparent 60%)',
+              filter: 'blur(50px)', mixBlendMode: 'screen'
+            }} />
+          </div>
+          
           {/* Subtle Grid overlay */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 1,
-            backgroundImage: 'linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)',
-            backgroundSize: '40px 40px', opacity: 0.5
+            backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+            backgroundSize: '32px 32px', opacity: 1
           }} />
+          
           {/* Gradient Overlay to fade into content */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 1,
@@ -263,14 +279,14 @@ export default function Research() {
           {/* Title & Subtitle */}
           <div style={{ position: 'relative', zIndex: 2, maxWidth: 850 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4BBFFF', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-                <span style={{ width: 20, height: 2, background: '#4BBFFF', display: 'block' }} />
+              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
                 Event Showcase
               </div>
-              <h3 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: '#ffffff', lineHeight: 1.15, marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.8)' }}>
+              <h3 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: 'var(--text)', lineHeight: 1.15, marginBottom: '1rem', textShadow: '0 2px 24px var(--blue-glow)' }}>
                 North South University Cybersecurity Center (NSU CSC) Showcase 2026
               </h3>
-              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', color: '#eaeaea', lineHeight: 1.6, textShadow: '0 1px 8px rgba(0,0,0,0.8)' }}>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                 Presented our Q1-indexed research and AI-powered cybersecurity platform during the inaugural NSU Cybersecurity Center Showcase.
               </p>
             </motion.div>

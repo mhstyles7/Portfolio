@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700;800&family=Sora:wght@700;800&display=swap');
 
 /* ── Global headline typography ─────────────────────────── */
 h1, h2, h3 {
@@ -205,59 +205,69 @@ section {
 
 /* Mobile (< 600px) */
 @media (max-width: 600px) {
-  /* Reduce section padding on mobile */
   section {
     padding: clamp(3rem, 7vh, 5rem) 1.2rem clamp(1.5rem, 3vh, 2rem) !important;
   }
 
-  /* Hero photo shrinks gracefully */
-  #hero > div > div:last-child {
-    width: clamp(220px, 70vw, 300px) !important;
-    height: clamp(280px, 55vw, 380px) !important;
+  /* Hero: photo on top, text below, all centered */
+  #hero > div {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 1.5rem !important;
   }
+  #hero > div > *:first-child {
+    order: 2 !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  #hero > div > *:last-child {
+    order: 1 !important;
+    width: clamp(200px, 65vw, 280px) !important;
+    height: clamp(240px, 60vw, 340px) !important;
+    flex-shrink: 0 !important;
+    margin: 0 auto !important;
+  }
+  #hero p { text-align: center !important; max-width: 100% !important; }
 
-  /* Hero CTA buttons stack */
   #hero .cta-row {
     flex-direction: column !important;
     align-items: stretch !important;
+    width: 100% !important;
+    max-width: 320px !important;
   }
-  #hero .cta-row a,
-  #hero .cta-row button {
+  #hero .cta-row a, #hero .cta-row button {
     text-align: center !important;
     width: 100% !important;
+    justify-content: center !important;
   }
+  #hero .socials-row { justify-content: center !important; }
 
-  /* Hide subtitle on very small — replaced by short version via className */
-  .hero-subtitle-full { display: none !important; }
-  .hero-subtitle-short { display: inline !important; }
-
-  /* Skills marquee — shorter gap */
   #skills { padding: 2.5rem 1rem !important; }
 
-  /* Certifications — single column */
   #certifications > div > div:last-child {
     grid-template-columns: 1fr !important;
   }
 
-  /* Research gallery — narrower thumbnails */
   #research .gallery-thumb {
     width: clamp(200px, 80vw, 280px) !important;
   }
 
-  /* Chatbot pill → compact on mobile */
   .chatbot-fab {
     padding: 0.6rem 0.9rem !important;
     bottom: 1.2rem !important;
     right: 1.2rem !important;
   }
-  .chatbot-fab span { display: none !important; } /* hide 'Let's talk!' text */
+  .chatbot-fab span { display: none !important; }
 
-  /* Chat window full-width on tiny screens */
   .chatbot-window {
     right: 0.5rem !important;
     width: calc(100vw - 1rem) !important;
   }
 }
+
 
 /* Very small phones (< 375px — Galaxy A03, iPhone SE) */
 @media (max-width: 375px) {

@@ -59,9 +59,9 @@ export default function Hero() {
         </div>
 
         <h1 style={{
-          fontFamily: "'Inter', sans-serif", fontWeight: 900,
+          fontFamily: "'Sora', 'Inter', sans-serif", fontWeight: 800,
           fontSize: 'clamp(2.2rem, 5vw, 4.8rem)',
-          lineHeight: 1.0, letterSpacing: '-0.04em',
+          lineHeight: 1.0, letterSpacing: '-0.03em',
           marginBottom: '0.6rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}
@@ -69,7 +69,7 @@ export default function Hero() {
         </h1>
 
         {/* Q1 metric chip — right under the name */}
-        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
+        <div className="chip-row" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
           <span style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
             fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
@@ -105,7 +105,7 @@ export default function Hero() {
         </p>
 
         {/* CTA Buttons */}
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
+        <div className="cta-row" style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.2rem' }}>
           <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
             aria-label="Download CV PDF"
             style={{
@@ -149,7 +149,7 @@ export default function Hero() {
         </div>
 
         {/* Social links + Current role badge row */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+        <div className="socials-row" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
           {/* Social icons */}
           {socials.map(s => (
             <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
