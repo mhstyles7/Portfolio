@@ -41,20 +41,17 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
-        <div style={{
+        <div className="hero-subtitle-container" style={{
           display: 'flex', alignItems: 'flex-start', gap: '0.8rem',
           fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
           letterSpacing: '0.05em', textTransform: 'uppercase',
           color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'nowrap',
           lineHeight: 1.6,
         }}>
-          <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0, marginTop: '0.65rem' }} />
-          <div className="hero-subtitle-full" style={{ display: 'flex', flexDirection: 'column' }}>
+          <span className="hero-subtitle-line" style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0, marginTop: '0.65rem' }} />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
             <span>CSE Graduate | Full-Stack Developer | AI &amp; Cybersecurity |</span>
             <span>| First Author, ICT Express (Elsevier)</span>
-          </div>
-          <div className="hero-subtitle-short" style={{ display: 'flex', flexDirection: 'column' }}>
-            <span>Full-Stack · AI · Published Researcher</span>
           </div>
         </div>
 
@@ -208,12 +205,6 @@ export default function Hero() {
 
         <style>{`
           @keyframes heroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}
-          .hero-subtitle-short { display: none !important; }
-          .hero-subtitle-full { display: flex !important; }
-          @media (max-width: 600px) {
-            .hero-subtitle-full { display: none !important; }
-            .hero-subtitle-short { display: flex !important; }
-          }
         `}</style>
       </motion.div>
 

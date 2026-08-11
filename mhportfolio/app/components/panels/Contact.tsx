@@ -67,7 +67,7 @@ export default function Contact() {
       }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> 06 — Let's Connect
+            <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Let's Connect
           </div>
           <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.01em', marginBottom: '1.8rem', color: 'var(--text)' }}>
             Say <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Hello.</em>

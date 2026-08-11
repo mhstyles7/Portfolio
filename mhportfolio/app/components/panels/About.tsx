@@ -30,7 +30,7 @@ export default function About() {
       {/* Section Header */}
       <div style={{ maxWidth: 1200, width: '100%' }}>
         <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-          <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> 03 — Background
+          <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Background
         </div>
         <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,4.5rem)', lineHeight: 0.95, letterSpacing: '-0.01em', color: 'var(--text)' }}>
           My <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Journey.</em>

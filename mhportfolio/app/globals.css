@@ -233,6 +233,14 @@ section {
     margin: 0 auto !important;
   }
   #hero p { text-align: center !important; max-width: 100% !important; }
+  
+  /* Center subtitle */
+  #hero .hero-subtitle-container { justify-content: center !important; text-align: center !important; }
+  #hero .hero-subtitle-container > div { align-items: center !important; }
+  #hero .hero-subtitle-line { display: none !important; }
+  
+  /* Center green/blue labels */
+  #hero .chip-row { justify-content: center !important; }
 
   #hero .cta-row {
     flex-direction: column !important;

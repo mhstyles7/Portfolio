@@ -125,7 +125,7 @@ export default function Work() {
             color: 'var(--blue)', marginBottom: '0.6rem',
           }}>
             <span style={{ width: 24, height: 2, background: 'var(--blue)', display: 'block' }} />
-            02 — Portfolio
+            Portfolio
           </div>
           <h2 style={{
             fontFamily: "'Space Grotesk','Inter',sans-serif", fontWeight: 800,

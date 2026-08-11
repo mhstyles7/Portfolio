@@ -62,7 +62,7 @@ export default function Skills() {
         </div>
         <motion.span initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
           style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', letterSpacing: '0.18em', color: 'var(--muted)', textTransform: 'uppercase' }}>
-          04 — 08 domains
+          08 domains
         </motion.span>
       </div>
 

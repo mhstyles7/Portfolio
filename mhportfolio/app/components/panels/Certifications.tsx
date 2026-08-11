@@ -69,7 +69,7 @@ export default function Certifications() {
       <div style={{ width: '100%', maxWidth: 1200, marginBottom: '2.5rem' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '0.8rem' }}>
           <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
-          06 — Certifications & Awards
+          Certifications & Awards
         </div>
         <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem,4vw,3rem)', lineHeight: 1.05, letterSpacing: '-0.01em', color: 'var(--text)', margin: 0 }}>
           Credentials &{' '}
