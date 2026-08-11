@@ -128,22 +128,22 @@ export default function Nav() {
           backdropFilter: 'blur(24px)',
           border: '1px solid var(--nav-border)',
           borderRadius: 100,
-          padding: '1.1rem 2.8rem',
-          display: 'flex', alignItems: 'center', gap: '2.2rem',
+          padding: '0.75rem 1.8rem',
+          display: 'flex', alignItems: 'center', gap: '1.3rem',
           opacity: visible ? 1 : 0,
           transition: 'opacity 0.8s ease',
           boxShadow: 'var(--shadow-lg)',
           whiteSpace: 'nowrap',
         }}>
           {/* Logo */}
-          <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '1.6rem', letterSpacing: '-0.02em', flexShrink: 0, color: 'var(--text)' }}>
+          <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '1.25rem', letterSpacing: '-0.02em', flexShrink: 0, color: 'var(--text)' }}>
             MH<span style={{ color: 'var(--blue)' }}>.</span>
           </div>
 
-          <div style={{ width: 1, height: 28, background: 'var(--border)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 22, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Nav links */}
-          <ul style={{ display: 'flex', gap: '2.2rem', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul style={{ display: 'flex', gap: '1.4rem', listStyle: 'none', margin: 0, padding: 0 }}>
             {links.map(l => (
               <li key={l.label}>
                 <button
@@ -151,7 +151,7 @@ export default function Nav() {
                   style={{
                     background: 'none',
                     color: activeId === l.id ? 'var(--blue)' : 'var(--muted)',
-                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.95rem',
+                    fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem',
                     letterSpacing: '0.12em', textTransform: 'uppercase',
                     cursor: 'pointer', padding: '0.15rem 0', transition: 'color 0.2s',
                     fontWeight: activeId === l.id ? 700 : 500,
@@ -165,12 +165,12 @@ export default function Nav() {
             ))}
           </ul>
 
-          <div style={{ width: 1, height: 28, background: 'var(--border)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 22, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Theme Toggle */}
           <ThemeToggle />
 
-          <div style={{ width: 1, height: 28, background: 'var(--border)', flexShrink: 0 }} />
+          <div style={{ width: 1, height: 22, background: 'var(--border)', flexShrink: 0 }} />
 
           {/* Email CTA */}
           <a href="mailto:meherajhossainmahir@gmail.com"
@@ -178,9 +178,9 @@ export default function Nav() {
             style={{
               display: 'flex', alignItems: 'center', gap: '0.5rem',
               background: copied ? 'var(--green)' : 'var(--blue)', color: '#000',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.9rem',
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.78rem',
               letterSpacing: '0.12em', textTransform: 'uppercase',
-              fontWeight: 700, padding: '0.7rem 1.5rem',
+              fontWeight: 700, padding: '0.5rem 1.1rem',
               borderRadius: 100, transition: 'all 0.3s', flexShrink: 0,
               textDecoration: 'none', cursor: 'pointer',
             }}
