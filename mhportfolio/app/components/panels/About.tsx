@@ -51,7 +51,6 @@ export default function About() {
         padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem)',
         position: 'relative', overflow: 'hidden', gap: '2rem'
       }}>
-        <div style={{ position: 'absolute', bottom: '-3rem', left: '-1rem', fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: '16rem', lineHeight: 1, color: 'var(--blue-glow)', pointerEvents: 'none', userSelect: 'none', zIndex: 0, opacity: 0.4 }}>03</div>
         <div style={{ position: 'relative', zIndex: 1 }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> Experience &amp; Leadership

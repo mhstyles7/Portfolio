@@ -162,13 +162,14 @@ export default function Contact() {
       <footer style={{
         width: '100%',
         background: 'var(--footer-bg)', borderTop: '1px solid var(--border)',
-        padding: '1.2rem clamp(1.5rem, 5vw, 5rem)',
+        padding: '2rem clamp(1.5rem, 5vw, 5rem)',
         display: 'flex', justifyContent: 'space-between', alignItems: 'center',
         flexWrap: 'wrap', gap: '1rem', zIndex: 10,
-        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.52rem',
-        letterSpacing: '0.12em', color: 'var(--muted)', textTransform: 'uppercase',
+        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.85rem',
+        letterSpacing: '0.08em', color: 'var(--muted)', textTransform: 'uppercase',
+        fontWeight: 600,
       }}>
-        <span>© 2026 <span style={{ color: 'var(--blue)' }}>Md. Meheraj Hossain</span></span>
+        <span>© 2026 <span style={{ color: 'var(--blue)' }}>Md. Meheraj Hossain</span>. All rights reserved.</span>
         <span>Built with Next.js · <span style={{ color: 'var(--blue)' }}>Dhaka, Bangladesh</span></span>
       </footer>
     </section>

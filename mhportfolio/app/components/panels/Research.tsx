@@ -19,7 +19,6 @@ export default function Research() {
       width: '100%',
       padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)',
       display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '3rem',
-      background: 'var(--bg)',
     }}>
       {/* Section Header */}
       <div style={{ maxWidth: 1200, width: '100%' }}>
