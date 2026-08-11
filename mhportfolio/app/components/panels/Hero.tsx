@@ -35,12 +35,13 @@ export default function Hero() {
       >
         <div style={{
           display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
-          letterSpacing: '0.22em', textTransform: 'uppercase',
-          color: 'var(--blue)', marginBottom: '1rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem',
+          letterSpacing: '0.05em', textTransform: 'uppercase',
+          color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
+          lineHeight: 1.5,
         }}>
           <span style={{ width: 28, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block' }} />
-          CSE Graduate · BRAC University · Dhaka
+          Fans Operations Engineer @ Ismartu Technology BD Limited | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier) | CSE Graduate
         </div>
 
         <h1 style={{
@@ -55,7 +56,7 @@ export default function Hero() {
 
         <p style={{
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
-          lineHeight: 1.8, color: 'var(--muted)', maxWidth: 480, marginBottom: '1.2rem',
+          lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.2rem',
         }}>
           <strong style={{ color: 'var(--text)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — specializing in applied machine learning, cybersecurity, and building production-grade web platforms.{' '}
           First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
@@ -206,8 +207,8 @@ export default function Hero() {
           backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
           animation: 'float 4s ease-in-out infinite 2s', borderRadius: 8,
         }}>
-          <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', display: 'block' }}>BRAC Univ.</strong>
-          <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>CSE Graduate</span>
+          <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', display: 'block' }}>Ismartu BD</strong>
+          <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--text)', letterSpacing: '0.05em' }}>Fans Operations Engineer</span>
         </div>
 
         <style>{`

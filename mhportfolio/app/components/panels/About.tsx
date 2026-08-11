@@ -9,7 +9,7 @@ const edu = [
 ]
 
 const experience = [
-  { role: 'Fans Operations Engineer', org: 'Ismartu Technology BD Limited — R&D Center', duration: 'Aug 2026 – Present', logo: '/ismartu.jpg', points: ['Software Testing Department · Full-time'] },
+  { role: 'Fans Operations Engineer', org: 'Ismartu Technology BD Limited — R&D Center', duration: 'Aug 2026 – Present', logo: '/ismartu.svg', points: ['Software Testing Department · Full-time'] },
   { role: 'Social Media Manager', org: 'Bangladesh Freight Forwarders Association (BAFFA)', duration: '6 Months', logo: '/Baffa.svg', points: ['Managed digital content strategy and communications for executive leadership.', 'Coordinated stakeholder engagement campaigns across platforms.', 'Developed strong communication, leadership, and cross-functional collaboration skills.'] },
 ]
 
@@ -62,10 +62,10 @@ export default function About() {
                     <div style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '1.05rem', color: 'var(--text)', marginBottom: '0.15rem' }}>{ex.role}</div>
                     <div style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)' }}>{ex.org}</div>
                   </div>
-                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.3rem 0.75rem', border: '1px solid var(--border)', color: 'var(--muted)', borderRadius: 4 }}>{ex.duration}</span>
+                  <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.12em', textTransform: 'uppercase', padding: '0.35rem 0.8rem', border: '1px solid var(--blue)', color: 'var(--blue)', background: 'var(--blue-glow)', borderRadius: 6, fontWeight: 700 }}>{ex.duration}</span>
                 </div>
                 <ul style={{ paddingLeft: '1rem', display: 'flex', flexDirection: 'column', gap: '0.35rem', margin: 0 }}>
-                  {ex.points.map((p, j) => <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.7 }}>{p}</li>)}
+                  {ex.points.map((p, j) => <li key={j} style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--text)', lineHeight: 1.7 }}>{p}</li>)}
                 </ul>
               </div>
             </motion.div>

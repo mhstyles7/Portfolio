@@ -1,6 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import { SiGooglescholar, SiResearchgate, SiOrcid } from 'react-icons/si'
 import { FaDownload, FaExternalLinkAlt, FaMicrochip, FaTimes, FaExpandAlt } from 'react-icons/fa'
 
@@ -85,9 +86,9 @@ export default function Research() {
               <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
                 {researchProfiles.map(s => (
                   <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label}
-                    style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.6rem', border: '1px solid var(--border)', borderRadius: 7, background: 'transparent', color: 'var(--muted)', transition: 'all 0.25s', textDecoration: 'none' }}
-                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = s.color; (e.currentTarget as HTMLElement).style.borderColor = s.color; (e.currentTarget as HTMLElement).style.background = `${s.color}15` }}
-                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', padding: '0.35rem 0.6rem', border: `1px solid ${s.color}40`, borderRadius: 7, background: `${s.color}15`, color: s.color, transition: 'all 0.25s', textDecoration: 'none' }}
+                    onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = `${s.color}30` }}
+                    onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = `${s.color}15` }}>
                     {s.icon}
                     <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem', letterSpacing: '0.07em', textTransform: 'uppercase' }}>{s.label}</span>
                   </a>
@@ -235,16 +236,22 @@ export default function Research() {
           display: 'flex', alignItems: 'flex-end',
           padding: 'clamp(2rem, 5vw, 4rem)',
         }}>
-          {/* Background Image */}
+          {/* Background pattern */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
-            backgroundImage: 'url("/nsucsc%20cover.jpg")',
-            backgroundSize: 'cover', backgroundPosition: 'center top',
+            background: 'radial-gradient(circle at right top, var(--blue-glow) 0%, transparent 60%), radial-gradient(circle at left bottom, var(--green-glow) 0%, transparent 50%), var(--surface2)',
+            opacity: 0.8
           }} />
-          {/* Gradient Overlay for text readability */}
+          {/* Subtle Grid overlay */}
           <div style={{
             position: 'absolute', inset: 0, zIndex: 1,
-            background: 'linear-gradient(to top, var(--card-bg) 0%, rgba(0,0,0,0.5) 70%, rgba(0,0,0,0.3) 100%)',
+            backgroundImage: 'linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px)',
+            backgroundSize: '40px 40px', opacity: 0.1
+          }} />
+          {/* Gradient Overlay to fade into content */}
+          <div style={{
+            position: 'absolute', inset: 0, zIndex: 1,
+            background: 'linear-gradient(to top, var(--card-bg) 0%, transparent 100%)',
           }} />
           
           {/* Title & Subtitle */}
@@ -322,14 +329,15 @@ export default function Research() {
               scrollSnapType: 'x mandatory', scrollbarWidth: 'thin'
             }}>
               {[
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).jpg',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(1).png',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).jpg',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(2).png',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20(3).jpg',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(1).JPG',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(1).jpeg',
-                '/NSU%20Cybersecurity%20Center%20Project%20showcase%20%20(2).jpg',
+                '/nsucsc cover.jpg',
+                '/NSU Cybersecurity Center Project showcase (1).jpg',
+                '/NSU Cybersecurity Center Project showcase (1).png',
+                '/NSU Cybersecurity Center Project showcase (2).jpg',
+                '/NSU Cybersecurity Center Project showcase (2).png',
+                '/NSU Cybersecurity Center Project showcase (3).jpg',
+                '/NSU Cybersecurity Center Project showcase  (1).JPG',
+                '/NSU Cybersecurity Center Project showcase  (1).jpeg',
+                '/NSU Cybersecurity Center Project showcase  (2).jpg',
               ].map((src, i) => (
                 <div key={i}
                   onClick={() => setLightboxImg(src)}
@@ -348,7 +356,7 @@ export default function Research() {
                     if (overlay) overlay.style.opacity = '0';
                   }}
                 >
-                  <img src={src} alt={`NSU CSC Event ${i+1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} loading="lazy" />
+                  <Image src={src} alt={`NSU CSC Event ${i+1}`} fill sizes="(max-width: 768px) 80vw, 350px" style={{ objectFit: 'cover' }} />
                   <div className="expand-overlay" style={{
                     position: 'absolute', top: '0.7rem', right: '0.7rem',
                     background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(8px)',
@@ -433,11 +441,12 @@ export default function Research() {
               </div>
 
               {/* Full image */}
-              <div style={{ position: 'relative', width: '100%', minHeight: 400, display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000' }}>
-                <img
+              <div style={{ position: 'relative', width: '100%', height: '75vh', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', background: '#000' }}>
+                <Image
                   src={lightboxImg}
                   alt="Gallery Lightbox"
-                  style={{ width: '100%', maxHeight: '75vh', objectFit: 'contain' }}
+                  fill
+                  style={{ objectFit: 'contain' }}
                 />
               </div>
             </motion.div>

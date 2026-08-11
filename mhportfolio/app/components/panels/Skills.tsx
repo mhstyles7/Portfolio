@@ -1,7 +1,12 @@
 'use client'
 import { motion } from 'framer-motion'
-import { FaReact, FaNodeJs, FaPython, FaShieldAlt, FaMicrochip, FaKey, FaGitAlt, FaFlask } from 'react-icons/fa'
-
+import { FaReact, FaNodeJs, FaPython, FaShieldAlt, FaMicrochip, FaKey, FaGitAlt, FaFlask, FaNetworkWired, FaProjectDiagram, FaCogs, FaFileAlt, FaServer, FaBrain } from 'react-icons/fa'
+import { 
+  SiReact, SiNextdotjs, SiHtml5, SiJavascript, 
+  SiNodedotjs, SiExpress, SiMongodb, SiPostgresql, 
+  SiPython, SiTensorflow, SiScikitlearn, SiGooglegemini,
+  SiWireshark, SiC, SiJsonwebtokens, SiGithub, SiVercel, SiLinux, SiTypescript
+} from 'react-icons/si'
 type SkillLevel = 'Production' | 'Research Grade' | 'Research' | 'Shipped' | 'Daily Use' | 'Published'
 
 const skills: { Icon: React.ElementType; name: string; items: string[]; level: SkillLevel }[] = [
@@ -22,6 +27,17 @@ const levelColors: Record<SkillLevel, string> = {
   'Shipped':        'var(--green)',
   'Daily Use':      'var(--blue)',
   'Published':      'var(--green)',
+}
+
+const itemIcons: Record<string, React.ElementType> = {
+  'React.js': SiReact, 'Next.js': SiNextdotjs, 'HTML5 / CSS3': SiHtml5, 'JavaScript ES6+': SiJavascript,
+  'Node.js': SiNodedotjs, 'Express.js': SiExpress, 'MongoDB': SiMongodb, 'SQL · REST APIs': SiPostgresql,
+  'Python': SiPython, 'TensorFlow · PyTorch': SiTensorflow, 'Scikit-learn': SiScikitlearn, 'Gemini API': SiGooglegemini,
+  'Wireshark': SiWireshark, 'Intrusion Detection': FaShieldAlt, 'Network Analysis': FaNetworkWired, 'Anomaly Det.': FaProjectDiagram,
+  'ESP32 · C': SiC, 'Sensor Networks': FaNetworkWired, 'Embedded Systems': FaMicrochip, 'MOSFET Circuits': FaCogs,
+  'JWT · OAuth': SiJsonwebtokens, 'OCR API': FaFileAlt, 'REST APIs': FaServer, 'MVC Architecture': FaProjectDiagram,
+  'Git · GitHub': SiGithub, 'Vercel · Render': SiVercel, 'Linux · Postman': SiLinux, 'TypeScript': SiTypescript,
+  'Academic Writing': FaFileAlt, 'Data Analysis': FaProjectDiagram, 'Elsevier ICT Express': FaBrain, 'PPO · RL': FaBrain
 }
 
 const marqueeItems = ['React.js','Node.js','Python','TypeScript','MongoDB','TensorFlow','Express.js','Next.js','PyTorch','Scikit-learn','ESP32','JWT','REST APIs','Gemini API','Git','Vercel','Wireshark','Postman','SQL','Framer Motion']
@@ -88,10 +104,16 @@ export default function Skills() {
             </div>
 
             {/* Skill items as mini-pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
-              {s.items.map((item, j) => (
-                <span key={j} style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', color: 'var(--muted)', background: 'var(--input-bg)', border: '1px solid var(--border)', padding: '0.18rem 0.45rem', borderRadius: 4, whiteSpace: 'nowrap' }}>{item}</span>
-              ))}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
+              {s.items.map((item, j) => {
+                const ItemIcon = itemIcons[item]
+                return (
+                  <span key={j} style={{ display: 'flex', alignItems: 'center', gap: '0.35rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.62rem', color: 'var(--text)', background: 'var(--input-bg)', border: '1px solid var(--border)', padding: '0.25rem 0.55rem', borderRadius: 6, whiteSpace: 'nowrap' }}>
+                    {ItemIcon && <ItemIcon size={11} style={{ color: levelColors[s.level] }} />}
+                    {item}
+                  </span>
+                )
+              })}
             </div>
           </motion.div>
         ))}
