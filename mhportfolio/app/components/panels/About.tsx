@@ -50,8 +50,15 @@ export default function About() {
             <motion.div key={i} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} style={{ border: '1px solid var(--border)', background: 'var(--blue-glow)', padding: '1.2rem', position: 'relative', overflow: 'hidden', display: 'flex', gap: '1.2rem', borderRadius: 10 }}>
               <div style={{ position: 'absolute', top: 0, left: 0, width: 3, height: '100%', background: 'var(--blue)' }} />
               {ex.logo && (
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 44, marginTop: '0.2rem' }}>
-                  <div style={{ width: 44, height: 44, borderRadius: '50%', flexShrink: 0, background: '#ffffff', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', position: 'relative' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flexShrink: 0, width: 48, marginTop: '0.2rem' }}>
+                  <div style={{
+                    width: 48, height: 48, borderRadius: '50%', flexShrink: 0,
+                    background: i === 0 ? '#000' : '#ffffff',
+                    border: i === 0 ? '2px solid var(--blue)' : '1px solid var(--border)',
+                    boxShadow: i === 0 ? '0 0 12px var(--blue-glow)' : 'none',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    overflow: 'hidden', position: 'relative',
+                  }}>
                     <Image src={ex.logo} alt={ex.org} fill style={{ objectFit: 'contain', padding: '6px' }} />
                   </div>
                 </div>

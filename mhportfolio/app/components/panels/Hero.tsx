@@ -33,22 +33,22 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
+        {/* Compact subtitle */}
         <div style={{
-          display: 'flex', alignItems: 'center', gap: '0.8rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem',
-          letterSpacing: '0.05em', textTransform: 'uppercase',
-          color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
-          lineHeight: 1.5,
+          display: 'flex', alignItems: 'center', gap: '0.7rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
+          letterSpacing: '0.15em', textTransform: 'uppercase',
+          color: 'var(--blue)', marginBottom: '1rem',
         }}>
-          <span style={{ width: 28, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block' }} />
-          Fans Operations Engineer @ Ismartu Technology BD Limited | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier) | CSE Graduate
+          <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
+          CSE Graduate · Engineer · Researcher
         </div>
 
         <h1 style={{
           fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
           fontSize: 'clamp(2rem, 5vw, 4.5rem)',
           lineHeight: 1.05, letterSpacing: '-0.03em',
-          marginBottom: '1rem', color: 'var(--text)',
+          marginBottom: '1.2rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}
           <span style={{ color: 'var(--blue)', textShadow: `0 0 60px var(--blue-glow)` }}>Hossain</span>
@@ -56,15 +56,17 @@ export default function Hero() {
 
         <p style={{
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
-          lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.2rem',
+          lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.5rem',
         }}>
-          <strong style={{ color: 'var(--text)' }}>Full-Stack Engineer &amp; ML Researcher</strong> — specializing in applied machine learning, cybersecurity, and building production-grade web platforms.{' '}
+          <strong style={{ color: 'var(--text)' }}>Fans Operations Engineer</strong> at Ismartu Technology BD Limited.
+          Full-Stack Developer specializing in AI &amp; Cybersecurity.{' '}
           First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
           <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
             Elsevier ICT Express
           </a>.
         </p>
 
+        {/* CTA Buttons */}
         <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginBottom: '1.5rem' }}>
           <a href="/Meheraj_CV.pdf" download="Md_Meheraj_Hossain_CV.pdf"
             aria-label="Download CV PDF"
@@ -108,27 +110,37 @@ export default function Hero() {
           >Contact Me →</button>
         </div>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-          {[
-            { k: 'Role',     v: 'Engineer + Researcher' },
-            { k: 'Stack',    v: 'MERN · Python · ML' },
-            { k: 'Research', v: 'ICT Express (Elsevier)' },
-            { k: 'Status',   v: 'Available ✦' },
-          ].map(r => (
-            <div key={r.k} style={{
-              display: 'flex', justifyContent: 'space-between',
-              paddingBottom: '0.5rem', borderBottom: '1px solid var(--border)',
-              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem',
-              letterSpacing: '0.1em', textTransform: 'uppercase', maxWidth: 400,
+        {/* Current role badge */}
+        <div style={{
+          display: 'inline-flex', alignItems: 'center', gap: '0.7rem',
+          padding: '0.6rem 1rem',
+          background: 'var(--blue-glow)',
+          border: '1px solid var(--blue)',
+          borderRadius: 10,
+          backdropFilter: 'blur(12px)',
+        }}>
+          <span style={{
+            width: 8, height: 8, borderRadius: '50%', background: 'var(--green)', flexShrink: 0,
+            boxShadow: '0 0 8px var(--green)', animation: 'heroPulse 2s ease-in-out infinite',
+          }} />
+          <div>
+            <div style={{
+              fontFamily: 'JetBrains Mono,monospace', fontSize: '0.6rem',
+              letterSpacing: '0.15em', textTransform: 'uppercase',
+              color: 'var(--muted)', marginBottom: '0.15rem',
+            }}>Currently</div>
+            <div style={{
+              fontFamily: 'Inter,sans-serif', fontSize: '0.85rem',
+              fontWeight: 600, color: 'var(--text)', lineHeight: 1.3,
             }}>
-              <span style={{ color: 'var(--muted)' }}>{r.k}</span>
-              <span style={{ color: r.k === 'Status' || r.k === 'Research' ? 'var(--blue)' : 'var(--text)' }}>{r.v}</span>
+              Fans Operations Engineer <span style={{ color: 'var(--blue)' }}>@ Ismartu Technology</span>
             </div>
-          ))}
+          </div>
         </div>
+        <style>{`@keyframes heroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}`}</style>
       </motion.div>
 
-      {/* Photo — rounded rectangle with spinning glow */}
+      {/* Photo — clean rounded rectangle with spinning glow */}
       <div style={{
         flexShrink: 0, position: 'relative',
         width: 'clamp(260px, 26vw, 380px)',
@@ -183,40 +195,9 @@ export default function Hero() {
           }} />
         </div>
 
-        {/* Open to Work badge */}
-        <div className="hero-badge-bottom" style={{
-          position: 'absolute', bottom: -15, left: -20, zIndex: 4,
-          background: 'var(--nav-bg)', border: `1px solid var(--green-glow)`,
-          backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          display: 'flex', alignItems: 'center', gap: '0.6rem', borderRadius: 8,
-        }}>
-          <span style={{
-            width: 7, height: 7, borderRadius: '50%', background: 'var(--green)', flexShrink: 0,
-            boxShadow: `0 0 8px var(--green)`, animation: 'pulseGreen 2s ease-in-out infinite',
-          }} />
-          <div>
-            <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--green)', display: 'block' }}>Open to Work</strong>
-            <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--muted)', letterSpacing: '0.1em' }}>Available Now</span>
-          </div>
-        </div>
-
-        {/* BRAC badge */}
-        <div className="hero-badge-top" style={{
-          position: 'absolute', top: -15, right: -20, zIndex: 4,
-          background: 'var(--nav-bg)', border: '1px solid var(--border-strong)',
-          backdropFilter: 'blur(16px)', padding: '0.6rem 0.9rem',
-          animation: 'float 4s ease-in-out infinite 2s', borderRadius: 8,
-        }}>
-          <strong style={{ fontFamily: 'Inter,sans-serif', fontSize: '0.9rem', color: 'var(--blue)', display: 'block' }}>Ismartu BD</strong>
-          <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem', color: 'var(--text)', letterSpacing: '0.05em' }}>Fans Operations Engineer</span>
-        </div>
-
         <style>{`
           .hero-ring { animation: ring-spin 7s linear infinite; }
-          @keyframes pulseGreen { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
-          @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
           @media (max-width: 700px) {
-            .hero-badge-bottom, .hero-badge-top { display: none !important; }
             .hero-scroll-hint { display: none !important; }
           }
         `}</style>
@@ -251,4 +232,3 @@ export default function Hero() {
     </section>
   )
 }
-

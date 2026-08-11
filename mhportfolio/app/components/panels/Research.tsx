@@ -330,11 +330,11 @@ export default function Research() {
             }}>
               {[
                 '/nsucsc cover.jpg',
-                '/NSU Cybersecurity Center Project showcase (1).jpg',
                 '/NSU Cybersecurity Center Project showcase (1).png',
                 '/NSU Cybersecurity Center Project showcase (2).jpg',
                 '/NSU Cybersecurity Center Project showcase (2).png',
                 '/NSU Cybersecurity Center Project showcase (3).jpg',
+                '/NSU Cybersecurity Center Project showcase (4).JPG',
                 '/NSU Cybersecurity Center Project showcase  (1).JPG',
                 '/NSU Cybersecurity Center Project showcase  (1).jpeg',
                 '/NSU Cybersecurity Center Project showcase  (2).jpg',
