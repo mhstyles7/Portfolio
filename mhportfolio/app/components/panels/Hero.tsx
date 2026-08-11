@@ -5,9 +5,9 @@ import { SiGooglescholar, SiGithub } from 'react-icons/si'
 import { FaLinkedinIn } from 'react-icons/fa'
 
 const socials = [
-  { href: 'https://github.com/mhstyles7', Icon: SiGithub,         label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/md-meheraj-hossain/', Icon: FaLinkedinIn,      label: 'LinkedIn' },
-  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', Icon: SiGooglescholar, label: 'Scholar' },
+  { href: 'https://github.com/mhstyles7', Icon: SiGithub,         label: 'GitHub',   color: 'var(--text)' },
+  { href: 'https://www.linkedin.com/in/md-meheraj-hossain/', Icon: FaLinkedinIn,      label: 'LinkedIn', color: '#0a66c2' },
+  { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', Icon: SiGooglescholar, label: 'Scholar',  color: '#4285F4' },
 ]
 
 export default function Hero() {
@@ -41,13 +41,12 @@ export default function Hero() {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
-        {/* Subtitle — hidden on very small screens, shortened */}
         <div style={{
-          display: 'flex', alignItems: 'center', gap: '0.7rem',
-          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.65rem',
-          letterSpacing: '0.04em', textTransform: 'uppercase',
+          display: 'flex', alignItems: 'center', gap: '0.8rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
+          letterSpacing: '0.05em', textTransform: 'uppercase',
           color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
-          lineHeight: 1.5,
+          lineHeight: 1.6,
         }}>
           <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
           <span className="hero-subtitle-full">CSE Graduate | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier)</span>
@@ -89,9 +88,9 @@ export default function Hero() {
 
         <p style={{
           fontFamily: 'Inter,sans-serif', fontSize: '1rem',
-          lineHeight: 1.8, color: '#d1d5db', maxWidth: 480, marginBottom: '1.5rem',
+          lineHeight: 1.8, color: 'var(--text-secondary)', maxWidth: 480, marginBottom: '1.5rem',
         }}>
-          <strong style={{ color: 'var(--text)' }}>Fans Operations Engineer</strong> at Ismartu Technology BD Limited (R&amp;D).
+          <strong style={{ color: 'var(--text)' }}>Fans Operations Engineer</strong>{' '}at Ismartu Technology BD Limited (R&amp;D).
           Full-Stack Developer specializing in AI &amp; Cybersecurity.{' '}
           First-author research <strong style={{ color: 'var(--green)' }}>published</strong> at{' '}
           <a href="https://doi.org/10.1016/j.icte.2026.05.001" target="_blank" rel="noreferrer" style={{ color: 'var(--blue)', textDecoration: 'underline' }}>
@@ -150,22 +149,24 @@ export default function Hero() {
           {socials.map(s => (
             <a key={s.label} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
               style={{
-                width: 36, height: 36, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
-                border: '1px solid var(--border)', background: 'transparent', color: 'var(--muted)',
+                width: 38, height: 38, borderRadius: 8, display: 'flex', alignItems: 'center', justifyContent: 'center',
+                border: s.label === 'GitHub' ? '1px solid var(--border)' : `1px solid ${s.color}40`,
+                background: s.label === 'GitHub' ? 'var(--input-bg)' : `${s.color}15`,
+                color: s.label === 'GitHub' ? 'var(--text)' : s.color,
                 transition: 'all 0.25s', textDecoration: 'none',
               }}
               onMouseEnter={e => {
-                (e.currentTarget as HTMLElement).style.color = 'var(--blue)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'
-                ;(e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'
+                (e.currentTarget as HTMLElement).style.background = s.label === 'GitHub' ? 'var(--text)' : s.color
+                ;(e.currentTarget as HTMLElement).style.color = s.label === 'GitHub' ? 'var(--bg)' : '#fff'
+                ;(e.currentTarget as HTMLElement).style.boxShadow = s.label === 'GitHub' ? '0 0 15px var(--text)' : `0 0 15px ${s.color}80`
               }}
               onMouseLeave={e => {
-                (e.currentTarget as HTMLElement).style.color = 'var(--muted)'
-                ;(e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'
-                ;(e.currentTarget as HTMLElement).style.background = 'transparent'
+                (e.currentTarget as HTMLElement).style.background = s.label === 'GitHub' ? 'var(--input-bg)' : `${s.color}15`
+                ;(e.currentTarget as HTMLElement).style.color = s.label === 'GitHub' ? 'var(--text)' : s.color
+                ;(e.currentTarget as HTMLElement).style.boxShadow = 'none'
               }}
             >
-              <s.Icon size={15} />
+              <s.Icon size={18} />
             </a>
           ))}
 

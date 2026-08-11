@@ -85,9 +85,23 @@ export default function Contact() {
           <div style={{ display: 'flex', gap: '0.7rem', alignItems: 'center', flexWrap: 'wrap' }}>
             {socials.map(s => (
               <a key={s.label} href={s.href} target="_blank" rel="noreferrer" title={s.label} aria-label={`Visit ${s.label}`}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1rem', border: '1px solid var(--border)', background: 'transparent', color: 'var(--muted)', transition: 'all 0.25s', textDecoration: 'none', cursor: 'pointer', borderRadius: 8 }}
-                onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = s.color; (e.currentTarget as HTMLElement).style.borderColor = s.color; (e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)' }}
-                onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border)'; (e.currentTarget as HTMLElement).style.background = 'transparent' }}>
+                style={{ 
+                  display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1rem', 
+                  border: s.label === 'GitHub' ? '1px solid var(--border)' : `1px solid ${s.color}40`, 
+                  background: s.label === 'GitHub' ? 'var(--input-bg)' : `${s.color}15`, 
+                  color: s.label === 'GitHub' ? 'var(--text)' : s.color, 
+                  transition: 'all 0.25s', textDecoration: 'none', cursor: 'pointer', borderRadius: 8 
+                }}
+                onMouseEnter={e => { 
+                  (e.currentTarget as HTMLElement).style.background = s.label === 'GitHub' ? 'var(--text)' : s.color; 
+                  (e.currentTarget as HTMLElement).style.color = s.label === 'GitHub' ? 'var(--bg)' : '#fff'; 
+                  (e.currentTarget as HTMLElement).style.boxShadow = s.label === 'GitHub' ? '0 0 15px var(--text)' : `0 0 15px ${s.color}80`; 
+                }}
+                onMouseLeave={e => { 
+                  (e.currentTarget as HTMLElement).style.background = s.label === 'GitHub' ? 'var(--input-bg)' : `${s.color}15`; 
+                  (e.currentTarget as HTMLElement).style.color = s.label === 'GitHub' ? 'var(--text)' : s.color; 
+                  (e.currentTarget as HTMLElement).style.boxShadow = 'none'; 
+                }}>
                 {s.icon}
                 <span style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.7rem', letterSpacing: '0.1em', textTransform: 'uppercase' }}>{s.label}</span>
               </a>

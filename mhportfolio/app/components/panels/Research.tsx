@@ -257,14 +257,14 @@ export default function Research() {
           {/* Title & Subtitle */}
           <div style={{ position: 'relative', zIndex: 2, maxWidth: 850 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#4BBFFF', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
-                <span style={{ width: 20, height: 2, background: '#4BBFFF', display: 'block' }} />
+              <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
+                <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
                 Event Showcase
               </div>
-              <h3 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: '#fff', lineHeight: 1.15, marginBottom: '1rem', textShadow: '0 2px 10px rgba(0,0,0,0.5)' }}>
+              <h3 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.5rem, 3vw, 2.5rem)', color: 'var(--text)', lineHeight: 1.15, marginBottom: '1rem' }}>
                 North South University Cybersecurity Center (NSU CSC) Showcase 2026
               </h3>
-              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', color: '#eaeaea', lineHeight: 1.6, textShadow: '0 1px 5px rgba(0,0,0,0.5)' }}>
+              <p style={{ fontFamily: 'Inter,sans-serif', fontSize: 'clamp(0.95rem, 1.2vw, 1.1rem)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                 Presented our Q1-indexed research and AI-powered cybersecurity platform during the inaugural NSU Cybersecurity Center Showcase.
               </p>
             </motion.div>

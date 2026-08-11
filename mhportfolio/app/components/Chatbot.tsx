@@ -1,30 +1,7 @@
 'use client'
 import { useState, useRef } from 'react'
 import { askGemini } from '../actions/chat'
-
-/* ── AI Brain SVG icon used in both FAB and header ── */
-function AiIcon({ size = 22, color = 'var(--blue)' }: { size?: number; color?: string }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-      {/* Brain outline */}
-      <path d="M9.5 2a2.5 2.5 0 0 1 5 0" />
-      <path d="M12 2v2" />
-      {/* Left brain lobe */}
-      <path d="M4 9.5a3.5 3.5 0 0 1 3.5-3.5H12v5H7.5A3.5 3.5 0 0 1 4 9.5z" />
-      {/* Right brain lobe */}
-      <path d="M20 9.5a3.5 3.5 0 0 0-3.5-3.5H12v5h4.5A3.5 3.5 0 0 0 20 9.5z" />
-      {/* Bottom left lobe */}
-      <path d="M4 14.5a3.5 3.5 0 0 0 3.5 3.5H12v-5H7.5A3.5 3.5 0 0 0 4 14.5z" />
-      {/* Bottom right lobe */}
-      <path d="M20 14.5a3.5 3.5 0 0 1-3.5 3.5H12v-5h4.5A3.5 3.5 0 0 1 20 14.5z" />
-      {/* Circuit dots */}
-      <circle cx="12" cy="11" r="1" fill={color} stroke="none" />
-      <path d="M12 12v4" />
-      <path d="M10 22h4" />
-      <path d="M12 18v4" />
-    </svg>
-  )
-}
+import { FaRobot } from 'react-icons/fa'
 
 export default function Chatbot() {
   const [open, setOpen] = useState(false)
@@ -40,10 +17,11 @@ export default function Chatbot() {
     if(!text.trim()) return
     setInp('')
     setSugsVisible(false)
-    setMsgs(m => [...m, {role:'user',text}])
+    const newMsgs = [...msgs, {role:'user' as const, text}]
+    setMsgs(newMsgs)
     setLoading(true)
     try {
-      const reply = await askGemini(text)
+      const reply = await askGemini(newMsgs)
       setMsgs(m => [...m, {role:'bot',text:reply}])
     } catch {
       setMsgs(m => [...m, {role:'bot',text:"Something went wrong. Please try again!"}])
@@ -68,7 +46,7 @@ export default function Chatbot() {
         onMouseEnter={e => { e.currentTarget.style.boxShadow='0 0 35px var(--blue-glow)'; e.currentTarget.style.transform='scale(1.05)' }}
         onMouseLeave={e => { e.currentTarget.style.boxShadow='0 0 20px var(--blue-glow)'; e.currentTarget.style.transform='scale(1)' }}>
         <div style={{ position:'absolute', inset:0, borderRadius:30, border:'1px solid var(--blue)', animation:'ping 2.8s ease-out infinite' }}/>
-        <AiIcon size={18} />
+        <FaRobot size={18} color="var(--blue)" />
         <span style={{ fontFamily: 'Inter,sans-serif', fontWeight: 700, fontSize: '0.85rem', color: 'var(--text)', whiteSpace: 'nowrap' }}>Let's talk!</span>
         <style>{`@keyframes ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.3);opacity:0}}`}</style>
       </button>
@@ -85,7 +63,7 @@ export default function Chatbot() {
             boxShadow: '0 0 12px var(--blue-glow)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}>
-            <AiIcon size={20} />
+            <FaRobot size={20} color="var(--blue)" />
           </div>
           <div style={{ flex:1 }}>
             <div style={{ fontFamily:'Inter,sans-serif', fontWeight:700, fontSize:'0.88rem', color:'var(--text)' }}>Meheraj's AI</div>
