@@ -49,8 +49,6 @@ export default function Research() {
         }}>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-
             {/* ── DOI — highlighted, above title ── */}
             <a
               href="https://doi.org/10.1016/j.icte.2026.05.001"
