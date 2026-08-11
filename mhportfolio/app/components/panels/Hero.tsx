@@ -48,15 +48,20 @@ export default function Hero() {
           color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
           lineHeight: 1.6,
         }}>
-          <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
-          <span className="hero-subtitle-full">CSE Graduate | Full-Stack Developer | AI & Cybersecurity | First Author, ICT Express (Elsevier)</span>
-          <span className="hero-subtitle-short">Full-Stack · AI · Published Researcher</span>
+          <span className="hero-subtitle-full" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
+            CSE Graduate | Full-Stack Developer | AI &amp; Cybersecurity | First Author, ICT Express (Elsevier)
+          </span>
+          <span className="hero-subtitle-short" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
+            Full-Stack · AI · Published Researcher
+          </span>
         </div>
 
         <h1 style={{
-          fontFamily: "'Space Grotesk', 'Inter', sans-serif", fontWeight: 800,
-          fontSize: 'clamp(2rem, 5vw, 4.5rem)',
-          lineHeight: 1.05, letterSpacing: '-0.03em',
+          fontFamily: "'Inter', sans-serif", fontWeight: 900,
+          fontSize: 'clamp(2.2rem, 5vw, 4.8rem)',
+          lineHeight: 1.0, letterSpacing: '-0.04em',
           marginBottom: '0.6rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}
@@ -203,10 +208,11 @@ export default function Hero() {
 
         <style>{`
           @keyframes heroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(1.3)}}
-          .hero-subtitle-short { display: none; }
+          .hero-subtitle-short { display: none !important; }
+          .hero-subtitle-full { display: flex !important; }
           @media (max-width: 600px) {
-            .hero-subtitle-full { display: none; }
-            .hero-subtitle-short { display: inline; }
+            .hero-subtitle-full { display: none !important; }
+            .hero-subtitle-short { display: flex !important; }
           }
         `}</style>
       </motion.div>
