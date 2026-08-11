@@ -9,6 +9,7 @@ const edu = [
 ]
 
 const experience = [
+  { role: 'Fans Operations Engineer', org: 'Ismartu Technology BD Limited — R&D Center', duration: 'Aug 2026 – Present', logo: '/ismartu.jpg', points: ['Software Testing Department · Full-time'] },
   { role: 'Social Media Manager', org: 'Bangladesh Freight Forwarders Association (BAFFA)', duration: '6 Months', logo: '/Baffa.svg', points: ['Managed digital content strategy and communications for executive leadership.', 'Coordinated stakeholder engagement campaigns across platforms.', 'Developed strong communication, leadership, and cross-functional collaboration skills.'] },
 ]
 

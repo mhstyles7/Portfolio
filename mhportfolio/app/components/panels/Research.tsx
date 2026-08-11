@@ -149,10 +149,19 @@ export default function Research() {
 
             {/* Download button */}
             <a href="/Q1 paper_ICT Express.pdf" download="Hossain_et_al_ICT_Express_2025.pdf"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', border: '1px solid var(--border-strong)', background: 'transparent', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem', letterSpacing: '0.1em', textTransform: 'uppercase', padding: '0.6rem 1.2rem', color: 'var(--muted)', textDecoration: 'none', transition: 'all 0.2s', borderRadius: 8, marginBottom: '1rem' }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = 'var(--blue)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--blue)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 14px var(--blue-glow)' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'var(--muted)'; (e.currentTarget as HTMLElement).style.borderColor = 'var(--border-strong)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}>
-              <FaDownload size={12} /> Download Paper
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: '0.6rem',
+                border: 'none',
+                background: 'linear-gradient(135deg, var(--green) 0%, #008f11 100%)',
+                boxShadow: '0 4px 18px var(--green-glow)',
+                fontFamily: 'JetBrains Mono,monospace', fontSize: '0.72rem',
+                letterSpacing: '0.12em', textTransform: 'uppercase', fontWeight: 700,
+                padding: '0.65rem 1.3rem', color: '#fff',
+                textDecoration: 'none', transition: 'box-shadow 0.25s, transform 0.2s', borderRadius: 8, marginBottom: '1rem'
+              }}
+              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 6px 28px var(--green-glow)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(-1px)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.boxShadow = '0 4px 18px var(--green-glow)'; (e.currentTarget as HTMLElement).style.transform = 'translateY(0)' }}>
+              <FaDownload size={13} /> Download Paper
             </a>
 
             {/* Research Domain — at bottom */}
@@ -230,7 +239,7 @@ export default function Research() {
           <div style={{
             position: 'absolute', inset: 0, zIndex: 0,
             backgroundImage: 'url("/nsucsc%20cover.jpg")',
-            backgroundSize: 'cover', backgroundPosition: 'center',
+            backgroundSize: 'cover', backgroundPosition: 'center top',
           }} />
           {/* Gradient Overlay for text readability */}
           <div style={{

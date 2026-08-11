@@ -143,7 +143,7 @@ export default function Work() {
       {/* Project Cards Grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 480px), 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
         gap: '1rem',
         maxWidth: 1200, width: '100%', margin: '0 auto',
       }}>
@@ -159,7 +159,7 @@ export default function Work() {
               style={{
                 scrollMarginTop: '120px',
                 display: 'flex', flexDirection: 'column',
-                padding: '1.3rem 1.5rem',
+                padding: '1.2rem 1.4rem',
                 border: '1px solid var(--border)',
                 borderRadius: 12,
                 background: 'var(--card-bg)',
