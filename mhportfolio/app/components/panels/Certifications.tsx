@@ -71,7 +71,7 @@ export default function Certifications() {
           <span style={{ width: 20, height: 2, background: 'var(--blue)', display: 'block' }} />
           06 — Certifications & Awards
         </div>
-        <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem,4vw,3rem)', lineHeight: 1.05, letterSpacing: '-0.03em', color: 'var(--text)', margin: 0 }}>
+        <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 800, fontSize: 'clamp(1.8rem,4vw,3rem)', lineHeight: 1.05, letterSpacing: '-0.01em', color: 'var(--text)', margin: 0 }}>
           Credentials &{' '}
           <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Recognition.</em>
         </h2>

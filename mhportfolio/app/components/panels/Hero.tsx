@@ -61,7 +61,7 @@ export default function Hero() {
         <h1 style={{
           fontFamily: "'Sora', 'Inter', sans-serif", fontWeight: 800,
           fontSize: 'clamp(2.2rem, 5vw, 4.8rem)',
-          lineHeight: 1.0, letterSpacing: '-0.03em',
+          lineHeight: 1.0, letterSpacing: '-0.01em',
           marginBottom: '0.6rem', color: 'var(--text)',
         }}>
           Md. Meheraj{' '}

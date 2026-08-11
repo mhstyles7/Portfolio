@@ -4,14 +4,14 @@
 h1, h2, h3 {
   font-family: 'Inter', sans-serif;
   font-weight: 800;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   line-height: 1.05;
 }
 h1 { font-weight: 900; }
 .headline-display {
   font-family: 'Inter', sans-serif;
   font-weight: 900;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.01em;
 }
 
 /* ── Dark Theme (Default) ─────────────────────────────── */
@@ -209,24 +209,25 @@ section {
     padding: clamp(3rem, 7vh, 5rem) 1.2rem clamp(1.5rem, 3vh, 2rem) !important;
   }
 
-  /* Hero: photo on top, text below, all centered */
+  /* Hero: text on top, photo below, all centered */
+  #hero {
+    padding-top: clamp(7rem, 14vh, 9rem) !important;
+  }
   #hero > div {
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    gap: 1.5rem !important;
+    gap: 2.5rem !important;
   }
   #hero > div > *:first-child {
-    order: 2 !important;
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
   }
   #hero > div > *:last-child {
-    order: 1 !important;
-    width: clamp(200px, 65vw, 280px) !important;
-    height: clamp(240px, 60vw, 340px) !important;
+    width: clamp(220px, 70vw, 320px) !important;
+    height: clamp(280px, 65vw, 400px) !important;
     flex-shrink: 0 !important;
     margin: 0 auto !important;
   }

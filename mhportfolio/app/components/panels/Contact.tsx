@@ -48,7 +48,7 @@ export default function Contact() {
       position: 'relative',
       background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
     }}>
-      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem)', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) clamp(2rem, 4vh, 4rem)', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
         <div style={{
           maxWidth: 1200, width: '100%',
           display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
@@ -68,7 +68,7 @@ export default function Contact() {
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
             <span style={{ width: 20, height: 1, background: 'var(--blue)', display: 'block' }} /> 06 — Let's Connect
           </div>
-          <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.04em', marginBottom: '1.8rem', color: 'var(--text)' }}>
+          <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.01em', marginBottom: '1.8rem', color: 'var(--text)' }}>
             Say <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Hello.</em>
           </h2>
           <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.06em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6 }}
