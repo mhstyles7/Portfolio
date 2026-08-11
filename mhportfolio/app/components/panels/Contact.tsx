@@ -46,9 +46,10 @@ export default function Contact() {
       width: '100%',
       display: 'flex', flexDirection: 'column',
       position: 'relative',
+      paddingBottom: '2.5rem',
       background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
     }}>
-      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) clamp(2rem, 4vh, 4rem)', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) 0', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
         <div style={{
           maxWidth: 1200, width: '100%',
           display: 'flex', flexDirection: 'row', flexWrap: 'wrap',

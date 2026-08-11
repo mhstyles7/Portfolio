@@ -209,9 +209,10 @@ section {
     padding: clamp(3rem, 7vh, 5rem) 1.2rem clamp(1.5rem, 3vh, 2rem) !important;
   }
 
-  /* Hero: text on top, photo below, all centered */
+  /* Hero: text on top, photo below — MUST keep big top padding to clear fixed nav */
   #hero {
-    padding-top: clamp(7rem, 14vh, 9rem) !important;
+    padding-top: 6rem !important;
+    padding-bottom: 3rem !important;
   }
   #hero > div {
     flex-direction: column !important;

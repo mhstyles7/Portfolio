@@ -18,7 +18,7 @@ export default function Hero() {
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: 'clamp(5rem, 8vh, 7rem) clamp(1.5rem, 6vw, 5rem) clamp(2rem, 4vh, 3rem)',
+      padding: '9rem clamp(1.5rem, 6vw, 5rem) clamp(2rem, 4vh, 3rem)',
       position: 'relative',
       overflow: 'visible',
       background: `radial-gradient(circle at 15% 50%, var(--blue-glow) 0%, transparent 50%)`,
