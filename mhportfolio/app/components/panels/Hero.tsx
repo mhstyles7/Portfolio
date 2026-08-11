@@ -42,20 +42,20 @@ export default function Hero() {
         style={{ flex: '1 1 400px', minWidth: 0, position: 'relative', zIndex: 1, width: '100%' }}
       >
         <div style={{
-          display: 'flex', alignItems: 'center', gap: '0.8rem',
+          display: 'flex', alignItems: 'flex-start', gap: '0.8rem',
           fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem',
           letterSpacing: '0.05em', textTransform: 'uppercase',
-          color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'wrap',
+          color: 'var(--blue)', marginBottom: '1rem', flexWrap: 'nowrap',
           lineHeight: 1.6,
         }}>
-          <span className="hero-subtitle-full" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
-            CSE Graduate | Full-Stack Developer | AI &amp; Cybersecurity | First Author, ICT Express (Elsevier)
-          </span>
-          <span className="hero-subtitle-short" style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
-            <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0 }} />
-            Full-Stack · AI · Published Researcher
-          </span>
+          <span style={{ width: 24, height: 1, background: 'var(--blue)', boxShadow: `0 0 6px var(--blue)`, display: 'block', flexShrink: 0, marginTop: '0.65rem' }} />
+          <div className="hero-subtitle-full" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>CSE Graduate | Full-Stack Developer | AI &amp; Cybersecurity |</span>
+            <span>| First Author, ICT Express (Elsevier)</span>
+          </div>
+          <div className="hero-subtitle-short" style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>Full-Stack · AI · Published Researcher</span>
+          </div>
         </div>
 
         <h1 style={{
@@ -220,8 +220,8 @@ export default function Hero() {
       {/* Photo — clean rounded rectangle with spinning glow */}
       <div style={{
         flexShrink: 0, position: 'relative',
-        width: 'clamp(260px, 26vw, 380px)',
-        height: 'clamp(340px, 48vh, 500px)',
+        width: 'clamp(280px, 32vw, 420px)',
+        height: 'clamp(360px, 55vh, 580px)',
         zIndex: 1,
         margin: '0 auto',
       }}>
