@@ -1,11 +1,12 @@
 'use client'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { SiGooglescholar, SiGithub, SiLinkedin } from 'react-icons/si'
+import { SiGooglescholar, SiGithub } from 'react-icons/si'
+import { FaLinkedinIn } from 'react-icons/fa'
 
 const socials = [
   { href: 'https://github.com/mhstyles7', Icon: SiGithub,         label: 'GitHub' },
-  { href: 'https://www.linkedin.com/in/md-meheraj-hossain/', Icon: SiLinkedin,      label: 'LinkedIn' },
+  { href: 'https://www.linkedin.com/in/md-meheraj-hossain/', Icon: FaLinkedinIn,      label: 'LinkedIn' },
   { href: 'https://scholar.google.com/citations?user=wl2xVSQAAAAJ&hl=en', Icon: SiGooglescholar, label: 'Scholar' },
 ]
 
