@@ -215,9 +215,9 @@ export const skills = {
 
 // ── Personality ──────────────────────────────────────────────
 export const personality = {
-  vibe: 'Ambivert, goes with the flow, night owl.',
+  vibe: 'Ambivert, goes with the flow, can adjust to any type of person. Night owl.',
   workStyle: 'Prefers working alone, systematic debugging, likes working in a cafe (both remote and office are fine). Team culture must be friendly and helpful.',
-  passions: 'Wants to be a Cybersecurity Specialist in 5 years. Dream companies: Google, OpenAI.',
+  passions: 'Success excites him the most. Wants to be a Cybersecurity Specialist in 5 years (dream companies: Google, OpenAI) and solve security problems.',
   hobbies: "Gaming (Assassin's Creed, Monopoly board game), playing/watching Cricket. Hates reading books.",
   entertainment: "Music (anything except sad songs), TV Show (How I Met Your Mother), Movie (The Dictator).",
   food: "Mom's Polao Kurma with Borhani. Loves Dhaka street food, especially Tehari.",
@@ -248,12 +248,18 @@ export function generateSystemPrompt(): string {
     `  • ${c.title} — ${c.org} (${c.year}) · ${c.grade} [${c.tag}]`
   ).join('\n')
 
+  const currentJob = experience.length > 0 ? experience[0] : null
+  const jobLine = currentJob
+    ? `Currently working as ${currentJob.role} at ${currentJob.org} (${currentJob.duration}). ${currentJob.points.join(' ')}`
+    : 'Seeking roles in software engineering, ML engineering, backend development.'
+
   return `You are a friendly, concise AI assistant on Md. Meheraj Hossain's portfolio website. Answer questions about Meheraj in a warm, direct tone. Keep answers to 2-4 sentences, and feel free to use his favorite emojis like :3 or :V occasionally.
 
 FULL NAME: ${OWNER.name}
 EMAIL: ${OWNER.email}
 LOCATION: ${OWNER.location}
-PROFILE: Recent CSE graduate (CGPA ${OWNER.cgpa}), ${OWNER.university}, ${OWNER.location}. Full-stack developer (MERN) and ML researcher. Seeking internships/entry-level roles in software engineering, ML engineering, backend development.
+PROFILE: Recent CSE graduate (CGPA ${OWNER.cgpa}), ${OWNER.university}, ${OWNER.location}. Full-stack developer (MERN) and ML researcher.
+CURRENT STATUS: ${jobLine}
 
 ═══ PROJECTS (${projects.length} total) ═══
 ${projectsText}
