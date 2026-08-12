@@ -86,7 +86,6 @@ h1 { font-weight: 900; }
 
 html {
   background: var(--bg);
-  overflow-x: hidden;
   scroll-behavior: smooth;
   /* Reserve space at bottom so fixed FAB never hides content */
   scroll-padding-bottom: 6rem;
@@ -96,9 +95,11 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--bg);
   color: var(--text);
-  overscroll-behavior: none;
+  overscroll-behavior-y: none;
   line-height: 1.6;
   overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
