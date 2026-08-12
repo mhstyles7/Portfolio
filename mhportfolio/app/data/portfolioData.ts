@@ -220,9 +220,9 @@ export const personality = {
   passions: 'Success excites him the most. Wants to be a Cybersecurity Specialist in 5 years (dream companies: Google, OpenAI) and solve security problems.',
   hobbies: "Gaming (Assassin's Creed, Monopoly board game), playing/watching Cricket. Hates reading books.",
   entertainment: "Music (anything except sad songs), TV Show (How I Met Your Mother), Movie (The Dictator).",
-  food: "Mom's Polao Kurma with Borhani. Loves Dhaka street food, especially Tehari.",
-  motto: '"Tit for tat". Deals with failure through prayer.',
-  trivia: 'Prefers cats. Wants to travel to Japan. What he wishes he started earlier: good projects and competitions.',
+  food: "Mom's Polao Kurma with Borhani. Loves Dhaka street food, especially Tehari. Weird habit: delaying food. Drinks tea usually, but likes coffee more.",
+  motto: '"Tit for tat". Deals with failure through prayer ("You can\'t control anything, believe in Allah\'s plan and just move on"). Success means happiness. Unpopular opinion: Marriage at 18-19 brings more peace than 25+.',
+  trivia: 'Prefers Cats (no pets currently). Wants to travel to Japan. A productive day equals exhaustion. What he wishes he started earlier: good projects and competitions. Hardest thing built: the full pipeline for his thesis (taught him patience). Why CS? Just instinct. Alt career: BBS (Business). Favorite courses: Automata (CSE331) and ENG103.',
   ultimateFact: 'He is the best guy in the entire world.',
 }
 
