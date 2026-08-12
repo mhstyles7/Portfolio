@@ -273,30 +273,50 @@ export default function Hero() {
       {/* End Centered Wrapper */}
       </div>
 
-      {/* Scroll hint */}
-      <div className="hero-scroll-hint" style={{
-        position: 'absolute',
-        bottom: '1.6rem',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        zIndex: 10,
-        display: 'flex', alignItems: 'center', gap: '0.55rem',
-        fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
-        letterSpacing: '0.2em', textTransform: 'uppercase',
-        color: 'var(--blue)',
-        background: 'var(--blue-glow)',
-        border: '1px solid var(--border-strong)',
-        borderRadius: 100,
-        padding: '0.45rem 1.2rem',
-        backdropFilter: 'blur(8px)',
-        boxShadow: `0 0 18px var(--blue-glow)`,
-        whiteSpace: 'nowrap',
-        pointerEvents: 'none',
-      }}>
+      {/* Scroll hint — clickable, scrolls to Projects */}
+      <button
+        className="hero-scroll-hint"
+        aria-label="Scroll to Projects section"
+        onClick={() => {
+          const el = document.getElementById('work')
+          if (el) {
+            const top = el.getBoundingClientRect().top + window.scrollY - 80
+            window.scrollTo({ top, behavior: 'smooth' })
+          }
+        }}
+        style={{
+          position: 'absolute',
+          bottom: '1.6rem',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 10,
+          display: 'flex', alignItems: 'center', gap: '0.55rem',
+          fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
+          letterSpacing: '0.2em', textTransform: 'uppercase',
+          color: 'var(--blue)',
+          background: 'var(--blue-glow)',
+          border: '1px solid var(--border-strong)',
+          borderRadius: 100,
+          padding: '0.45rem 1.2rem',
+          backdropFilter: 'blur(8px)',
+          boxShadow: `0 0 18px var(--blue-glow)`,
+          whiteSpace: 'nowrap',
+          cursor: 'pointer',
+          transition: 'box-shadow 0.3s, background 0.3s',
+        }}
+        onMouseEnter={e => {
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 0 32px var(--blue-glow)'
+          ;(e.currentTarget as HTMLElement).style.background = 'rgba(75,191,255,0.18)'
+        }}
+        onMouseLeave={e => {
+          (e.currentTarget as HTMLElement).style.boxShadow = '0 0 18px var(--blue-glow)'
+          ;(e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'
+        }}
+      >
         SCROLL
         <span style={{ animation: 'bounceY 0.9s ease-in-out infinite', display: 'inline-block' }}>↓</span>
         <style>{`@keyframes bounceY{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}`}</style>
-      </div>
+      </button>
     </section>
   )
 }
