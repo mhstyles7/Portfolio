@@ -16,9 +16,10 @@ export default function Hero() {
       width: '100%',
       minHeight: '100vh',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      padding: '9rem clamp(1.5rem, 6vw, 5rem) clamp(2rem, 4vh, 3rem)',
+      padding: '9rem clamp(1.5rem, 6vw, 5rem) 5rem',
       position: 'relative',
       overflow: 'visible',
       background: `radial-gradient(circle at 15% 50%, var(--blue-glow) 0%, transparent 50%)`,
@@ -273,6 +274,9 @@ export default function Hero() {
       {/* End Centered Wrapper */}
       </div>
 
+      {/* Spacer to push scroll button to bottom */}
+      <div style={{ flex: 1, minHeight: '1.5rem' }} />
+
       {/* Scroll hint — clickable, scrolls to Projects */}
       <button
         className="hero-scroll-hint"
@@ -285,10 +289,6 @@ export default function Hero() {
           }
         }}
         style={{
-          position: 'absolute',
-          bottom: '1.6rem',
-          left: '50%',
-          transform: 'translateX(-50%)',
           zIndex: 10,
           display: 'flex', alignItems: 'center', gap: '0.55rem',
           fontFamily: 'JetBrains Mono,monospace', fontSize: '0.68rem',
@@ -303,6 +303,7 @@ export default function Hero() {
           whiteSpace: 'nowrap',
           cursor: 'pointer',
           transition: 'box-shadow 0.3s, background 0.3s',
+          marginTop: '1rem',
         }}
         onMouseEnter={e => {
           (e.currentTarget as HTMLElement).style.boxShadow = '0 0 32px var(--blue-glow)'
