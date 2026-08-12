@@ -72,10 +72,10 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.01em', marginBottom: '1.8rem', color: 'var(--text)' }}>
             Say <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Hello.</em>
           </h2>
-          <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.06em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6 }}
+          <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.06em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6, maxWidth: '100%', boxSizing: 'border-box' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 16px var(--blue-glow)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'var(--input-bg)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}>
-            <FaEnvelope size={13} /> {EMAIL}
+            <FaEnvelope size={13} style={{ flexShrink: 0 }} /> <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{EMAIL}</span>
           </a>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
