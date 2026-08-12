@@ -222,7 +222,7 @@ section {
 
   /* Hero: text on top, photo below — MUST keep big top padding to clear fixed nav */
   #hero {
-    padding-top: 6rem !important;
+    padding-top: 5.5rem !important;
     padding-bottom: 3rem !important;
   }
   #hero > div {
