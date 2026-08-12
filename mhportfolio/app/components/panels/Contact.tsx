@@ -48,22 +48,25 @@ export default function Contact() {
       position: 'relative',
       paddingBottom: '2.5rem',
       background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
+      boxSizing: 'border-box',
     }}>
-      <div style={{ padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) 0', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center' }}>
+      <div style={{ width: '100%', padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) 0', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center', boxSizing: 'border-box' }}>
         <div style={{
           maxWidth: 1200, width: '100%',
           display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
           borderRadius: 24, border: '1px solid var(--border)', overflow: 'hidden',
           background: 'var(--card-bg)',
           boxShadow: 'var(--shadow-lg)',
+          boxSizing: 'border-box',
         }}>
       {/* Left */}
       <div style={{
-        flex: '1 1 400px',
+        flex: '1 1 320px', minWidth: 0,
         padding: 'clamp(4rem, 8vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         borderRight: '1px solid var(--border)',
         position: 'relative', overflow: 'hidden',
+        boxSizing: 'border-box',
       }}>
         <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.25em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
@@ -109,9 +112,10 @@ export default function Contact() {
       </div>
       {/* Right — Form */}
       <div style={{
-        flex: '1 1 400px',
+        flex: '1 1 320px', minWidth: 0,
         padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        boxSizing: 'border-box',
       }}>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <div style={{ fontFamily: 'JetBrains Mono,monospace', fontSize: '0.75rem', letterSpacing: '0.22em', textTransform: 'uppercase', color: 'var(--blue)', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.7rem' }}>
