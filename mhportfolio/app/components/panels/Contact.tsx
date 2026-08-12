@@ -46,11 +46,12 @@ export default function Contact() {
       width: '100%',
       display: 'flex', flexDirection: 'column',
       position: 'relative',
-      paddingBottom: '2.5rem',
+      /* Extra bottom space so fixed chatbot FAB never overlaps content */
+      paddingBottom: 'clamp(5rem, 12vh, 8rem)',
       background: `radial-gradient(ellipse at 50% 80%, var(--blue-glow) 0%, transparent 65%)`,
       boxSizing: 'border-box',
     }}>
-      <div style={{ width: '100%', padding: 'clamp(4rem, 8vh, 7rem) clamp(1.5rem, 5vw, 3rem) 0', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center', boxSizing: 'border-box' }}>
+      <div style={{ width: '100%', padding: 'clamp(4rem, 8vh, 7rem) clamp(1rem, 5vw, 3rem) 0', display: 'flex', justifyContent: 'center', flex: 1, alignItems: 'center', boxSizing: 'border-box' }}>
         <div style={{
           maxWidth: 1200, width: '100%',
           display: 'flex', flexDirection: 'row', flexWrap: 'wrap',
@@ -61,8 +62,8 @@ export default function Contact() {
         }}>
       {/* Left */}
       <div style={{
-        flex: '1 1 320px', minWidth: 0,
-        padding: 'clamp(4rem, 8vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
+        flex: '1 1 280px', minWidth: 0,
+        padding: 'clamp(2.5rem, 6vh, 5rem) clamp(1.2rem, 4vw, 7rem)',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         borderRight: '1px solid var(--border)',
         position: 'relative', overflow: 'hidden',
@@ -75,10 +76,10 @@ export default function Contact() {
           <h2 style={{ fontFamily: 'Inter,sans-serif', fontWeight: 900, fontSize: 'clamp(2.5rem,6vw,5.5rem)', lineHeight: 0.92, letterSpacing: '-0.01em', marginBottom: '1.8rem', color: 'var(--text)' }}>
             Say <em style={{ fontStyle: 'italic', color: 'var(--blue)' }}>Hello.</em>
           </h2>
-          <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: '0.8rem', letterSpacing: '0.06em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6, maxWidth: '100%', boxSizing: 'border-box' }}
+          <a href={`mailto:${EMAIL}`} aria-label="Send email" style={{ display: 'inline-flex', alignItems: 'flex-start', gap: '0.6rem', fontFamily: 'JetBrains Mono,monospace', fontSize: 'clamp(0.65rem, 2vw, 0.8rem)', letterSpacing: '0.04em', color: 'var(--blue)', textDecoration: 'none', marginBottom: '2rem', padding: '0.55rem 0.9rem', border: '1px solid var(--border-strong)', background: 'var(--input-bg)', transition: 'background 0.2s, box-shadow 0.2s', borderRadius: 6, maxWidth: '100%', boxSizing: 'border-box', wordBreak: 'break-all' }}
             onMouseEnter={e => { (e.currentTarget as HTMLElement).style.background = 'var(--blue-glow)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 0 16px var(--blue-glow)' }}
             onMouseLeave={e => { (e.currentTarget as HTMLElement).style.background = 'var(--input-bg)'; (e.currentTarget as HTMLElement).style.boxShadow = 'none' }}>
-            <FaEnvelope size={13} style={{ flexShrink: 0 }} /> <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{EMAIL}</span>
+            <FaEnvelope size={13} style={{ flexShrink: 0, marginTop: '0.15rem' }} /> <span style={{ wordBreak: 'break-all', overflowWrap: 'anywhere' }}>{EMAIL}</span>
           </a>
         </motion.div>
         <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.15 }}>
@@ -112,9 +113,11 @@ export default function Contact() {
       </div>
       {/* Right — Form */}
       <div style={{
-        flex: '1 1 320px', minWidth: 0,
-        padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 7rem)',
+        flex: '1 1 280px', minWidth: 0,
+        padding: 'clamp(2.5rem, 6vh, 5rem) clamp(1.2rem, 4vw, 7rem)',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
+        /* Extra bottom so chatbot FAB doesn't cover the form on mobile */
+        paddingBottom: 'clamp(2rem, 5vh, 5rem)',
         boxSizing: 'border-box',
       }}>
         <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>

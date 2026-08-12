@@ -88,6 +88,8 @@ html {
   background: var(--bg);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  /* Reserve space at bottom so fixed FAB never hides content */
+  scroll-padding-bottom: 6rem;
 }
 
 body {
@@ -96,6 +98,7 @@ body {
   color: var(--text);
   overscroll-behavior: none;
   line-height: 1.6;
+  overflow-x: hidden;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
@@ -163,6 +166,11 @@ section {
   #contact > div > div > div:first-child {
     border-right: none !important;
     border-bottom: 1px solid var(--border) !important;
+  }
+  /* About: stack columns and reset min-widths */
+  #about > div > div {
+    flex: 1 1 100% !important;
+    min-width: 0 !important;
   }
 }
 
@@ -267,22 +275,55 @@ section {
 
   .chatbot-fab {
     padding: 0.6rem 0.9rem !important;
-    bottom: 1.2rem !important;
-    right: 1.2rem !important;
+    bottom: 1rem !important;
+    right: 1rem !important;
   }
   .chatbot-fab span { display: none !important; }
 
   .chatbot-window {
     right: 0.5rem !important;
+    bottom: 5.5rem !important;
     width: calc(100vw - 1rem) !important;
+  }
+
+  /* Contact section: extra bottom clearance for FAB on mobile */
+  #contact {
+    padding-bottom: clamp(6rem, 14vh, 10rem) !important;
   }
 }
 
 
-/* Very small phones (< 375px — Galaxy A03, iPhone SE) */
-@media (max-width: 375px) {
-  h1 { font-size: clamp(1.6rem, 8vw, 2.5rem) !important; }
-  h2 { font-size: clamp(1.4rem, 6vw, 2rem) !important; }
-  section { padding: 2.5rem 1rem 1.5rem !important; }
-}
+/* Very small phones (< 380px — Galaxy A03, iPhone SE, etc.) */
+@media (max-width: 380px) {
+  h1 { font-size: clamp(1.6rem, 8vw, 2.2rem) !important; }
+  h2 { font-size: clamp(1.3rem, 6vw, 1.8rem) !important; }
+  section { padding: 2.5rem 0.85rem 1.5rem !important; }
 
+  /* Hero: even tighter on small phones */
+  #hero {
+    padding-top: 5.5rem !important;
+    padding-bottom: 2.5rem !important;
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+  #hero > div > *:last-child {
+    width: clamp(180px, 75vw, 280px) !important;
+    height: clamp(220px, 65vw, 340px) !important;
+  }
+
+  /* Contact: make email font even smaller */
+  #contact a[href^="mailto"] {
+    font-size: 0.62rem !important;
+    padding: 0.45rem 0.7rem !important;
+  }
+
+  /* Chatbot FAB: tuck into corner */
+  .chatbot-fab {
+    bottom: 0.75rem !important;
+    right: 0.75rem !important;
+  }
+  .chatbot-window {
+    width: calc(100vw - 0.9rem) !important;
+    right: 0.45rem !important;
+  }
+}

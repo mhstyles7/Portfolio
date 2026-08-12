@@ -45,10 +45,10 @@ export default function About() {
       }}>
       {/* Left — Experience */}
       <div style={{
-        flex: '1 1 400px', minWidth: 320,
+        flex: '1 1 320px', minWidth: 0,
         background: 'var(--surface)', color: 'var(--text)',
         display: 'flex', flexDirection: 'column',
-        padding: 'clamp(3rem, 6vh, 5rem) clamp(1.5rem, 4vw, 4rem)',
+        padding: 'clamp(2rem, 6vh, 5rem) clamp(1rem, 4vw, 4rem)',
         position: 'relative', overflow: 'hidden', gap: '2rem'
       }}>
         <div style={{ position: 'relative', zIndex: 1 }}>
