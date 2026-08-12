@@ -98,6 +98,7 @@ body {
   color: var(--text);
   overscroll-behavior: none;
   line-height: 1.6;
+  overflow-x: hidden;
   transition: background 0.4s ease, color 0.4s ease;
 }
 
@@ -212,12 +213,8 @@ section {
 
 /* Mobile (< 600px) */
 @media (max-width: 600px) {
-  /* Use separate props instead of shorthand — avoids crushing section-specific bottom padding */
   section {
-    padding-top: clamp(3rem, 7vh, 5rem) !important;
-    padding-left: 1.2rem !important;
-    padding-right: 1.2rem !important;
-    /* Do NOT set padding-bottom here — each section manages its own */
+    padding: clamp(3rem, 7vh, 5rem) 1.2rem clamp(1.5rem, 3vh, 2rem) !important;
   }
 
   /* Hero: text on top, photo below — MUST keep big top padding to clear fixed nav */
@@ -288,17 +285,19 @@ section {
     bottom: 5.5rem !important;
     width: calc(100vw - 1rem) !important;
   }
+
+  /* Contact section: extra bottom clearance for FAB on mobile */
+  #contact {
+    padding-bottom: clamp(6rem, 14vh, 10rem) !important;
+  }
 }
+
 
 /* Very small phones (< 380px — Galaxy A03, iPhone SE, etc.) */
 @media (max-width: 380px) {
   h1 { font-size: clamp(1.6rem, 8vw, 2.2rem) !important; }
   h2 { font-size: clamp(1.3rem, 6vw, 1.8rem) !important; }
-  section {
-    padding-top: 2.5rem !important;
-    padding-left: 0.85rem !important;
-    padding-right: 0.85rem !important;
-  }
+  section { padding: 2.5rem 0.85rem 1.5rem !important; }
 
   /* Hero: even tighter on small phones */
   #hero {
